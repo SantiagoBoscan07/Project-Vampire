@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxi2oufrxflh7"]
+
+[ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_kq52r"]
+[ext_resource type="Texture2D" uid="uid://w4xhbb80tkvb" path="res://Sprites/rockEnemy.png" id="2_5kpff"]
+[ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="3_gaiqv"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_f1vb3"]
+[ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="5_guqmw"]
+[ext_resource type="Script" path="res://Scripts/health.gd" id="6_nqutu"]
+[ext_resource type="Script" path="res://Scripts/hurt.gd" id="7_dg1ni"]
+[ext_resource type="Script" path="res://Scripts/move.gd" id="8_fnusd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpimo"]
+radius = 24.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyarc"]
+radius = 24.0
+height = 80.0
+
+[node name="EnemyBat" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_kq52r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_5kpff")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_gaiqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_lpimo")
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+script = ExtResource("4_f1vb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_wyarc")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(9.53674e-07, -8)
+scale = Vector2(3.2, 4)
+enable_node_path = NodePath("../Components/Move")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+script = ExtResource("5_guqmw")
+player = NodePath("../..")
+verticalClamp = true
+
+[node name="Health" type="Node" parent="Components"]
+script = ExtResource("6_nqutu")
+health = 15
+
+[node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
+script = ExtResource("7_dg1ni")
+health = NodePath("../Health")
+hurtbox = NodePath("../../Hurtbox")
+
+[node name="Move" type="Node" parent="Components" node_paths=PackedStringArray("object")]
+script = ExtResource("8_fnusd")
+object = NodePath("../..")
+velocity = Vector2(-50, 0)
+horizontalMovement = true
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

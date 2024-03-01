@@ -1,13 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuommpvg6eyai"]
+[gd_scene load_steps=14 format=3 uid="uid://cqml5j0cadjsg"]
 
-[ext_resource type="Script" path="res://Scripts/health.gd" id="1_8dbbw"]
-[ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_85p5d"]
-[ext_resource type="Texture2D" uid="uid://bkwb2nptr0ilr" path="res://Sprites/batEnemySpriteSheet.png" id="1_xglh7"]
-[ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="2_7wgls"]
-[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_iew1j"]
-[ext_resource type="Script" path="res://Scripts/hurt.gd" id="6_1qsgv"]
-[ext_resource type="Script" path="res://Scripts/move.gd" id="7_d3f0b"]
-[ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="8_hhgm1"]
+[ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_61qcx"]
+[ext_resource type="Texture2D" uid="uid://bkwb2nptr0ilr" path="res://Sprites/batEnemySpriteSheet.png" id="2_xiv8w"]
+[ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="3_xlopn"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_nntfq"]
+[ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="5_rauru"]
+[ext_resource type="Script" path="res://Scripts/health.gd" id="6_x7fct"]
+[ext_resource type="Script" path="res://Scripts/hurt.gd" id="7_2ha2t"]
+[ext_resource type="Script" path="res://Scripts/move.gd" id="8_vv4rw"]
 
 [sub_resource type="Animation" id="Animation_0a7gk"]
 resource_name = "Idle"
@@ -58,12 +58,12 @@ height = 48.0
 z_index = 1
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_85p5d")
+script = ExtResource("1_61qcx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("1_xglh7")
+texture = ExtResource("2_xiv8w")
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -76,7 +76,7 @@ autoplay = "Idle"
 visible = false
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("2_7wgls")
+script = ExtResource("3_xlopn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
@@ -85,7 +85,7 @@ shape = SubResource("CapsuleShape2D_lpimo")
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
-script = ExtResource("4_iew1j")
+script = ExtResource("4_nntfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 1.5708
@@ -99,22 +99,22 @@ enable_node_path = NodePath("../Components/Move")
 [node name="Components" type="Node" parent="."]
 
 [node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
-script = ExtResource("8_hhgm1")
+script = ExtResource("5_rauru")
 player = NodePath("../..")
 verticalClamp = true
 
 [node name="Health" type="Node" parent="Components"]
-script = ExtResource("1_8dbbw")
+script = ExtResource("6_x7fct")
 
 [node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
-script = ExtResource("6_1qsgv")
+script = ExtResource("7_2ha2t")
 health = NodePath("../Health")
 hurtbox = NodePath("../../Hurtbox")
 
 [node name="Move" type="Node" parent="Components" node_paths=PackedStringArray("object")]
-script = ExtResource("7_d3f0b")
+script = ExtResource("8_vv4rw")
 object = NodePath("../..")
-velocity = Vector2(-120, 0)
-horizontalMovement = true
+velocity = Vector2(-120, 80)
+waveMovement = true
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

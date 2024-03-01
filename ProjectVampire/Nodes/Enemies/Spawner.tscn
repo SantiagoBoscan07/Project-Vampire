@@ -1,17 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl83qnmriw74j"]
+[gd_scene load_steps=3 format=3 uid="uid://dl83qnmriw74j"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="1_f1s4s"]
 [ext_resource type="Script" path="res://Scripts/SpawnerMain.gd" id="1_m3txs"]
-[ext_resource type="PackedScene" uid="uid://cuommpvg6eyai" path="res://Nodes/Enemies/enemy_bat.tscn" id="3_15tvj"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_m3txs")
 
 [node name="SpawnerNode" type="Node2D" parent="."]
 script = ExtResource("1_f1s4s")
-scene = ExtResource("3_15tvj")
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="HorizontalBatTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true

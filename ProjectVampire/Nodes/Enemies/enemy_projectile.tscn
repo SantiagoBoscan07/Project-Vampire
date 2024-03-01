@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://dljdpp0fy4q2k"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_projectile.gd" id="1_0ctmb"]
+[ext_resource type="Texture2D" uid="uid://c6sjf7osrm2ti" path="res://Sprites/proejectileSkull.png" id="2_g3s6r"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="3_nxmf6"]
+[ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="3_teubl"]
+[ext_resource type="Script" path="res://Scripts/health.gd" id="5_aq883"]
+[ext_resource type="Script" path="res://Scripts/hurt.gd" id="6_ghv0b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1p2u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mh6m"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_ruxpk"]
+resource_name = "Fly"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_2uw6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xebuu"]
+_data = {
+"Fly": SubResource("Animation_ruxpk"),
+"RESET": SubResource("Animation_2uw6h")
+}
+
+[node name="EnemyProjectile" type="Node2D"]
+z_index = 1
+script = ExtResource("1_0ctmb")
+speed = 150.0
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
+position = Vector2(-0.5, 0)
+scale = Vector2(1.55, 1.5)
+enable_node_path = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_g3s6r")
+hframes = 2
+
+[node name="Hurtbox" type="Area2D" parent="Body"]
+visible = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_teubl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k1p2u")
+
+[node name="Hitbox" type="Area2D" parent="Body"]
+visible = false
+collision_layer = 0
+script = ExtResource("3_nxmf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0mh6m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_xebuu")
+}
+autoplay = "Fly"
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Health" type="Node" parent="Components"]
+script = ExtResource("5_aq883")
+
+[node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
+script = ExtResource("6_ghv0b")
+health = NodePath("../Health")
+hurtbox = NodePath("../../Body/Hurtbox")
+
+[connection signal="screen_exited" from="Body/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

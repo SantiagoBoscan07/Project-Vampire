@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var projectilePreload: PackedScene = preload("res://Nodes/Player/player_projectile.tscn")
 @onready var shootingPosition = $Body/ShootingPosition
@@ -15,6 +16,7 @@ func _ready():
 	health.no_health.connect(queue_free)
 
 func _process(delta):
+	Global.global_player_position = global_position
 	direction = Input.get_vector("move_left","move_right","move_up","move_down")
 	if Input.is_action_pressed("shoot") and fireDelayTimer.is_stopped():
 		fireDelayTimer.start(PlayerStats.fireDelayTime)
