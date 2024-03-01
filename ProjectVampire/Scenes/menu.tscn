@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi5fvto8256mm"]
+
+[ext_resource type="Texture2D" uid="uid://daa2yu3roj07e" path="res://UI/GameMenu.png" id="1_58cx5"]
+[ext_resource type="Script" path="res://Scenes/menu.gd" id="1_eucb3"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eucb3")
+
+[node name="GameUi" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(256, 192)
+texture = ExtResource("1_58cx5")

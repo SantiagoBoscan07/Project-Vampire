@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://k5enpt6w3j01"]
+
+[ext_resource type="Texture2D" uid="uid://brojw8kk0cphk" path="res://UI/GameUI.png" id="1_itc4b"]
+
+[node name="GameUi" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(256, 192)
+texture = ExtResource("1_itc4b")
