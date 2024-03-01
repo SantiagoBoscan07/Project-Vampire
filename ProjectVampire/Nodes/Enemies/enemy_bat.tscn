@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuommpvg6eyai"]
+[gd_scene load_steps=14 format=3 uid="uid://cuommpvg6eyai"]
 
 [ext_resource type="Script" path="res://Scripts/health.gd" id="1_8dbbw"]
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_85p5d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_iew1j"]
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="6_1qsgv"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="7_d3f0b"]
+[ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="8_hhgm1"]
 
 [sub_resource type="Animation" id="Animation_0a7gk"]
 resource_name = "Idle"
@@ -54,12 +55,10 @@ height = 48.0
 height = 48.0
 
 [node name="EnemyBat" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_85p5d")
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("1_8dbbw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -91,19 +90,29 @@ script = ExtResource("4_iew1j")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wyarc")
 
-[node name="Move" type="Node" parent="." node_paths=PackedStringArray("object")]
-script = ExtResource("7_d3f0b")
-object = NodePath("..")
-velocity = Vector2(-250, 0)
-
-[node name="Hurt" type="Node" parent="." node_paths=PackedStringArray("health", "hurtbox")]
-script = ExtResource("6_1qsgv")
-health = NodePath("../Health")
-hurtbox = NodePath("../Hurtbox")
-
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(9.53674e-07, 1.43051e-06)
 scale = Vector2(3.2, 1.6)
-enable_node_path = NodePath("../Move")
+enable_node_path = NodePath("../Components/Move")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+script = ExtResource("8_hhgm1")
+player = NodePath("../..")
+verticalClamp = true
+
+[node name="Health" type="Node" parent="Components"]
+script = ExtResource("1_8dbbw")
+
+[node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
+script = ExtResource("6_1qsgv")
+health = NodePath("../Health")
+hurtbox = NodePath("../../Hurtbox")
+
+[node name="Move" type="Node" parent="Components" node_paths=PackedStringArray("object")]
+script = ExtResource("7_d3f0b")
+object = NodePath("../..")
+velocity = Vector2(-120, 80)
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

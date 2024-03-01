@@ -55,6 +55,8 @@ script = ExtResource("1_arw0j")
 [node name="PositionClamp" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_l61g1")
 player = NodePath("..")
+horizontalClamp = true
+verticalClamp = true
 
 [node name="Body" type="Node2D" parent="."]
 

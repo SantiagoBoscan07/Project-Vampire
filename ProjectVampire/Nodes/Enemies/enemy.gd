@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @onready var hurtbox: Hurtbox = $Hurtbox as Hurtbox
 @onready var hitbox: Hitbox = $Hitbox as Hitbox
-@onready var health: Health = $Health as Health
-@onready var hurt: Hurt = $Hurt as Hurt
-@onready var move: Move = $Move as Move
+@onready var health: Health = $Components/Health as Health
+@onready var hurt: Hurt = $Components/Hurt as Hurt
+@onready var move: Move = $Components/Move as Move
 
 func _ready() -> void:
 	hurtbox.hurt.connect(func(hitbox: Hitbox):
