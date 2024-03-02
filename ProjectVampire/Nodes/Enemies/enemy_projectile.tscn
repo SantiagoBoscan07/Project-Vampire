@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dljdpp0fy4q2k"]
+[gd_scene load_steps=14 format=3 uid="uid://dljdpp0fy4q2k"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_projectile.gd" id="1_0ctmb"]
 [ext_resource type="Texture2D" uid="uid://c6sjf7osrm2ti" path="res://Sprites/proejectileSkull.png" id="2_g3s6r"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="3_teubl"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="5_aq883"]
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="6_ghv0b"]
+[ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="7_nvpuw"]
+[ext_resource type="Script" path="res://Scripts/Flash.gd" id="8_s8hqo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1p2u"]
 
@@ -103,5 +105,13 @@ script = ExtResource("5_aq883")
 script = ExtResource("6_ghv0b")
 health = NodePath("../Health")
 hurtbox = NodePath("../../Body/Hurtbox")
+
+[node name="Shake" type="Node" parent="Components" node_paths=PackedStringArray("node")]
+script = ExtResource("7_nvpuw")
+node = NodePath("../../Body/Sprite2D")
+
+[node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_s8hqo")
+sprite = NodePath("../../Body/Sprite2D")
 
 [connection signal="screen_exited" from="Body/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

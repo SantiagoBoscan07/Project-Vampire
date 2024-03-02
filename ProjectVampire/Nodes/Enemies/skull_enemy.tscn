@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://v61tmokwx4j3"]
+[gd_scene load_steps=20 format=3 uid="uid://v61tmokwx4j3"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_ayfh5"]
 [ext_resource type="Texture2D" uid="uid://7u6cre6ord4d" path="res://Sprites/SkullEnemySpriteSheet.png" id="2_p61ue"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="7_i4d3w"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="8_1ah5k"]
 [ext_resource type="Script" path="res://Nodes/Enemies/Shoot.gd" id="9_iepme"]
+[ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="10_xvpqu"]
+[ext_resource type="Script" path="res://Scripts/Flash.gd" id="11_am08u"]
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="12_w8mpj"]
+[ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="13_hqsg8"]
+[ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="14_5vwnu"]
 
 [sub_resource type="Animation" id="Animation_c34cv"]
 resource_name = "Idle"
@@ -129,6 +134,24 @@ skullMovement = true
 
 [node name="Shoot" type="Node2D" parent="Components"]
 script = ExtResource("9_iepme")
+
+[node name="Shake" type="Node" parent="Components" node_paths=PackedStringArray("node")]
+script = ExtResource("10_xvpqu")
+node = NodePath("../../Sprite2D")
+
+[node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_am08u")
+sprite = NodePath("../../Sprite2D")
+
+[node name="Death" type="Node" parent="Components" node_paths=PackedStringArray("actor", "health", "death_effect_spawner")]
+script = ExtResource("12_w8mpj")
+actor = NodePath("../../Sprite2D")
+health = NodePath("../Health")
+death_effect_spawner = NodePath("../SpawnerNode")
+
+[node name="SpawnerNode" type="Node2D" parent="Components"]
+script = ExtResource("13_hqsg8")
+scene = ExtResource("14_5vwnu")
 
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true

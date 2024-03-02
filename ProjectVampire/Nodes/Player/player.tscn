@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://baa3n22xm8384"]
+[gd_scene load_steps=13 format=3 uid="uid://baa3n22xm8384"]
 
 [ext_resource type="Script" path="res://Nodes/Player/player.gd" id="1_arw0j"]
 [ext_resource type="Texture2D" uid="uid://b3bqcbb0ejeaw" path="res://Sprites/PlayerAngelSpriteSheet.png" id="1_gi612"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="4_l61g1"]
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="5_7mre1"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="6_pksvg"]
+[ext_resource type="Script" path="res://Scripts/Flash.gd" id="7_ik0k8"]
+[ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="8_xxn2b"]
 
 [sub_resource type="Animation" id="Animation_tefjr"]
 resource_name = "Idle"
@@ -97,5 +99,14 @@ hurtbox = NodePath("../Hurtbox")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("6_pksvg")
+health = 100
+
+[node name="Flash" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_ik0k8")
+sprite = NodePath("../Body/PlayerSprite")
+
+[node name="Shake" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("8_xxn2b")
+node = NodePath("../Body/PlayerSprite")
 
 [connection signal="timeout" from="Body/BoostTimer" to="." method="_on_boost_timer_timeout"]

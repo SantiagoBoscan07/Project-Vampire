@@ -5,11 +5,13 @@ extends CharacterBody2D
 @onready var health: Health = $Components/Health as Health
 @onready var hurt: Hurt = $Components/Hurt as Hurt
 @onready var move: Move = $Components/Move as Move
+@onready var shake: Shake = $Components/Shake as Shake
+@onready var flash: Flash = $Components/Flash as Flash
 
 func _ready() -> void:
 	hurtbox.hurt.connect(func(hitbox: Hitbox):
-		# Insert Effects When Getting Hit
-		pass
+		shake.tween_shake()
+		flash.flash()
 		)
 	health.no_health.connect(queue_free)
 

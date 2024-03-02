@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqml5j0cadjsg"]
+[gd_scene load_steps=19 format=3 uid="uid://cqml5j0cadjsg"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_61qcx"]
 [ext_resource type="Texture2D" uid="uid://bkwb2nptr0ilr" path="res://Sprites/batEnemySpriteSheet.png" id="2_xiv8w"]
@@ -8,6 +8,11 @@
 [ext_resource type="Script" path="res://Scripts/health.gd" id="6_x7fct"]
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="7_2ha2t"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="8_vv4rw"]
+[ext_resource type="Script" path="res://Scripts/Flash.gd" id="9_uepjg"]
+[ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="10_kg2td"]
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="11_jvxw8"]
+[ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="12_rb57b"]
+[ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="13_xwcqe"]
 
 [sub_resource type="Animation" id="Animation_0a7gk"]
 resource_name = "Idle"
@@ -54,7 +59,7 @@ height = 48.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyarc"]
 height = 48.0
 
-[node name="EnemyBat" type="CharacterBody2D"]
+[node name="EnemyBatWave" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 0
 collision_mask = 0
@@ -116,5 +121,23 @@ script = ExtResource("8_vv4rw")
 object = NodePath("../..")
 velocity = Vector2(-120, 80)
 waveMovement = true
+
+[node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_uepjg")
+sprite = NodePath("../../Sprite2D")
+
+[node name="Shake" type="Node" parent="Components" node_paths=PackedStringArray("node")]
+script = ExtResource("10_kg2td")
+node = NodePath("../../Sprite2D")
+
+[node name="Death" type="Node" parent="Components" node_paths=PackedStringArray("actor", "health", "death_effect_spawner")]
+script = ExtResource("11_jvxw8")
+actor = NodePath("../../Sprite2D")
+health = NodePath("../Health")
+death_effect_spawner = NodePath("../SpawnerNode")
+
+[node name="SpawnerNode" type="Node2D" parent="Components"]
+script = ExtResource("12_rb57b")
+scene = ExtResource("13_xwcqe")
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

@@ -1,13 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuommpvg6eyai"]
+[gd_scene load_steps=19 format=3 uid="uid://cuommpvg6eyai"]
 
 [ext_resource type="Script" path="res://Scripts/health.gd" id="1_8dbbw"]
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_85p5d"]
 [ext_resource type="Texture2D" uid="uid://bkwb2nptr0ilr" path="res://Sprites/batEnemySpriteSheet.png" id="1_xglh7"]
 [ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="2_7wgls"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_iew1j"]
+[ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="5_n20os"]
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="6_1qsgv"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="7_d3f0b"]
 [ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="8_hhgm1"]
+[ext_resource type="Script" path="res://Scripts/Flash.gd" id="10_mbtcl"]
+[ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="11_4x60g"]
+[ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="12_3kr5f"]
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="13_1rv6c"]
 
 [sub_resource type="Animation" id="Animation_0a7gk"]
 resource_name = "Idle"
@@ -98,6 +103,10 @@ enable_node_path = NodePath("../Components/Move")
 
 [node name="Components" type="Node" parent="."]
 
+[node name="Shake" type="Node" parent="Components" node_paths=PackedStringArray("node")]
+script = ExtResource("5_n20os")
+node = NodePath("../../Sprite2D")
+
 [node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
 script = ExtResource("8_hhgm1")
 player = NodePath("../..")
@@ -116,5 +125,19 @@ script = ExtResource("7_d3f0b")
 object = NodePath("../..")
 velocity = Vector2(-120, 0)
 horizontalMovement = true
+
+[node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]
+script = ExtResource("10_mbtcl")
+sprite = NodePath("../../Sprite2D")
+
+[node name="Death" type="Node" parent="Components" node_paths=PackedStringArray("actor", "health", "death_effect_spawner")]
+script = ExtResource("13_1rv6c")
+actor = NodePath("../../Sprite2D")
+health = NodePath("../Health")
+death_effect_spawner = NodePath("../SpawnerNode")
+
+[node name="SpawnerNode" type="Node2D" parent="Components"]
+script = ExtResource("11_4x60g")
+scene = ExtResource("12_3kr5f")
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccbckcr3wa1y6"]
+
+[ext_resource type="Texture2D" uid="uid://cqqlf77rpykly" path="res://Sprites/deathAnimation-Sheet.png" id="1_4ba77"]
+[ext_resource type="Script" path="res://Scripts/DeathAnimation.gd" id="1_pbo6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ovv5"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tltsm"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvl1d"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88fep"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r084n"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlfha"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ber"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y742x"]
+atlas = ExtResource("1_4ba77")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xf0wr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ovv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tltsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvl1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88fep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r084n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlfha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ber")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y742x")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="DeathEffect" type="AnimatedSprite2D"]
+z_index = 1
+scale = Vector2(1.7, 1.7)
+sprite_frames = SubResource("SpriteFrames_xf0wr")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+script = ExtResource("1_pbo6l")
