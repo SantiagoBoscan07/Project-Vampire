@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://baa3n22xm8384"]
+[gd_scene load_steps=14 format=3 uid="uid://baa3n22xm8384"]
 
 [ext_resource type="Script" path="res://Nodes/Player/player.gd" id="1_arw0j"]
 [ext_resource type="Texture2D" uid="uid://b3bqcbb0ejeaw" path="res://Sprites/PlayerAngelSpriteSheet.png" id="1_gi612"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/health.gd" id="6_pksvg"]
 [ext_resource type="Script" path="res://Scripts/Flash.gd" id="7_ik0k8"]
 [ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="8_xxn2b"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="9_vf0up"]
 
 [sub_resource type="Animation" id="Animation_tefjr"]
 resource_name = "Idle"
@@ -82,6 +83,16 @@ position = Vector2(18, 4)
 
 [node name="ShootDelay" type="Timer" parent="."]
 one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("9_vf0up")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_ypvbp")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 visible = false

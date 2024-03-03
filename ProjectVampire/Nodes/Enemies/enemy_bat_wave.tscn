@@ -53,7 +53,6 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpimo"]
-radius = 16.0
 height = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyarc"]
@@ -91,6 +90,7 @@ shape = SubResource("CapsuleShape2D_lpimo")
 visible = false
 collision_layer = 0
 script = ExtResource("4_nntfq")
+damage = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 1.5708

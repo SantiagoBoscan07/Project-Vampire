@@ -12,8 +12,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1p2u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mh6m"]
-radius = 8.0
-height = 32.0
+radius = 10.0
 
 [sub_resource type="Animation" id="Animation_ruxpk"]
 resource_name = "Fly"
@@ -84,6 +83,7 @@ shape = SubResource("CapsuleShape2D_k1p2u")
 visible = false
 collision_layer = 0
 script = ExtResource("3_nxmf6")
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hitbox"]
 rotation = 1.5708

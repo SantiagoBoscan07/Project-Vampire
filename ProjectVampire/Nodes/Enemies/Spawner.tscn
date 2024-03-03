@@ -1,15 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl83qnmriw74j"]
+[gd_scene load_steps=7 format=3 uid="uid://dl83qnmriw74j"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="1_f1s4s"]
 [ext_resource type="Script" path="res://Scripts/SpawnerMain.gd" id="1_m3txs"]
+[ext_resource type="PackedScene" uid="uid://cuommpvg6eyai" path="res://Nodes/Enemies/enemy_bat.tscn" id="2_qaml2"]
+[ext_resource type="PackedScene" uid="uid://cqml5j0cadjsg" path="res://Nodes/Enemies/enemy_bat_wave.tscn" id="3_m75p4"]
+[ext_resource type="PackedScene" uid="uid://v61tmokwx4j3" path="res://Nodes/Enemies/skull_enemy.tscn" id="4_5kv66"]
+[ext_resource type="PackedScene" uid="uid://cxi2oufrxflh7" path="res://Nodes/Enemies/rock_enemy.tscn" id="5_dctfy"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_m3txs")
+horizontalBat = ExtResource("2_qaml2")
+waveBat = ExtResource("3_m75p4")
+skull = ExtResource("4_5kv66")
+rock = ExtResource("5_dctfy")
 
 [node name="SpawnerNode" type="Node2D" parent="."]
 script = ExtResource("1_f1s4s")
 
 [node name="HorizontalBatTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
-autostart = true
+
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SkullTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RockTimer" type="Timer" parent="."]
+one_shot = true

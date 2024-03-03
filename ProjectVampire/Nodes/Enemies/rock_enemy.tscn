@@ -47,6 +47,7 @@ shape = SubResource("CapsuleShape2D_lpimo")
 visible = false
 collision_layer = 0
 script = ExtResource("4_f1vb3")
+damage = 30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -8)
@@ -70,7 +71,7 @@ verticalClamp = true
 
 [node name="Health" type="Node" parent="Components"]
 script = ExtResource("6_nqutu")
-health = 5
+health = 20
 
 [node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("7_dg1ni")

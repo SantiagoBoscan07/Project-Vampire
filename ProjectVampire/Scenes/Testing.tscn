@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=10 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="3_a4i0n"]
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="4_m58ue"]
 [ext_resource type="Script" path="res://Scenes/DashBar.gd" id="6_aseht"]
+[ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="7_tcg15"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -67,3 +68,15 @@ theme_override_styles/background = SubResource("StyleBoxFlat_tk1tk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lcb5s")
 show_percentage = false
 script = ExtResource("6_aseht")
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("nodeToActivate") instance=ExtResource("7_tcg15")]
+horizontalBatTime = 1.5
+spawnHorizontal = true
+amountOfEnemies = 2
+nodeToActivate = NodePath("../Spawner2")
+
+[node name="Spawner2" parent="." instance=ExtResource("7_tcg15")]
+process_mode = 4
+waveTime = 2.0
+spawnWave = true
+amountOfEnemies = 4

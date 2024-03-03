@@ -6,7 +6,7 @@ class_name Health
 		health = value
 		health_changed.emit()
 		
-		if health == 0: no_health.emit()
+		if health <= 0: no_health.emit()
 
 
 signal health_changed()
