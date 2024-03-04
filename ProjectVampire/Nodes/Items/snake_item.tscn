@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhtklqhy4up47"]
+
+[ext_resource type="Script" path="res://Nodes/Items/itemScript.gd" id="1_jwhlw"]
+[ext_resource type="Texture2D" uid="uid://b5tw4dyh2ogwt" path="res://Sprites/snakeItem.png" id="2_xptf4"]
+[ext_resource type="AudioStream" uid="uid://yk5l7r6j845r" path="res://SoundEffects/PickItemSound.wav" id="3_ccydj"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_k42j0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n1ip3"]
+radius = 6.0
+height = 19.0
+
+[node name="SnakeItem" type="Node2D" node_paths=PackedStringArray("hurtbox") groups=["unselectedItem"]]
+z_index = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_jwhlw")
+hurtbox = NodePath("ItemHurtbox")
+hpModifier = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_xptf4")
+
+[node name="ItemHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemHurtbox"]
+position = Vector2(-0.5, -1.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n1ip3")
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ccydj")
+script = ExtResource("4_k42j0")

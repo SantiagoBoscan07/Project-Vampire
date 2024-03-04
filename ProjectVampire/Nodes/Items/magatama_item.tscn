@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnygbbeg3je5f"]
+[gd_scene load_steps=6 format=3 uid="uid://cnygbbeg3je5f"]
 
 [ext_resource type="Script" path="res://Nodes/Items/itemScript.gd" id="1_3rrxf"]
 [ext_resource type="Texture2D" uid="uid://c7w8cvg5wysv8" path="res://Sprites/magatama.png" id="1_5i4xm"]
+[ext_resource type="AudioStream" uid="uid://yk5l7r6j845r" path="res://SoundEffects/PickItemSound.wav" id="3_k15ap"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_cdsxv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n1ip3"]
 radius = 6.0
 height = 19.0
 
-[node name="MagatamaItem" type="Node2D" node_paths=PackedStringArray("hurtbox") groups=["items"]]
+[node name="MagatamaItem" type="Node2D" node_paths=PackedStringArray("hurtbox") groups=["unselectedItem"]]
 z_index = 1
 scale = Vector2(2, 2)
 script = ExtResource("1_3rrxf")
 hurtbox = NodePath("ItemHurtbox")
-hpModifier = true
+shootPositionModifier = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -27,3 +29,7 @@ monitorable = false
 position = Vector2(-0.5, -1.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_n1ip3")
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k15ap")
+script = ExtResource("4_cdsxv")

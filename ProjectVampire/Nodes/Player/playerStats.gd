@@ -2,5 +2,7 @@ extends Node
 
 var max_speed = 200.0
 var acceleration = 100.0
-var fireDelayTime = 0.5
+var fireDelayTime = 0.75
+var boostMultiplier = 2
+var normal_speed
 var currentHealth

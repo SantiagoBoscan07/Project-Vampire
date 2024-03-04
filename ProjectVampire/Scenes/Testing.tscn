@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=12 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="3_a4i0n"]
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="4_m58ue"]
 [ext_resource type="Script" path="res://Scenes/DashBar.gd" id="6_aseht"]
+[ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="6_exl6l"]
+[ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="7_qfsio"]
+[ext_resource type="PackedScene" uid="uid://c2e7fha4pgqsi" path="res://Nodes/Items/skull_item.tscn" id="10_27247"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -16,7 +19,7 @@ bg_color = Color(0.627451, 0.658824, 0.25098, 1)
 [node name="Testing" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_j7qsl")]
-position = Vector2(80, 104)
+position = Vector2(82, 104)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(252, 108)
@@ -53,6 +56,22 @@ text = "HP: 100"
 justification_flags = 0
 script = ExtResource("3_a4i0n")
 
+[node name="EmotiosLabel" type="Label" parent="UI"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 214.0
+offset_right = 139.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("4_m58ue")
+theme_override_font_sizes/font_size = 30
+text = "Emotions"
+horizontal_alignment = 1
+justification_flags = 0
+script = ExtResource("6_exl6l")
+
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
 z_index = 2
 texture_filter = 1
@@ -66,3 +85,13 @@ theme_override_styles/background = SubResource("StyleBoxFlat_tk1tk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lcb5s")
 show_percentage = false
 script = ExtResource("6_aseht")
+
+[node name="ItemSpawner" parent="." instance=ExtResource("7_qfsio")]
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("10_27247")
+itemDownScene = ExtResource("10_27247")
+itemMidScene = ExtResource("10_27247")
+itemUpEmotion = 3
+itemDownEmotion = 2

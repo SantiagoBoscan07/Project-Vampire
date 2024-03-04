@@ -8,13 +8,13 @@ func spawn(emotion: int, global_spawn_position: Vector2 = global_position, paren
 	var instance = scene.instantiate()
 	match emotion:
 		0:
-			instance.emotion = "neutral"
+			instance.emotion = 0
 		1:
-			instance.emotion = "happy"
+			instance.emotion = 1
 		2:
-			instance.emotion = "sad"
+			instance.emotion = 2
 		3:
-			instance.emotion = "angry"
+			instance.emotion = 3
 	parent.add_child(instance)
 	instance.global_position = global_spawn_position
 	return instance

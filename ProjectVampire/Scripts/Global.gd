@@ -9,4 +9,7 @@ var skeletonShootTime = 1.0
 var timeLeft: float
 var waitTime: float
 var emotionChart: int = 0
-var emotionString: String
+var canMidShoot: bool = true
+var canLowShoot: bool = false
+var canTopShoot: bool = false
+

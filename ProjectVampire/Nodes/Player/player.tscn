@@ -84,7 +84,13 @@ autoplay = "Idle"
 [node name="BoostTimer" type="Timer" parent="Body"]
 one_shot = true
 
-[node name="ShootingPosition" type="Marker2D" parent="Body"]
+[node name="TopShootingPosition" type="Marker2D" parent="Body"]
+position = Vector2(38, -12)
+
+[node name="LowShootingPosition" type="Marker2D" parent="Body"]
+position = Vector2(38, 18)
+
+[node name="MiddleShootingPosition" type="Marker2D" parent="Body"]
 position = Vector2(18, 4)
 
 [node name="ShootDelay" type="Timer" parent="."]

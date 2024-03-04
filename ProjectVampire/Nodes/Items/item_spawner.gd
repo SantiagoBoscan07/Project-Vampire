@@ -17,11 +17,11 @@ extends Node2D
 func _on_item_timer_timeout():
 	if upItemSpawn:
 		spawnerNode.scene = itemUpScene
-		spawnerNode.spawn(itemUpEmotion, Vector2(416,48))
+		spawnerNode.spawn(itemUpEmotion, Vector2(314,48))
 	if lowItemSpawn:
 		spawnerNode.scene = itemDownScene
-		spawnerNode.spawn(itemDownEmotion, Vector2(416,168))
+		spawnerNode.spawn(itemDownEmotion, Vector2(314,168))
 	if midItemSpawn:
 		spawnerNode.scene = itemMidScene
-		spawnerNode.spawn(itemMidEmotion, Vector2(416,108))
+		spawnerNode.spawn(itemMidEmotion, Vector2(314,108))
 

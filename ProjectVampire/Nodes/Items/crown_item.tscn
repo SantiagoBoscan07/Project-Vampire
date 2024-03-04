@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq30xjvkolcuc"]
+
+[ext_resource type="Script" path="res://Nodes/Items/itemScript.gd" id="1_kte0e"]
+[ext_resource type="Texture2D" uid="uid://yqod6p7w1c1y" path="res://Sprites/crown.png" id="2_sqmkx"]
+[ext_resource type="AudioStream" uid="uid://yk5l7r6j845r" path="res://SoundEffects/PickItemSound.wav" id="3_ayy8q"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_pmg8j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n1ip3"]
+radius = 6.0
+height = 19.0
+
+[node name="CrownItem" type="Node2D" node_paths=PackedStringArray("hurtbox") groups=["unselectedItem"]]
+z_index = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_kte0e")
+hurtbox = NodePath("ItemHurtbox")
+damageModifier = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_sqmkx")
+
+[node name="ItemHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemHurtbox"]
+position = Vector2(-0.5, -1.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n1ip3")
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ayy8q")
+script = ExtResource("4_pmg8j")

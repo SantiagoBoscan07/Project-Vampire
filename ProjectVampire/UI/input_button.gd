@@ -2,7 +2,7 @@ extends Control
 
 @onready var input_button_scene = preload("res://UI/input_button.tscn")
 @onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/InputList
-var menuScene = load("res://UI/game_ui.tscn")
+var menuScene = load("res://Scenes/Testing.tscn")
 var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
