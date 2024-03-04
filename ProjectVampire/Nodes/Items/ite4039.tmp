@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://f1fd66m6isao"]
+
+[ext_resource type="Script" path="res://Nodes/Items/item_spawner.gd" id="1_qr7wi"]
+[ext_resource type="Script" path="res://Nodes/Items/ItemSpawnerNode.gd" id="3_adc83"]
+
+[node name="ItemSpawner" type="Node2D"]
+script = ExtResource("1_qr7wi")
+upItemSpawn = null
+lowItemSpawn = null
+midItemSpawn = null
+
+[node name="ItemTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="ItemSpawnerNode" type="Node2D" parent="."]
+script = ExtResource("3_adc83")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]

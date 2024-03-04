@@ -9,6 +9,7 @@ class_name Player
 @onready var flash: Flash = $Flash as Flash
 @onready var hurtbox: Hurtbox = $Hurtbox as Hurtbox
 @onready var boostTimer = $Body/BoostTimer
+@onready var itemDetector = $ItemDetector
 var canDash: bool = true
 var normal_speed
 var boost_speed 
@@ -27,9 +28,12 @@ func _ready():
 
 func _process(delta):
 	Global.global_player_position = global_position
-	PlayerStats.currentHealth = health.health
+	PlayerStats.currentHealth  = health.health 
 	Global.timeLeft = boostTimer.time_left
 	Global.waitTime = boostTimer.wait_time
+	if itemDetector.healthModifier > 0:
+		health.health += itemDetector.healthModifier
+		itemDetector.healthModifier = 0
 
 
 func _physics_process(delta):

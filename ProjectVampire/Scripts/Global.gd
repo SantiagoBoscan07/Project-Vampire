@@ -8,3 +8,5 @@ var global_player_position: Vector2 = Vector2.ZERO
 var skeletonShootTime = 1.0
 var timeLeft: float
 var waitTime: float
+var emotionChart: int = 0
+var emotionString: String

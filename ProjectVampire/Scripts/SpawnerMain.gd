@@ -43,9 +43,6 @@ func _ready() -> void:
 		rockTimer.timeout.connect(handle_spawn.bind(rock, rockTimer))
 		rockTimer.start()
 
-func _process(delta):
-	pass
-
 func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 	spawnerNode.scene = enemy_scene
 	spawnerNode.spawn(Vector2(528, randf_range(52, 150)))

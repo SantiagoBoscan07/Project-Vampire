@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=11 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="3_a4i0n"]
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="4_m58ue"]
 [ext_resource type="Script" path="res://Scenes/DashBar.gd" id="6_aseht"]
+[ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="7_eiqfc"]
+[ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="7_yxcq7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -21,6 +23,17 @@ position = Vector2(80, 104)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(252, 108)
 scale = Vector2(24.4, 10)
+
+[node name="ItemSpawner" parent="." instance=ExtResource("7_eiqfc")]
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("7_yxcq7")
+itemDownScene = ExtResource("7_yxcq7")
+itemMidScene = ExtResource("7_yxcq7")
+itemUpEmotion = 1
+itemDownEmotion = 2
+itemMidEmotion = 3
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
