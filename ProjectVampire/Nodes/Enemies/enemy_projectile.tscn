@@ -12,7 +12,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1p2u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mh6m"]
-radius = 10.0
 
 [sub_resource type="Animation" id="Animation_ruxpk"]
 resource_name = "Fly"
@@ -52,7 +51,7 @@ _data = {
 "RESET": SubResource("Animation_2uw6h")
 }
 
-[node name="EnemyProjectile" type="Node2D"]
+[node name="EnemyProjectile" type="Node2D" groups=["enemy"]]
 z_index = 1
 script = ExtResource("1_0ctmb")
 speed = 150.0

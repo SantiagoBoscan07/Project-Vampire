@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cuommpvg6eyai"]
+[gd_scene load_steps=21 format=3 uid="uid://cuommpvg6eyai"]
 
 [ext_resource type="Script" path="res://Scripts/health.gd" id="1_8dbbw"]
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_85p5d"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="11_4x60g"]
 [ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="12_3kr5f"]
 [ext_resource type="Script" path="res://Scripts/Death.gd" id="13_1rv6c"]
+[ext_resource type="AudioStream" uid="uid://6j1w4clrucph" path="res://SoundEffects/Damage.wav" id="14_3ppqx"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="14_wcje1"]
 
 [sub_resource type="Animation" id="Animation_0a7gk"]
 resource_name = "Idle"
@@ -58,7 +60,7 @@ height = 48.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyarc"]
 height = 48.0
 
-[node name="EnemyBat" type="CharacterBody2D"]
+[node name="EnemyBat" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 0
 collision_mask = 0
@@ -139,5 +141,10 @@ death_effect_spawner = NodePath("../SpawnerNode")
 [node name="SpawnerNode" type="Node2D" parent="Components"]
 script = ExtResource("11_4x60g")
 scene = ExtResource("12_3kr5f")
+
+[node name="DamageSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_3ppqx")
+bus = &"SoundEffect"
+script = ExtResource("14_wcje1")
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

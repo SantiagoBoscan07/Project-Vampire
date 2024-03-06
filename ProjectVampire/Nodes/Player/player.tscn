@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://baa3n22xm8384"]
+[gd_scene load_steps=20 format=3 uid="uid://baa3n22xm8384"]
 
 [ext_resource type="Script" path="res://Nodes/Player/player.gd" id="1_arw0j"]
 [ext_resource type="Texture2D" uid="uid://b3bqcbb0ejeaw" path="res://Sprites/PlayerAngelSpriteSheet.png" id="1_gi612"]
@@ -7,9 +7,13 @@
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="5_7mre1"]
 [ext_resource type="Script" path="res://Nodes/Player/ItemDetector.gd" id="6_57dqy"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="6_pksvg"]
+[ext_resource type="AudioStream" uid="uid://b1ndmy7ffpmkc" path="res://SoundEffects/PlayerShootSoundEffect.wav" id="7_a5x3h"]
 [ext_resource type="Script" path="res://Scripts/Flash.gd" id="7_ik0k8"]
 [ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="8_xxn2b"]
+[ext_resource type="AudioStream" uid="uid://maqifu6oerus" path="res://SoundEffects/PlayerBoost.wav" id="9_6dovl"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="9_vf0up"]
+[ext_resource type="AudioStream" uid="uid://6j1w4clrucph" path="res://SoundEffects/Damage.wav" id="11_veavc"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="12_n4eme"]
 
 [sub_resource type="Animation" id="Animation_tefjr"]
 resource_name = "Idle"
@@ -124,6 +128,25 @@ script = ExtResource("6_57dqy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector"]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_bkwv2")
+
+[node name="ShootSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_a5x3h")
+bus = &"SoundEffect"
+script = ExtResource("12_n4eme")
+pitch_min = 1.2
+pitch_max = 1.5
+
+[node name="BoostSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_6dovl")
+bus = &"SoundEffect"
+script = ExtResource("12_n4eme")
+pitch_min = 0.3
+pitch_max = 0.7
+
+[node name="DamageSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_veavc")
+bus = &"SoundEffect"
+script = ExtResource("12_n4eme")
 
 [node name="hurt" type="Node" parent="." node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("5_7mre1")

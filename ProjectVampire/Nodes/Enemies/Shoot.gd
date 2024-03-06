@@ -9,6 +9,7 @@ var isMoving: bool = true
 @onready var enemy = $"../.."
 @onready var shootPosition = $"../../ShootingPosition"
 @onready var projectilePreload : PackedScene = preload("res://Nodes/Enemies/enemy_projectile.tscn")
+@onready var shootSound = $"../../SkullShootSoundEffect" as AudioManagerNode
 var projectile
 
 func _ready():
@@ -35,10 +36,12 @@ func _shoot():
 	await alertTimer.timeout
 	enemy.scale.x -= 0.2
 	enemy.scale.y -= 0.2
+	shootSound.play_with_variance()
 	projectile = projectilePreload.instantiate()
 	projectile.position = shootPosition.global_position
 	projectile.direction = (ray_cast.target_position).normalized() * -1
 	get_tree().current_scene.add_child(projectile)
+
 
 func _on_move_is_moving(bool):
 	isMoving = bool

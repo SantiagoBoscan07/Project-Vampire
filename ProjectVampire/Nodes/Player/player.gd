@@ -12,6 +12,9 @@ class_name Player
 @onready var hurtbox: Hurtbox = $Hurtbox as Hurtbox
 @onready var boostTimer = $Body/BoostTimer
 @onready var itemDetector = $ItemDetector
+@onready var damageSoundEffect = $DamageSoundEffect as AudioManagerNode
+@onready var boostSoundEffect = $BoostSoundEffect as AudioManagerNode
+@onready var shootSoundEffect = $ShootSoundEffect as AudioManagerNode
 var canDash: bool = true
 var boost_speed 
 var direction: Vector2
@@ -22,6 +25,7 @@ func _ready():
 	hurtbox.hurt.connect(func(hitbox: Hitbox):
 		shake.tween_shake()
 		flash.flash()
+		damageSoundEffect.play_with_variance()
 		)
 	health.no_health.connect(gameOver)
 
@@ -59,6 +63,7 @@ func gameOver():
 	hide()
 
 func shoot():
+		shootSoundEffect.play_with_variance()
 		fireDelayTimer.start(PlayerStats.fireDelayTime)
 		projectile = projectilePreload.instantiate()
 		projectile.position = middleShootingPosition.global_position
@@ -73,6 +78,7 @@ func shoot():
 			get_tree().current_scene.add_child(projectile)
 
 func boost():
+	boostSoundEffect.play_with_variance()
 	boost_speed = PlayerStats.normal_speed * PlayerStats.boostMultiplier
 	PlayerStats.max_speed = boost_speed
 	canDash = false

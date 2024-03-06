@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=21 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dhtklqhy4up47" path="res://Nodes/Items/snake_item.tscn" id="14_sagm2"]
 [ext_resource type="PackedScene" uid="uid://spnje00jd74k" path="res://Nodes/Items/flower_item.tscn" id="16_ji6dl"]
 [ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="17_4osvv"]
+[ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="18_8m6s3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -107,7 +108,7 @@ dialogue_resource = ExtResource("9_0duca")
 
 [node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
 script = ExtResource("11_ght7q")
-itemSpawners = [NodePath("ItemSpawner"), NodePath("ItemSpawner2")]
+itemSpawners = [NodePath("ItemSpawner"), NodePath("ItemSpawner2"), NodePath("Spawner")]
 
 [node name="ItemSpawner" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
 process_mode = 4
@@ -120,6 +121,16 @@ itemMidScene = ExtResource("14_sagm2")
 itemUpEmotion = 1
 itemDownEmotion = 2
 itemMidEmotion = 3
+
+[node name="Spawner" parent="SpawnersManager" instance=ExtResource("18_8m6s3")]
+process_mode = 4
+horizontalBatTime = 1.5
+waveTime = 3.0
+skullTime = 7.0
+spawnHorizontal = true
+spawnWave = true
+spawnSkull = true
+amountOfEnemies = 20
 
 [node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
 process_mode = 4

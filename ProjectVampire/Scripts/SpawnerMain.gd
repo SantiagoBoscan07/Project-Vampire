@@ -22,8 +22,8 @@ extends Node2D
 #Misc onready and export
 @export var amountOfEnemies: int = 5
 @onready var spawnerNode: = $SpawnerNode as SpawnerNode
-@export var nodeToActivate: Node2D
 var spawnCount: int
+var endWave: bool = false
 
 func _ready() -> void:
 	if spawnHorizontal:
@@ -51,6 +51,10 @@ func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 		timer.start()
 	elif spawnCount >= amountOfEnemies:
 		timer.stop()
-		if nodeToActivate:
-			nodeToActivate.process_mode = 0
+		endWave = true
+
+func _process(delta):
+	if endWave:
+		if get_tree().get_first_node_in_group("enemy") == null:
+			Global.itemObtained = true
 			process_mode = 4

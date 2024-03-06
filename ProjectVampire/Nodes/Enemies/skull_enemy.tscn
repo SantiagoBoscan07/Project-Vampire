@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://v61tmokwx4j3"]
+[gd_scene load_steps=23 format=3 uid="uid://v61tmokwx4j3"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_ayfh5"]
 [ext_resource type="Texture2D" uid="uid://7u6cre6ord4d" path="res://Sprites/SkullEnemySpriteSheet.png" id="2_p61ue"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_gwoop"]
 [ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="5_7gvkx"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="6_606b2"]
+[ext_resource type="AudioStream" uid="uid://djxisg5sn3bpi" path="res://SoundEffects/SkullShoot.wav" id="7_b7nl5"]
 [ext_resource type="Script" path="res://Scripts/hurt.gd" id="7_i4d3w"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="8_1ah5k"]
 [ext_resource type="Script" path="res://Nodes/Enemies/Shoot.gd" id="9_iepme"]
@@ -14,6 +15,8 @@
 [ext_resource type="Script" path="res://Scripts/Death.gd" id="12_w8mpj"]
 [ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="13_hqsg8"]
 [ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="14_5vwnu"]
+[ext_resource type="AudioStream" uid="uid://6j1w4clrucph" path="res://SoundEffects/Damage.wav" id="15_qqnyv"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="16_aps07"]
 
 [sub_resource type="Animation" id="Animation_c34cv"]
 resource_name = "Idle"
@@ -61,7 +64,7 @@ height = 80.0
 radius = 32.0
 height = 80.0
 
-[node name="SkullEnemy" type="CharacterBody2D"]
+[node name="SkullEnemy" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 0
 collision_mask = 0
@@ -110,6 +113,18 @@ shape = SubResource("CapsuleShape2D_snnc2")
 position = Vector2(-9.53674e-07, 2.86102e-06)
 scale = Vector2(4, 4)
 enable_node_path = NodePath("../Components/Move")
+
+[node name="DamageSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_qqnyv")
+bus = &"SoundEffect"
+script = ExtResource("16_aps07")
+
+[node name="SkullShootSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_b7nl5")
+bus = &"SoundEffect"
+script = ExtResource("16_aps07")
+pitch_min = 0.5
+pitch_max = 0.75
 
 [node name="Components" type="Node" parent="."]
 

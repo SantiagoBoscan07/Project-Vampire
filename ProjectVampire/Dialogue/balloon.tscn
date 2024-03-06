@@ -112,7 +112,7 @@ seconds_per_step = 0.07
 
 [node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_rkwcw")
-bus = &"SoundEffect"
+bus = &"DialogueSound"
 script = ExtResource("5_wsfv2")
 pitch_min = 1.0
 pitch_max = 1.05

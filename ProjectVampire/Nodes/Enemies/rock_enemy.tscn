@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxi2oufrxflh7"]
+[gd_scene load_steps=18 format=3 uid="uid://cxi2oufrxflh7"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_kq52r"]
 [ext_resource type="Texture2D" uid="uid://w4xhbb80tkvb" path="res://Sprites/rockEnemy.png" id="2_5kpff"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="11_hd0xj"]
 [ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="12_cqro5"]
 [ext_resource type="Script" path="res://Scripts/Death.gd" id="13_k85i5"]
+[ext_resource type="AudioStream" uid="uid://6j1w4clrucph" path="res://SoundEffects/Damage.wav" id="14_mutu0"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="15_j5m2y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpimo"]
 radius = 24.0
@@ -22,7 +24,7 @@ height = 80.0
 radius = 24.0
 height = 80.0
 
-[node name="EnemyRock" type="CharacterBody2D"]
+[node name="EnemyRock" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 0
 collision_mask = 0
@@ -97,5 +99,10 @@ script = ExtResource("13_k85i5")
 actor = NodePath("../../Sprite2D")
 health = NodePath("../Health")
 death_effect_spawner = NodePath("../SpawnerNode")
+
+[node name="DamageSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_mutu0")
+bus = &"SoundEffect"
+script = ExtResource("15_j5m2y")
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
