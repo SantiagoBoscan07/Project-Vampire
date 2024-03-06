@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=20 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -9,6 +9,14 @@
 [ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="6_exl6l"]
 [ext_resource type="Script" path="res://Scenes/DialogueManagement.gd" id="8_p7jfx"]
 [ext_resource type="Resource" uid="uid://63srtkihr2ua" path="res://Dialogue/testing.dialogue" id="9_0duca"]
+[ext_resource type="PackedScene" uid="uid://dkwinbagdgshn" path="res://Nodes/Menu/lilith.tscn" id="10_16g1x"]
+[ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="11_ght7q"]
+[ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="11_gj50j"]
+[ext_resource type="PackedScene" uid="uid://cq30xjvkolcuc" path="res://Nodes/Items/crown_item.tscn" id="12_u43k2"]
+[ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="13_vc5sp"]
+[ext_resource type="PackedScene" uid="uid://dhtklqhy4up47" path="res://Nodes/Items/snake_item.tscn" id="14_sagm2"]
+[ext_resource type="PackedScene" uid="uid://spnje00jd74k" path="res://Nodes/Items/flower_item.tscn" id="16_ji6dl"]
+[ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="17_4osvv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -86,11 +94,41 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_lcb5s")
 show_percentage = false
 script = ExtResource("6_aseht")
 
-[node name="DialogueManagement" type="Control" parent="."]
+[node name="Lilith" parent="UI" instance=ExtResource("10_16g1x")]
+position = Vector2(75, 293)
+
+[node name="DialogueManagement" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_p7jfx")
 dialogue_resource = ExtResource("9_0duca")
-dialogue_to_read = null
+
+[node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
+script = ExtResource("11_ght7q")
+itemSpawners = [NodePath("ItemSpawner"), NodePath("ItemSpawner2")]
+
+[node name="ItemSpawner" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("12_u43k2")
+itemDownScene = ExtResource("13_vc5sp")
+itemMidScene = ExtResource("14_sagm2")
+itemUpEmotion = 1
+itemDownEmotion = 2
+itemMidEmotion = 3
+
+[node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("16_ji6dl")
+itemDownScene = ExtResource("13_vc5sp")
+itemMidScene = ExtResource("17_4osvv")
+itemUpEmotion = 2
+itemDownEmotion = 1
+itemMidEmotion = 3

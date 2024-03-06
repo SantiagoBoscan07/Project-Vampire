@@ -20,6 +20,7 @@ func _ready():
 	up()
 
 func fade():
+	Global.itemObtained = true
 	fade_tween = get_tree().create_tween()
 	up_tween = get_tree().create_tween()
 	fade_tween.tween_property(itemSprite, "modulate", Color(255,255,255,0), 4.0)
@@ -85,5 +86,6 @@ func on_down_tween_finished():
 
 
 func stop_tweens():
-	up_tween.stop()
-	down_tween.stop()
+	if up_tween and down_tween:
+		up_tween.stop()
+		down_tween.stop()

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkwinbagdgshn"]
+
+[ext_resource type="Texture2D" uid="uid://cyituetqwj7vp" path="res://UI/CompanionUI-Sheet.png" id="1_0akj6"]
+[ext_resource type="Script" path="res://Nodes/Menu/companionScript.gd" id="1_ml325"]
+
+[node name="Lilith" type="Node2D"]
+z_index = 3
+scale = Vector2(2.25, 2.25)
+script = ExtResource("1_ml325")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_0akj6")
+hframes = 4

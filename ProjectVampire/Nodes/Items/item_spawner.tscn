@@ -14,5 +14,4 @@ autostart = true
 [node name="ItemSpawnerNode" type="Node2D" parent="."]
 script = ExtResource("3_adc83")
 
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]

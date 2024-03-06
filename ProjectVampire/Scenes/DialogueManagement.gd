@@ -6,7 +6,6 @@ var showDialog: bool = true
 
  
 func _process(delta):
-	print(Engine.get_frames_per_second())
-	if showDialog:
-		DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_to_read)
-		showDialog = false
+		if showDialog:
+			DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_to_read)
+			showDialog = false

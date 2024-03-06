@@ -12,4 +12,6 @@ var emotionChart: int = 0
 var canMidShoot: bool = true
 var canLowShoot: bool = false
 var canTopShoot: bool = false
+var itemObtained: bool = false
+var nextLineDialogue: bool = true
 

@@ -2,7 +2,8 @@ extends CanvasLayer
 
 @export var balloon: Control 
 @export var dialogue_label: DialogueLabel  
-
+@onready var dialogueSound = $AudioManagerNode as AudioManagerNode
+@onready var nextLineTimer = $NextLineTimer as Timer
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -93,20 +94,24 @@ func _on_mutated(_mutation: Dictionary) -> void:
 	)
 
 
-func _on_balloon_gui_input(event: InputEvent) -> void:
-	# See if we need to skip typing of the dialogue
-	if dialogue_label.is_typing:
-		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
-
-	if not is_waiting_for_input: return
-	if dialogue_line.responses.size() > 0: return
-
-	# When there are no response options the balloon itself is the clickable thing
-	get_viewport().set_input_as_handled()
-
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		next(dialogue_line.next_id)
+func _on_dialogue_label_spoke(letter, letter_index, speed):
+	if not letter in [" ", "."]:
+		dialogueSound.play_with_variance()
 
 
-func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
-	next(response.next_id)
+func timerNextDialogue():
+	nextLineTimer.start()
+	await nextLineTimer.timeout
+	next(dialogue_line.next_id)
+
+
+func _on_dialogue_label_finished_typing():
+	if Global.nextLineDialogue:
+		timerNextDialogue()
+
+
+func _process(delta):
+	if Global.itemObtained:
+		timerNextDialogue()
+		Global.nextLineDialogue = true
+		Global.itemObtained = false

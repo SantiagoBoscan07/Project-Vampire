@@ -1,14 +1,19 @@
 ~ testDialogue
-
+set Global.emotionChart = 0
 creating new dialogue for testing omg :3
-testing the limits of this system
-i'm kinda tired of this system lmao
-this is such a nightmare to setup
-yeah i'm keeping this in the repo
-hello person checking my code
-sorry for all my spaghetti code u-u
-i'm still learning 
-hirai momo best girl >>>
+set SpawnerManagement.activateSpawner = true
+set SpawnerManagement.index = 0
+set Global.nextLineDialogue = false
+what's your offering?
+if Global.emotionChart == 1:
+	hirai momo best girl >>>
+elif Global.emotionChart == 2:
+	this dialogue system is such a nightmare to setup u-u
+elif Global.emotionChart == 3:
+	sorry for my spaghetti code u-u
+	i'm still learning
+yeah i'm keeping this on the repo lmao
+set Global.emotionChart = 1
+set Global.nextLineDialogue = false
 acerola jam hype :D
-
 => END

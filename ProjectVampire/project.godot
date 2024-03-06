@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 PlayerStats="*res://Nodes/Player/playerStats.gd"
 Global="*res://Scripts/Global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+SpawnerManagement="*res://Scripts/spawnerManagement.gd"
 
 [dialogue_manager]
 
