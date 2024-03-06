@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=12 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="4_m58ue"]
 [ext_resource type="Script" path="res://Scenes/DashBar.gd" id="6_aseht"]
 [ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="6_exl6l"]
+[ext_resource type="Script" path="res://Scenes/DialogueManagement.gd" id="8_p7jfx"]
+[ext_resource type="Resource" uid="uid://63srtkihr2ua" path="res://Dialogue/testing.dialogue" id="9_0duca"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -83,3 +85,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_tk1tk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lcb5s")
 show_percentage = false
 script = ExtResource("6_aseht")
+
+[node name="DialogueManagement" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_p7jfx")
+dialogue_resource = ExtResource("9_0duca")
+dialogue_to_read = null
