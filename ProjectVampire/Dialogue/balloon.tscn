@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=9 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://Dialogue/balloon.gd" id="1_36de5"]
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="2_263v8"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -57,13 +56,11 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxEmpty_hk3xl")
 
-[node name="TextBalloon" type="CanvasLayer" node_paths=PackedStringArray("balloon", "character_label", "dialogue_label", "responses_menu")]
+[node name="TextBalloon" type="CanvasLayer" node_paths=PackedStringArray("balloon", "dialogue_label")]
 layer = 100
 script = ExtResource("1_36de5")
 balloon = NodePath("Balloon")
-character_label = NodePath("Balloon/Panel/Dialogue/VBoxContainer/CharacterLabel")
 dialogue_label = NodePath("Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel")
-responses_menu = NodePath("Balloon/Responses/ResponsesMenu")
 
 [node name="Balloon" type="Control" parent="."]
 layout_mode = 3
@@ -101,16 +98,6 @@ grow_vertical = 2
 custom_minimum_size = Vector2(330, 85)
 layout_mode = 2
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Panel/Dialogue/VBoxContainer"]
-visible = false
-modulate = Color(1, 1, 1, 0.501961)
-layout_mode = 2
-mouse_filter = 1
-bbcode_enabled = true
-text = "Lilith"
-fit_content = true
-scroll_active = false
-
 [node name="DialogueLabel" parent="Balloon/Panel/Dialogue/VBoxContainer" instance=ExtResource("2_a8ve6")]
 custom_minimum_size = Vector2(330, 85)
 layout_mode = 2
@@ -120,31 +107,4 @@ theme_override_fonts/normal_font = ExtResource("2_263v8")
 theme_override_font_sizes/normal_font_size = 30
 text = "Dialogue..."
 
-[node name="Responses" type="MarginContainer" parent="Balloon"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -147.0
-offset_top = -558.0
-offset_right = 494.0
-offset_bottom = -154.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/Responses" node_paths=PackedStringArray("response_template")]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 2
-script = ExtResource("3_72ixx")
-response_template = NodePath("ResponseExample")
-
-[node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
-layout_mode = 2
-text = "Response example"
-
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
