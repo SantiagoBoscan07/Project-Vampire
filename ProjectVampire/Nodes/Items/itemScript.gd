@@ -21,6 +21,7 @@ func _ready():
 
 func fade():
 	Global.itemObtained = true
+	stop_tweens()
 	fade_tween = get_tree().create_tween()
 	up_tween = get_tree().create_tween()
 	fade_tween.tween_property(itemSprite, "modulate", Color(255,255,255,0), 4.0)
@@ -35,7 +36,6 @@ func _on_area_entered(area):
 	remove_from_group("unselectedItem")
 	add_to_group("selectedItem")
 	get_tree().call_group("unselectedItem","queue_free")
-	stop_tweens()
 	fade()
 
 func itemModifier(area):

@@ -4,7 +4,7 @@ creating new dialogue for testing omg :3
 set SpawnerManagement.activateSpawner = true
 set SpawnerManagement.index = 0
 set Global.nextLineDialogue = false
-what's your offering?
+trying the item spawning system :P
 if Global.emotionChart == 1:
 	hirai momo best girl >>>
 elif Global.emotionChart == 2:
@@ -16,14 +16,13 @@ set SpawnerManagement.activateSpawner = true
 set SpawnerManagement.index = 2
 yeah i'm keeping this on the repo lmao
 let's try setting up a fight
-set Global.emotionChart = 3
 i'm crying ;-;
 i'm afraid users might break this system lol
-set Global.emotionChart = 0
 set Global.nextLineDialogue = false
 let's wait for the battle to end...
-set Global.emotionChart = 1
-all the systems are working as inteded!
+all the systems are working as intended!
+set SpawnerManagement.activateSpawner = true
+set SpawnerManagement.index = 1
 set Global.nextLineDialogue = false
 acerola jam hype :D
 => END

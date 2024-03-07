@@ -7,14 +7,14 @@ signal isMoving(bool)
 @export var horizontalMovement: bool
 @export var waveMovement: bool
 @export var skullMovement: bool
-@export var frequency = 5
-@export var amplitude = 50
+@export var verticalMovement: bool
+
 
 func _process(delta: float) -> void:
 	if horizontalMovement:
 		object.translate(velocity * Global.enemyVelocityMultiplier * delta)
 	if waveMovement:
-		if object.position.y >= 160 || object.position.y <= 48:
+		if object.position.y >= 160 || object.position.y <= 46:
 			velocity.y *= -1
 		object.translate(velocity * Global.enemyVelocityMultiplier * delta)
 	if skullMovement:
@@ -22,3 +22,4 @@ func _process(delta: float) -> void:
 			object.translate(velocity * Global.enemyVelocityMultiplier * delta)
 		else:
 			emit_signal("isMoving", false)
+

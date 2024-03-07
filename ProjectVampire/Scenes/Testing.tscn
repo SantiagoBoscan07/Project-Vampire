@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=23 format=3 uid="uid://qajdj1bo0ohx"]
 
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
@@ -12,12 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://dkwinbagdgshn" path="res://Nodes/Menu/lilith.tscn" id="10_16g1x"]
 [ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="11_ght7q"]
 [ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="11_gj50j"]
+[ext_resource type="Script" path="res://Scenes/fpscounter.gd" id="11_ucyeb"]
 [ext_resource type="PackedScene" uid="uid://cq30xjvkolcuc" path="res://Nodes/Items/crown_item.tscn" id="12_u43k2"]
 [ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="13_vc5sp"]
 [ext_resource type="PackedScene" uid="uid://dhtklqhy4up47" path="res://Nodes/Items/snake_item.tscn" id="14_sagm2"]
 [ext_resource type="PackedScene" uid="uid://spnje00jd74k" path="res://Nodes/Items/flower_item.tscn" id="16_ji6dl"]
 [ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="17_4osvv"]
 [ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="18_8m6s3"]
+[ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="19_0r1se"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -28,7 +30,7 @@ bg_color = Color(0.627451, 0.658824, 0.25098, 1)
 [node name="Testing" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_j7qsl")]
-position = Vector2(82, 104)
+position = Vector2(99, 101)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(252, 108)
@@ -106,6 +108,14 @@ offset_bottom = 40.0
 script = ExtResource("8_p7jfx")
 dialogue_resource = ExtResource("9_0duca")
 
+[node name="fpscounter" type="Label" parent="UI"]
+z_index = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS"
+script = ExtResource("11_ucyeb")
+
 [node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
 script = ExtResource("11_ght7q")
 itemSpawners = [NodePath("ItemSpawner"), NodePath("ItemSpawner2"), NodePath("Spawner")]
@@ -124,13 +134,16 @@ itemMidEmotion = 3
 
 [node name="Spawner" parent="SpawnersManager" instance=ExtResource("18_8m6s3")]
 process_mode = 4
-horizontalBatTime = 1.5
-waveTime = 3.0
-skullTime = 7.0
+waveTime = 1.5
+skullTime = 20.0
+rockTime = 7.0
+devilTime = 5.0
 spawnHorizontal = true
 spawnWave = true
 spawnSkull = true
-amountOfEnemies = 20
+spawnRock = true
+spawnDevil = true
+amountOfEnemies = 200
 
 [node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
 process_mode = 4
@@ -143,3 +156,6 @@ itemMidScene = ExtResource("17_4osvv")
 itemUpEmotion = 2
 itemDownEmotion = 1
 itemMidEmotion = 3
+
+[node name="EmotionManager" type="Node2D" parent="."]
+script = ExtResource("19_0r1se")

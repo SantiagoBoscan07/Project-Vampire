@@ -10,16 +10,12 @@ func _ready():
 	area_entered.connect(_on_hurtbox_entered)
 	initialDamage = damage
 
-func _process(delta):
-	if Global.damageMultiplier > 1:
-		damage *= Global.damageMultiplier
-		Global.damageMultiplier = 1
-
 func _on_hurtbox_entered(hurtbox: Hurtbox):
 	if not hurtbox is Hurtbox: return
 	
 	if hurtbox.is_invicible: return
 	
 	hit_hurtbox.emit(hurtbox)
-	
+	damage *= Global.damageMultiplier
+	print(damage)
 	hurtbox.hurt.emit(self)
