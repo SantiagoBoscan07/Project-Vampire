@@ -3,10 +3,10 @@
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="1_7u3ih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_068mi"]
-bg_color = Color(0, 0, 0, 0.392157)
+bg_color = Color(0.25098, 0.313726, 0.0627451, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2gr2"]
-bg_color = Color(1, 1, 1, 0.392157)
+bg_color = Color(0.815686, 0.815686, 0.345098, 0.392157)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_idu8u"]
 
@@ -39,6 +39,7 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
 theme_override_fonts/font = ExtResource("1_7u3ih")
 theme_override_font_sizes/font_size = 32
 text = "action"
@@ -52,6 +53,7 @@ mouse_filter = 1
 [node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
 theme_override_fonts/font = ExtResource("1_7u3ih")
 theme_override_font_sizes/font_size = 32
 text = "input"

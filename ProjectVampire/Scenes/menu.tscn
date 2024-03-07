@@ -1,9 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi5fvto8256mm"]
+[gd_scene load_steps=14 format=3 uid="uid://bi5fvto8256mm"]
 
 [ext_resource type="Texture2D" uid="uid://daa2yu3roj07e" path="res://UI/GameMenu.png" id="1_58cx5"]
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_eucb3"]
+[ext_resource type="PackedScene" uid="uid://qajdj1bo0ohx" path="res://Scenes/Testing.tscn" id="2_3qaom"]
+[ext_resource type="Texture2D" uid="uid://bcvekvaq4w481" path="res://UI/Logo.png" id="3_20iqy"]
+[ext_resource type="Texture2D" uid="uid://bkwb2nptr0ilr" path="res://Sprites/batEnemySpriteSheet.png" id="4_mt717"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="5_aulxl"]
+[ext_resource type="PackedScene" uid="uid://oah00dag7plj" path="res://Scenes/input_settings.tscn" id="5_uvsxc"]
 
-[node name="Node2D" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ublm"]
+atlas = ExtResource("4_mt717")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy5l0"]
+atlas = ExtResource("4_mt717")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwovn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ublm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy5l0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3w12"]
+bg_color = Color(0.815686, 0.815686, 0.345098, 0.921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etbb8"]
+bg_color = Color(0.815686, 0.815686, 0.345098, 0.588235)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvkbj"]
+
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +46,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eucb3")
+initialScene = ExtResource("2_3qaom")
 
-[node name="GameUi" type="Sprite2D" parent="."]
+[node name="SpriteElements" type="Node2D" parent="."]
+
+[node name="GameUi" type="Sprite2D" parent="SpriteElements"]
 texture_filter = 1
 position = Vector2(256, 192)
 texture = ExtResource("1_58cx5")
+
+[node name="Logo" type="Sprite2D" parent="SpriteElements"]
+texture_filter = 1
+position = Vector2(257, 112)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_20iqy")
+
+[node name="BatLeft" type="AnimatedSprite2D" parent="SpriteElements"]
+position = Vector2(80, 144)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fwovn")
+autoplay = "default"
+frame_progress = 0.436463
+
+[node name="BatRight" type="AnimatedSprite2D" parent="SpriteElements"]
+position = Vector2(432, 144)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fwovn")
+autoplay = "default"
+frame_progress = 0.142367
+
+[node name="StartGame" type="Button" parent="SpriteElements"]
+texture_filter = 1
+offset_left = 64.0
+offset_top = 224.0
+offset_right = 448.0
+offset_bottom = 247.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_aulxl")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_b3w12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_etbb8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_etbb8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vvkbj")
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="SpriteElements"]
+texture_filter = 1
+offset_left = 64.0
+offset_top = 280.0
+offset_right = 448.0
+offset_bottom = 303.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_aulxl")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_b3w12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_etbb8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_etbb8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vvkbj")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="SpriteElements"]
+texture_filter = 1
+offset_left = 64.0
+offset_top = 336.0
+offset_right = 448.0
+offset_bottom = 359.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_aulxl")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_b3w12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_etbb8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_etbb8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vvkbj")
+text = "Quit"
+
+[node name="InputSettings" parent="." node_paths=PackedStringArray("spriteElements") instance=ExtResource("5_uvsxc")]
+process_mode = 4
+visible = false
+layout_mode = 1
+spriteElements = NodePath("../SpriteElements")
+
+[connection signal="pressed" from="SpriteElements/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="SpriteElements/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SpriteElements/Quit" to="." method="_on_quit_pressed"]

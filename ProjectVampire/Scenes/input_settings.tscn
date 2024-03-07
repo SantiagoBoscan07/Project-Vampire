@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://oah00dag7plj"]
+[gd_scene load_steps=11 format=3 uid="uid://oah00dag7plj"]
 
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="1_0v3t3"]
 [ext_resource type="PackedScene" uid="uid://drc5nson66auo" path="res://UI/input_button.tscn" id="1_fcau5"]
 [ext_resource type="Script" path="res://UI/input_button.gd" id="1_xrjoq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud1j7"]
+bg_color = Color(0.627451, 0.658824, 0.25098, 0.505882)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx8n2"]
+bg_color = Color(0.25098, 0.313726, 0.0627451, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q57i3"]
+bg_color = Color(0.627451, 0.658824, 0.25098, 0.235294)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ufg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yg2u"]
+bg_color = Color(0.25098, 0.313726, 0.0627451, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmsxp"]
+bg_color = Color(0.627451, 0.658824, 0.25098, 0.235294)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3c10t"]
 
 [node name="InputSettings" type="Control"]
 layout_mode = 3
@@ -26,6 +45,7 @@ offset_right = 256.0
 offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ud1j7")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -52,16 +72,30 @@ layout_mode = 2
 texture_filter = 1
 layout_mode = 2
 focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
 theme_override_fonts/font = ExtResource("1_0v3t3")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_qx8n2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q57i3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q57i3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ufg5")
 text = "Reset To Default"
 
 [node name="ReturnMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
 theme_override_fonts/font = ExtResource("1_0v3t3")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yg2u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qmsxp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qmsxp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c10t")
 text = "Return To Menu"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

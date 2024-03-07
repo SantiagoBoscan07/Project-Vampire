@@ -2,6 +2,7 @@ extends Control
 
 @onready var input_button_scene = preload("res://UI/input_button.tscn")
 @onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/InputList
+@export var spriteElements: Node2D
 var menuScene = load("res://Scenes/Testing.tscn")
 var is_remapping = false
 var action_to_remap = null
@@ -74,4 +75,7 @@ func _on_reset_button_pressed():
 
 
 func _on_return_menu_pressed():
-	get_tree().change_scene_to_packed(menuScene)
+	spriteElements.process_mode = 0
+	spriteElements.visible = true
+	process_mode = 4
+	visible = false
