@@ -68,6 +68,7 @@ frame_progress = 0.152461
 
 [node name="TryAgain" type="Button" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 66.0
 offset_top = 252.0
 offset_right = 450.0
@@ -86,6 +87,7 @@ text = "Try Again"
 
 [node name="MenuButton" type="Button" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 68.0
 offset_top = 303.0
 offset_right = 452.0

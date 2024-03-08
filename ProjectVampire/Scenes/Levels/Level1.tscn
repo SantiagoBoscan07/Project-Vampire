@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3648crt15pig"]
+[gd_scene load_steps=27 format=3 uid="uid://d3648crt15pig"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level1.gd" id="1_qgg6k"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="1_qnxb8"]
@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://dq0bam0uss0od" path="res://Dialogue/level1.dialogue" id="12_pv180"]
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="13_xtmbt"]
 [ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="14_4yeum"]
+[ext_resource type="PackedScene" uid="uid://bhola2hr74o50" path="res://UI/pause_menu_screen.tscn" id="15_ij27x"]
+[ext_resource type="Script" path="res://Scenes/Levels/SkipText.gd" id="15_okh2f"]
 [ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="15_ycev7"]
 [ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="16_7hl5r"]
 [ext_resource type="Script" path="res://Scenes/DashBar.gd" id="16_qck4i"]
@@ -119,11 +121,32 @@ z_index = 105
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("13_xtmbt")
 text = "FPS"
 script = ExtResource("20_lm2y6")
 
 [node name="GameOverScreen" parent="UI" instance=ExtResource("21_v3kwh")]
 visible = false
+
+[node name="PauseMenuScreen" parent="UI" node_paths=PackedStringArray("playerPaused") instance=ExtResource("15_ij27x")]
+visible = false
+z_index = 101
+layout_mode = 1
+playerPaused = NodePath("../../Player")
+
+[node name="SkipText" type="Label" parent="UI"]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = 448.464
+offset_top = 319.99
+offset_right = 488.464
+offset_bottom = 347.99
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("13_xtmbt")
+theme_override_font_sizes/font_size = 30
+text = ">>"
+script = ExtResource("15_okh2f")
 
 [node name="EmotionManager" type="Node2D" parent="."]
 script = ExtResource("22_3vr77")

@@ -15,6 +15,8 @@ var input_actions = {
 	"move_right": "Move Right",
 	"shoot": "Shoot",
 	"boost": "Boost",
+	"skip_text": "Skip Text",
+	"pause": "Pause",
 }
 
 func _ready():
@@ -75,7 +77,11 @@ func _on_reset_button_pressed():
 
 
 func _on_return_menu_pressed():
+	if spriteElements:
+		returnMenu()
+
+func returnMenu():
 	spriteElements.process_mode = 0
 	spriteElements.visible = true
-	process_mode = 4
 	visible = false
+	process_mode = 4

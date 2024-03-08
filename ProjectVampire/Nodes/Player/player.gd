@@ -16,7 +16,9 @@ class_name Player
 @onready var boostSoundEffect = $BoostSoundEffect as AudioManagerNode
 @onready var shootSoundEffect = $ShootSoundEffect as AudioManagerNode
 @onready var gameOverScreen = $"../UI/GameOverScreen"
+@onready var pauseScreen = $"../UI/PauseMenuScreen"
 @onready var levelMusic = $"../LevelMusic"
+var paused: bool = false
 var canDash: bool = true
 var boost_speed 
 var direction: Vector2
@@ -41,6 +43,10 @@ func _process(delta):
 	if itemDetector.healthModifier > 0:
 		health.health += itemDetector.healthModifier
 		itemDetector.healthModifier = 0
+	if Input.is_action_just_pressed("skip_text") and !paused:
+		Global.textSpeedBoost = !Global.textSpeedBoost
+	if Input.is_action_just_pressed("pause"):
+		pausing()
 
 
 func _physics_process(delta):
@@ -90,4 +96,9 @@ func boost():
 	canDash = false
 	boostTimer.start()
 
+func pausing():
+	if !paused:
+		Engine.time_scale = 0
+		pauseScreen.show()
+		paused = !paused
 

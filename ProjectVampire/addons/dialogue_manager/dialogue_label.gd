@@ -37,7 +37,7 @@ signal finished_typing()
 @export var skip_pause_at_abbreviations: PackedStringArray = ["Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex"]
 
 ## The amount of time to pause when exposing a character present in pause_at_characters.
-@export var seconds_per_pause_step: float = 0.3
+@export var seconds_per_pause_step: float = 0.7
 
 
 ## The current line of dialogue.
@@ -83,9 +83,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Note: this will no longer be reached if using Dialogue Manager > 2.32.2. To make skip handling
 	# simpler (so all of mouse/keyboard/joypad are together) it is now the responsibility of the
 	# dialogue balloon.
-	if self.is_typing and visible_ratio < 1 and InputMap.has_action(skip_action) and event.is_action_pressed(skip_action):
-		get_viewport().set_input_as_handled()
-		skip_typing()
+	pass
+	#if self.is_typing and visible_ratio < 1 and InputMap.has_action(skip_action) and event.is_action_pressed(skip_action):
+		#get_viewport().set_input_as_handled()
+		#skip_typing()
 
 
 ## Start typing out the text

@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhola2hr74o50"]
+
+[ext_resource type="Texture2D" uid="uid://jovtcn3t2qv8" path="res://UI/PauseMenu.png" id="1_5kxec"]
+[ext_resource type="Script" path="res://UI/pause_menu_screen.gd" id="1_7rk4y"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="2_y2cco"]
+[ext_resource type="PackedScene" uid="uid://oah00dag7plj" path="res://Scenes/input_settings.tscn" id="3_t1s82"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5km5"]
+atlas = ExtResource("1_5kxec")
+region = Rect2(0, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myute"]
+atlas = ExtResource("1_5kxec")
+region = Rect2(512, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtol5"]
+atlas = ExtResource("1_5kxec")
+region = Rect2(1024, 0, 512, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bifv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5km5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myute")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtol5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpa8u"]
+bg_color = Color(0.815686, 0.815686, 0.345098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.105882, 0.0980392, 0.12549, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebyst"]
+bg_color = Color(0.815686, 0.815686, 0.345098, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faad3"]
+
+[node name="PauseMenuScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7rk4y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bifv4")
+autoplay = "default"
+frame_progress = 0.209254
+centered = false
+
+[node name="Menu" type="Button" parent="AnimatedSprite2D"]
+texture_filter = 1
+offset_left = 66.0
+offset_top = 342.0
+offset_right = 450.0
+offset_bottom = 375.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_y2cco")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpa8u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_faad3")
+text = "Main Menu
+"
+
+[node name="Settings" type="Button" parent="AnimatedSprite2D"]
+texture_filter = 1
+offset_left = 66.0
+offset_top = 299.0
+offset_right = 450.0
+offset_bottom = 332.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_y2cco")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpa8u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_faad3")
+text = "Settings
+"
+
+[node name="ResumeLevel" type="Button" parent="AnimatedSprite2D"]
+texture_filter = 1
+offset_left = 66.0
+offset_top = 213.0
+offset_right = 450.0
+offset_bottom = 246.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_y2cco")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpa8u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_faad3")
+text = "Resume Level"
+
+[node name="RestartLevel" type="Button" parent="AnimatedSprite2D"]
+texture_filter = 1
+offset_left = 66.0
+offset_top = 256.0
+offset_right = 450.0
+offset_bottom = 289.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_y2cco")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpa8u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ebyst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_faad3")
+text = "Restart Level
+"
+
+[node name="InputSettings" parent="." node_paths=PackedStringArray("spriteElements") instance=ExtResource("3_t1s82")]
+process_mode = 4
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 256.0
+offset_top = 192.0
+offset_right = 256.0
+offset_bottom = 192.0
+grow_horizontal = 1
+grow_vertical = 1
+spriteElements = NodePath("../AnimatedSprite2D")
+
+[connection signal="pressed" from="AnimatedSprite2D/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="AnimatedSprite2D/ResumeLevel" to="." method="_on_resume_level_pressed"]
+[connection signal="pressed" from="AnimatedSprite2D/RestartLevel" to="." method="_on_restart_level_pressed"]
