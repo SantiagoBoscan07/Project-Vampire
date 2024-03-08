@@ -1,0 +1,150 @@
+[gd_scene load_steps=21 format=3 uid="uid://b5fevof7aovjp"]
+
+[ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_0opfu"]
+[ext_resource type="Texture2D" uid="uid://bkwb2nptr0ilr" path="res://Sprites/batEnemySpriteSheet.png" id="2_m5nsn"]
+[ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="3_xb72q"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_3b71b"]
+[ext_resource type="Script" path="res://Scripts/ClampPosition.gd" id="5_bh23r"]
+[ext_resource type="Script" path="res://Scripts/health.gd" id="6_ydh7r"]
+[ext_resource type="Script" path="res://Scripts/hurt.gd" id="7_fmb0r"]
+[ext_resource type="Script" path="res://Scripts/move.gd" id="8_4pbwi"]
+[ext_resource type="Script" path="res://Scripts/Flash.gd" id="9_6g0t0"]
+[ext_resource type="Script" path="res://Scripts/shakeEffect.gd" id="10_ii36l"]
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="11_eu3d7"]
+[ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="12_auouk"]
+[ext_resource type="PackedScene" uid="uid://ccbckcr3wa1y6" path="res://effects/death_effect.tscn" id="13_y3spo"]
+[ext_resource type="AudioStream" uid="uid://6j1w4clrucph" path="res://SoundEffects/Damage.wav" id="14_3avko"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="15_8w8j5"]
+
+[sub_resource type="Animation" id="Animation_0a7gk"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_8hbfn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgdbm"]
+_data = {
+"Idle": SubResource("Animation_0a7gk"),
+"RESET": SubResource("Animation_8hbfn")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpimo"]
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyarc"]
+height = 48.0
+
+[node name="EnemyBatWave" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_0opfu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_m5nsn")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sgdbm")
+}
+autoplay = "Idle"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_xb72q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lpimo")
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+script = ExtResource("4_3b71b")
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wyarc")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(9.53674e-07, 1.43051e-06)
+scale = Vector2(3.2, 1.6)
+enable_node_path = NodePath("../Components/Move")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+script = ExtResource("5_bh23r")
+player = NodePath("../..")
+horizontalClamp = true
+
+[node name="Health" type="Node" parent="Components"]
+script = ExtResource("6_ydh7r")
+
+[node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
+script = ExtResource("7_fmb0r")
+health = NodePath("../Health")
+hurtbox = NodePath("../../Hurtbox")
+
+[node name="Move" type="Node" parent="Components" node_paths=PackedStringArray("object")]
+script = ExtResource("8_4pbwi")
+object = NodePath("../..")
+velocity = Vector2(-135, 120)
+horizontalMovement = true
+
+[node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_6g0t0")
+sprite = NodePath("../../Sprite2D")
+
+[node name="Shake" type="Node" parent="Components" node_paths=PackedStringArray("node")]
+script = ExtResource("10_ii36l")
+node = NodePath("../../Sprite2D")
+
+[node name="Death" type="Node" parent="Components" node_paths=PackedStringArray("actor", "health", "death_effect_spawner")]
+script = ExtResource("11_eu3d7")
+actor = NodePath("../../Sprite2D")
+health = NodePath("../Health")
+death_effect_spawner = NodePath("../SpawnerNode")
+
+[node name="SpawnerNode" type="Node2D" parent="Components"]
+script = ExtResource("12_auouk")
+scene = ExtResource("13_y3spo")
+
+[node name="DamageSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_3avko")
+bus = &"SoundEffect"
+script = ExtResource("15_8w8j5")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

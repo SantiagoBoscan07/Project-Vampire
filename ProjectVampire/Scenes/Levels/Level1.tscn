@@ -37,7 +37,7 @@ script = ExtResource("1_qgg6k")
 [node name="ShaderTexture" parent="." instance=ExtResource("1_qnxb8")]
 
 [node name="Player" parent="." instance=ExtResource("2_n5r2q")]
-position = Vector2(99, 101)
+position = Vector2(100, 100)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(252, 108)
@@ -117,6 +117,7 @@ dialogue_resource = ExtResource("12_pv180")
 dialogue_to_read = "level1Dialogue"
 
 [node name="fpscounter" type="Label" parent="UI"]
+visible = false
 z_index = 105
 layout_mode = 0
 offset_right = 40.0
@@ -170,8 +171,10 @@ itemMidScene = ExtResource("19_8nycq")
 process_mode = 4
 horizontalBatTime = 1.25
 waveTime = 2.25
+diagonalTime = 5.0
 spawnHorizontal = true
 spawnWave = true
+spawnDiagonal = true
 amountOfEnemies = 70
 
 [node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("17_717qr")]
@@ -186,9 +189,11 @@ itemUpEmotion = 2
 process_mode = 4
 horizontalBatTime = 0.5
 waveTime = 2.0
+diagonalTime = 3.5
 spawnHorizontal = true
 spawnWave = true
-amountOfEnemies = 80
+spawnDiagonal = true
+amountOfEnemies = 85
 
 [node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_h6rif")

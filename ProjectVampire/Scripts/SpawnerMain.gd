@@ -5,24 +5,28 @@ extends Node2D
 @export var skull: PackedScene
 @export var rock: PackedScene
 @export var devil: PackedScene
+@export var diagonalBat: PackedScene
 #Time Export
 @export var horizontalBatTime: float = 1
 @export var waveTime: float = 1
 @export var skullTime: float = 1
 @export var rockTime: float = 1
 @export var devilTime: float = 1
+@export var diagonalTime: float = 1
 #Bool Export
 @export var spawnHorizontal: bool
 @export var spawnWave: bool
 @export var spawnSkull: bool
 @export var spawnRock: bool
 @export var spawnDevil: bool
+@export var spawnDiagonal: bool
 #Timer onready
 @onready var horizontalBatTimer: Timer = $HorizontalBatTimer
 @onready var waveTimer: Timer = $WaveTimer
 @onready var skullTimer: Timer = $SkullTimer
 @onready var rockTimer: Timer = $RockTimer
 @onready var devilTimer: Timer = $DevilTimer
+@onready var diagonalTimer: Timer = $DiagonalTimer
 #Misc onready and export
 @export var amountOfEnemies: int = 5
 @onready var spawnerNode: = $SpawnerNode as SpawnerNode
@@ -50,6 +54,10 @@ func _ready() -> void:
 		devilTimer.wait_time = devilTime
 		devilTimer.timeout.connect(handle_spawn_devil.bind(devil, devilTimer))
 		devilTimer.start()
+	if spawnDiagonal:
+		diagonalTimer.wait_time = diagonalTime
+		diagonalTimer.timeout.connect(handle_spawn_diagonal.bind(diagonalBat, diagonalTimer))
+		diagonalTimer.start()
 
 func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 	spawnerNode.scene = enemy_scene
@@ -58,7 +66,12 @@ func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 
 func handle_spawn_devil(enemy_scene: PackedScene, timer: Timer) -> void:
 	spawnerNode.scene = enemy_scene
-	spawnerNode.spawn(Vector2(randf_range(64, 115), -11))
+	spawnerNode.spawn(Vector2(randf_range(64, 115), -12))
+	spawnCounter(timer)
+
+func handle_spawn_diagonal(enemy_scene: PackedScene, timer: Timer) -> void:
+	spawnerNode.scene = enemy_scene
+	spawnerNode.spawn(Vector2(randf_range(112, 410), -16))
 	spawnCounter(timer)
 
 

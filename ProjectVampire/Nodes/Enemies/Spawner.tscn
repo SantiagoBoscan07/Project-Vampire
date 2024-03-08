@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl83qnmriw74j"]
+[gd_scene load_steps=9 format=3 uid="uid://dl83qnmriw74j"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/spawner.gd" id="1_f1s4s"]
 [ext_resource type="Script" path="res://Scripts/SpawnerMain.gd" id="1_m3txs"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://v61tmokwx4j3" path="res://Nodes/Enemies/skull_enemy.tscn" id="4_5kv66"]
 [ext_resource type="PackedScene" uid="uid://cxi2oufrxflh7" path="res://Nodes/Enemies/rock_enemy.tscn" id="5_dctfy"]
 [ext_resource type="PackedScene" uid="uid://c3niblsoykl4l" path="res://Nodes/Enemies/devil_enemy.tscn" id="6_udbd8"]
+[ext_resource type="PackedScene" uid="uid://b5fevof7aovjp" path="res://Nodes/Enemies/enemy_diagonal.tscn" id="7_fiii5"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_m3txs")
@@ -15,6 +16,7 @@ waveBat = ExtResource("3_m75p4")
 skull = ExtResource("4_5kv66")
 rock = ExtResource("5_dctfy")
 devil = ExtResource("6_udbd8")
+diagonalBat = ExtResource("7_fiii5")
 
 [node name="SpawnerNode" type="Node2D" parent="."]
 script = ExtResource("1_f1s4s")
@@ -32,3 +34,5 @@ one_shot = true
 one_shot = true
 
 [node name="DevilTimer" type="Timer" parent="."]
+
+[node name="DiagonalTimer" type="Timer" parent="."]

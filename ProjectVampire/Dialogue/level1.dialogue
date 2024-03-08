@@ -42,7 +42,7 @@ set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
 Remember to pick your treasure carefully.
 if Global.emotionChart == 0:
-	This is the Forbidden Fruit that doomed humanity.
+	You got me a Forbidden Fruit, interesting...
 	With this treasure your shooting speed increases slightly. 
 if Global.emotionChart == 2:
 	It seems like you turned a deaf ear to your master.
