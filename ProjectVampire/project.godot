@@ -13,7 +13,9 @@ config_version=5
 config/name="ProjectVampireGithub"
 run/main_scene="res://Scenes/menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.105882, 0.0980392, 0.12549, 1)
+boot_splash/show_image=false
+config/icon="res://Sprites/flower.png"
 
 [autoload]
 
@@ -71,7 +73,7 @@ boost={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/testing.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/testing.dialogue", "res://Dialogue/level1.dialogue")
 
 [layer_names]
 

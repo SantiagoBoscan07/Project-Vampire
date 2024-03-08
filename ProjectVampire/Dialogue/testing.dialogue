@@ -1,4 +1,5 @@
 ~ testDialogue
+set Global.nextLineDialogue = true
 set Global.emotionChart = 0
 creating new dialogue for testing omg :3
 set SpawnerManagement.activateSpawner = true

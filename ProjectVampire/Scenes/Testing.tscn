@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://qajdj1bo0ohx"]
+[gd_scene load_steps=26 format=3 uid="uid://qajdj1bo0ohx"]
 
+[ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="1_fp6el"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="1_j7qsl"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="2_14jnu"]
 [ext_resource type="Texture2D" uid="uid://dahbs1545q3oa" path="res://UI/GameUINoTop.png" id="3_8qwb8"]
@@ -20,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="17_4osvv"]
 [ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="18_8m6s3"]
 [ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="19_0r1se"]
+[ext_resource type="AudioStream" uid="uid://bn0lq2o18hba1" path="res://Music/LevelOne.ogg" id="22_5wqrx"]
+[ext_resource type="PackedScene" uid="uid://bcmviequnmyxx" path="res://UI/game_over_screen.tscn" id="23_jyi2g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -29,12 +32,55 @@ bg_color = Color(0.627451, 0.658824, 0.25098, 1)
 
 [node name="Testing" type="Node2D"]
 
+[node name="ShaderTexture" parent="." instance=ExtResource("1_fp6el")]
+
 [node name="Player" parent="." instance=ExtResource("1_j7qsl")]
 position = Vector2(99, 101)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(252, 108)
 scale = Vector2(24.4, 10)
+
+[node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
+script = ExtResource("11_ght7q")
+itemSpawners = [NodePath("ItemSpawner"), NodePath("ItemSpawner2"), NodePath("Spawner")]
+
+[node name="ItemSpawner" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("12_u43k2")
+itemDownScene = ExtResource("13_vc5sp")
+itemMidScene = ExtResource("14_sagm2")
+itemUpEmotion = 1
+itemDownEmotion = 2
+itemMidEmotion = 3
+
+[node name="Spawner" parent="SpawnersManager" instance=ExtResource("18_8m6s3")]
+process_mode = 4
+waveTime = 1.5
+skullTime = 20.0
+rockTime = 7.0
+devilTime = 5.0
+spawnHorizontal = true
+spawnWave = true
+spawnSkull = true
+spawnRock = true
+spawnDevil = true
+amountOfEnemies = 200
+
+[node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("16_ji6dl")
+itemDownScene = ExtResource("13_vc5sp")
+itemMidScene = ExtResource("17_4osvv")
+itemUpEmotion = 2
+itemDownEmotion = 1
+itemMidEmotion = 3
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -109,53 +155,20 @@ script = ExtResource("8_p7jfx")
 dialogue_resource = ExtResource("9_0duca")
 
 [node name="fpscounter" type="Label" parent="UI"]
-z_index = 2
+z_index = 105
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "FPS"
 script = ExtResource("11_ucyeb")
 
-[node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
-script = ExtResource("11_ght7q")
-itemSpawners = [NodePath("ItemSpawner"), NodePath("ItemSpawner2"), NodePath("Spawner")]
-
-[node name="ItemSpawner" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
-process_mode = 4
-upItemSpawn = true
-lowItemSpawn = true
-midItemSpawn = true
-itemUpScene = ExtResource("12_u43k2")
-itemDownScene = ExtResource("13_vc5sp")
-itemMidScene = ExtResource("14_sagm2")
-itemUpEmotion = 1
-itemDownEmotion = 2
-itemMidEmotion = 3
-
-[node name="Spawner" parent="SpawnersManager" instance=ExtResource("18_8m6s3")]
-process_mode = 4
-waveTime = 1.5
-skullTime = 20.0
-rockTime = 7.0
-devilTime = 5.0
-spawnHorizontal = true
-spawnWave = true
-spawnSkull = true
-spawnRock = true
-spawnDevil = true
-amountOfEnemies = 200
-
-[node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("11_gj50j")]
-process_mode = 4
-upItemSpawn = true
-lowItemSpawn = true
-midItemSpawn = true
-itemUpScene = ExtResource("16_ji6dl")
-itemDownScene = ExtResource("13_vc5sp")
-itemMidScene = ExtResource("17_4osvv")
-itemUpEmotion = 2
-itemDownEmotion = 1
-itemMidEmotion = 3
+[node name="GameOverScreen" parent="UI" instance=ExtResource("23_jyi2g")]
+visible = false
 
 [node name="EmotionManager" type="Node2D" parent="."]
 script = ExtResource("19_0r1se")
+
+[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_5wqrx")
+autoplay = true
+bus = &"Music"

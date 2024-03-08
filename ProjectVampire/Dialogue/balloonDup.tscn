@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6lf42k0r4acu"]
+
+[ext_resource type="Script" path="res://Dialogue/balloon.gd" id="1_x15bm"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_qxyvg"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="3_xju3q"]
+[ext_resource type="AudioStream" uid="uid://c4xdyjfm0711s" path="res://SoundEffects/DialogueSound.wav" id="4_sv2si"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="5_mxgiu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iw1ho"]
+
+[node name="TextBalloon" type="Node2D" node_paths=PackedStringArray("balloon", "dialogue_label")]
+position = Vector2(448, 440)
+script = ExtResource("1_x15bm")
+balloon = NodePath("Balloon")
+dialogue_label = NodePath("Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel")
+
+[node name="Balloon" type="Control" parent="."]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Balloon"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 156.0
+offset_top = -126.0
+offset_right = -18.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iw1ho")
+
+[node name="Dialogue" type="MarginContainer" parent="Balloon/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Panel/Dialogue"]
+custom_minimum_size = Vector2(330, 85)
+layout_mode = 2
+
+[node name="DialogueLabel" parent="Balloon/Panel/Dialogue/VBoxContainer" instance=ExtResource("2_qxyvg")]
+custom_minimum_size = Vector2(330, 85)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/normal_font = ExtResource("3_xju3q")
+theme_override_font_sizes/normal_font_size = 30
+text = "Dialogue..."
+seconds_per_step = 0.07
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sv2si")
+bus = &"DialogueSound"
+script = ExtResource("5_mxgiu")
+pitch_min = 1.0
+pitch_max = 1.05
+
+[node name="NextLineTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="finished_typing" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_finished_typing"]
+[connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]

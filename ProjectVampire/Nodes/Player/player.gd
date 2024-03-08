@@ -15,12 +15,15 @@ class_name Player
 @onready var damageSoundEffect = $DamageSoundEffect as AudioManagerNode
 @onready var boostSoundEffect = $BoostSoundEffect as AudioManagerNode
 @onready var shootSoundEffect = $ShootSoundEffect as AudioManagerNode
+@onready var gameOverScreen = $"../UI/GameOverScreen"
+@onready var levelMusic = $"../LevelMusic"
 var canDash: bool = true
 var boost_speed 
 var direction: Vector2
 var projectile
 
 func _ready():
+	PlayerStats.max_speed = 200
 	PlayerStats.normal_speed = PlayerStats.max_speed
 	hurtbox.hurt.connect(func(hitbox: Hitbox):
 		shake.tween_shake()
@@ -58,6 +61,9 @@ func _on_boost_timer_timeout():
 	canDash = true
 
 func gameOver():
+	levelMusic.playing = false
+	Global.gameOver = true
+	gameOverScreen.visible = true
 	PlayerStats.currentHealth = 0
 	process_mode = 4
 	hide()

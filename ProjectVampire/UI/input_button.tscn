@@ -3,10 +3,10 @@
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="1_7u3ih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_068mi"]
-bg_color = Color(0.25098, 0.313726, 0.0627451, 0.392157)
+bg_color = Color(0.815686, 0.815686, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2gr2"]
-bg_color = Color(0.815686, 0.815686, 0.345098, 0.392157)
+bg_color = Color(0.815686, 0.815686, 0.345098, 0.784314)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_idu8u"]
 

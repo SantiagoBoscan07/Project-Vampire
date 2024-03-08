@@ -9,3 +9,4 @@ func _process(delta):
 		if showDialog:
 			DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_to_read)
 			showDialog = false
+

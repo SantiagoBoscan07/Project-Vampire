@@ -1,0 +1,130 @@
+[gd_scene load_steps=19 format=3 uid="uid://d3648crt15pig"]
+
+[ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="1_qnxb8"]
+[ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="2_n5r2q"]
+[ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="3_ux2ok"]
+[ext_resource type="Texture2D" uid="uid://dahbs1545q3oa" path="res://UI/GameUINoTop.png" id="11_wksum"]
+[ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="12_5qhky"]
+[ext_resource type="Resource" uid="uid://dq0bam0uss0od" path="res://Dialogue/level1.dialogue" id="12_pv180"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="13_xtmbt"]
+[ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="14_4yeum"]
+[ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="15_ycev7"]
+[ext_resource type="Script" path="res://Scenes/DashBar.gd" id="16_qck4i"]
+[ext_resource type="PackedScene" uid="uid://dkwinbagdgshn" path="res://Nodes/Menu/lilith.tscn" id="17_owcay"]
+[ext_resource type="Script" path="res://Scenes/DialogueManagement.gd" id="18_nixcd"]
+[ext_resource type="Script" path="res://Scenes/fpscounter.gd" id="20_lm2y6"]
+[ext_resource type="PackedScene" uid="uid://bcmviequnmyxx" path="res://UI/game_over_screen.tscn" id="21_v3kwh"]
+[ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="22_3vr77"]
+[ext_resource type="AudioStream" uid="uid://bn0lq2o18hba1" path="res://Music/LevelOne.ogg" id="23_h6rif"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
+bg_color = Color(0.439216, 0.501961, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb5s"]
+bg_color = Color(0.627451, 0.658824, 0.25098, 1)
+
+[node name="Testing" type="Node2D"]
+
+[node name="ShaderTexture" parent="." instance=ExtResource("1_qnxb8")]
+
+[node name="Player" parent="." instance=ExtResource("2_n5r2q")]
+position = Vector2(99, 101)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(252, 108)
+scale = Vector2(24.4, 10)
+
+[node name="SpawnersManager" type="Node2D" parent="."]
+script = ExtResource("3_ux2ok")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameUi" type="Sprite2D" parent="UI"]
+z_index = 2
+position = Vector2(256, 192)
+texture = ExtResource("11_wksum")
+
+[node name="TopUi" type="Sprite2D" parent="UI"]
+top_level = true
+position = Vector2(257, 109)
+texture = ExtResource("12_5qhky")
+
+[node name="HPLabel" type="Label" parent="UI"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 158.0
+offset_top = 214.0
+offset_right = 366.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("13_xtmbt")
+theme_override_font_sizes/font_size = 30
+text = "HP: 100"
+justification_flags = 0
+script = ExtResource("14_4yeum")
+
+[node name="EmotiosLabel" type="Label" parent="UI"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 214.0
+offset_right = 139.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("13_xtmbt")
+theme_override_font_sizes/font_size = 30
+text = "Emotions"
+horizontal_alignment = 1
+justification_flags = 0
+script = ExtResource("15_ycev7")
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+z_index = 2
+texture_filter = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 0
+offset_left = 246.0
+offset_top = 218.0
+offset_right = 495.0
+offset_bottom = 236.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tk1tk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lcb5s")
+show_percentage = false
+script = ExtResource("16_qck4i")
+
+[node name="Lilith" parent="UI" instance=ExtResource("17_owcay")]
+position = Vector2(75, 293)
+
+[node name="DialogueManagement" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_nixcd")
+dialogue_resource = ExtResource("12_pv180")
+dialogue_to_read = "level1Dialogue"
+
+[node name="fpscounter" type="Label" parent="UI"]
+z_index = 105
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS"
+script = ExtResource("20_lm2y6")
+
+[node name="GameOverScreen" parent="UI" instance=ExtResource("21_v3kwh")]
+visible = false
+
+[node name="EmotionManager" type="Node2D" parent="."]
+script = ExtResource("22_3vr77")
+
+[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_h6rif")
+autoplay = true
+bus = &"Music"

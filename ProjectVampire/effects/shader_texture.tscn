@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6csvuxgnyhlu"]
+
+[ext_resource type="Material" uid="uid://xv1xw3x3d8a5" path="res://effects/static_lines.tres" id="1_obr46"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_j0nqp"]
+
+[node name="ShaderTexture" type="Sprite2D"]
+modulate = Color(0.25098, 0.313726, 0.0627451, 0.254902)
+z_index = 128
+material = ExtResource("1_obr46")
+position = Vector2(255.75, 191.75)
+scale = Vector2(512.5, 384.5)
+texture = SubResource("CanvasTexture_j0nqp")

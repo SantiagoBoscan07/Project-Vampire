@@ -115,3 +115,5 @@ func _process(delta):
 		timerNextDialogue()
 		Global.nextLineDialogue = true
 		Global.itemObtained = false
+	if Global.gameOver:
+		queue_free()

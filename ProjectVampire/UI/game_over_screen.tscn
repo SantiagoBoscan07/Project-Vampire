@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcmviequnmyxx"]
+
+[ext_resource type="Texture2D" uid="uid://i6ss0mf5b04t" path="res://UI/GameOverSpriteSheet.png" id="1_2kvjm"]
+[ext_resource type="Script" path="res://UI/game_over_screen.gd" id="1_rkgas"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="2_6h7u7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xlq6"]
+atlas = ExtResource("1_2kvjm")
+region = Rect2(0, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwa2l"]
+atlas = ExtResource("1_2kvjm")
+region = Rect2(512, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc8y7"]
+atlas = ExtResource("1_2kvjm")
+region = Rect2(1024, 0, 512, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_po3ie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xlq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwa2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc8y7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_852c8"]
+bg_color = Color(0.815686, 0.815686, 0.345098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.105882, 0.0980392, 0.12549, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cri5g"]
+bg_color = Color(0.815686, 0.815686, 0.345098, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5i4lp"]
+
+[node name="GameOverScreen" type="Control"]
+z_index = 101
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rkgas")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(256, 192)
+sprite_frames = SubResource("SpriteFrames_po3ie")
+autoplay = "default"
+frame_progress = 0.152461
+
+[node name="TryAgain" type="Button" parent="."]
+texture_filter = 1
+offset_left = 66.0
+offset_top = 252.0
+offset_right = 450.0
+offset_bottom = 285.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_6h7u7")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_852c8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cri5g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cri5g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5i4lp")
+text = "Try Again"
+
+[node name="MenuButton" type="Button" parent="."]
+texture_filter = 1
+offset_left = 68.0
+offset_top = 303.0
+offset_right = 452.0
+offset_bottom = 336.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_6h7u7")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_852c8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cri5g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cri5g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5i4lp")
+text = "Go Back To Menu"
+
+[connection signal="pressed" from="TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
