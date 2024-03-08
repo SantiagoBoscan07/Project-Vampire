@@ -1,6 +1,5 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3648crt15pig"]
+[gd_scene load_steps=20 format=3 uid="uid://d3648crt15pig"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/Level1.gd" id="1_qgg6k"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="1_qnxb8"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="2_n5r2q"]
 [ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="3_ux2ok"]
@@ -10,15 +9,11 @@
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="13_xtmbt"]
 [ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="14_4yeum"]
 [ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="15_ycev7"]
-[ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="16_7hl5r"]
 [ext_resource type="Script" path="res://Scenes/DashBar.gd" id="16_qck4i"]
-[ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="17_717qr"]
+[ext_resource type="Script" path="res://Scenes/Levels/HowToLabel.gd" id="17_o27rc"]
 [ext_resource type="PackedScene" uid="uid://dkwinbagdgshn" path="res://Nodes/Menu/lilith.tscn" id="17_owcay"]
 [ext_resource type="Script" path="res://Scenes/DialogueManagement.gd" id="18_nixcd"]
-[ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="19_8nycq"]
-[ext_resource type="PackedScene" uid="uid://dhtklqhy4up47" path="res://Nodes/Items/snake_item.tscn" id="20_8nr7q"]
 [ext_resource type="Script" path="res://Scenes/fpscounter.gd" id="20_lm2y6"]
-[ext_resource type="PackedScene" uid="uid://he8053yrqt2g" path="res://Nodes/Items/fruit_item.tscn" id="21_f52iw"]
 [ext_resource type="PackedScene" uid="uid://bcmviequnmyxx" path="res://UI/game_over_screen.tscn" id="21_v3kwh"]
 [ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="22_3vr77"]
 [ext_resource type="AudioStream" uid="uid://bn0lq2o18hba1" path="res://Music/LevelOne.ogg" id="23_h6rif"]
@@ -29,8 +24,7 @@ bg_color = Color(0.439216, 0.501961, 0.156863, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb5s"]
 bg_color = Color(0.627451, 0.658824, 0.25098, 1)
 
-[node name="Level1" type="Node2D"]
-script = ExtResource("1_qgg6k")
+[node name="Testing" type="Node2D"]
 
 [node name="ShaderTexture" parent="." instance=ExtResource("1_qnxb8")]
 
@@ -128,46 +122,27 @@ visible = false
 [node name="EmotionManager" type="Node2D" parent="."]
 script = ExtResource("22_3vr77")
 
-[node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
+[node name="SpawnersManager" type="Node2D" parent="."]
 script = ExtResource("3_ux2ok")
-itemSpawners = [NodePath("Spawner1"), NodePath("ItemSpawner1"), NodePath("Spawner2"), NodePath("ItemSpawner2"), NodePath("Spawner3")]
-
-[node name="Spawner1" parent="SpawnersManager" instance=ExtResource("16_7hl5r")]
-process_mode = 4
-horizontalBatTime = 0.85
-spawnHorizontal = true
-amountOfEnemies = 10
-
-[node name="ItemSpawner1" parent="SpawnersManager" instance=ExtResource("17_717qr")]
-process_mode = 4
-midItemSpawn = true
-itemMidScene = ExtResource("19_8nycq")
-
-[node name="Spawner2" parent="SpawnersManager" instance=ExtResource("16_7hl5r")]
-process_mode = 4
-horizontalBatTime = 1.25
-waveTime = 2.25
-spawnHorizontal = true
-spawnWave = true
-amountOfEnemies = 70
-
-[node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("17_717qr")]
-process_mode = 4
-upItemSpawn = true
-lowItemSpawn = true
-itemUpScene = ExtResource("20_8nr7q")
-itemDownScene = ExtResource("21_f52iw")
-itemUpEmotion = 2
-
-[node name="Spawner3" parent="SpawnersManager" instance=ExtResource("16_7hl5r")]
-process_mode = 4
-horizontalBatTime = 0.5
-waveTime = 2.0
-spawnHorizontal = true
-spawnWave = true
-amountOfEnemies = 80
 
 [node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_h6rif")
 autoplay = true
 bus = &"Music"
+
+[node name="HowToLabel" type="Label" parent="."]
+z_index = 5
+texture_filter = 1
+offset_right = 111.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("13_xtmbt")
+theme_override_font_sizes/font_size = 25
+text = "Move Up:
+Move Down:
+Move Left
+Move Right:
+Dash:"
+script = ExtResource("17_o27rc")
+
+[node name="LabelTimer" type="Timer" parent="HowToLabel"]

@@ -6,4 +6,5 @@ func _process(delta):
 		for index in itemSpawners.size():
 			if index == SpawnerManagement.index:
 				itemSpawners[index].process_mode = 0
+				itemSpawners[index].visible = true
 				SpawnerManagement.activateSpawner = false

@@ -1,5 +1,62 @@
 ~ level1Dialogue
+set Global.nextLineDialogue = true
+I cannot believe it... the ritual was a success, however...
+set SpawnerManagement.index = 0
+set Global.emotionChart = 3
+I did not expect that an angel would show up. 
+At your current state you are defenseless...
+set Global.emotionChart = 0
+Try moving around with the {{PlayerStats.upText}}, {{PlayerStats.downText}}, {{PlayerStats.leftText}}, {{PlayerStats.rightText}} keys.
+You can perform a dash with the {{PlayerStats.dashText}} key.
+set Global.emotionChart = 0
+set SpawnerManagement.index = 0
+set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
-testing dialogue level1
-
+I sense an eerie presence. For now just avoid any confrontation...
+set Global.emotionChart = 1
+Good job.
+set Global.emotionChart = 0
+But I'm afraid that our current strategy is not efficient.
+set SpawnerManagement.index = 1
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+Try handing over an offering to unlock your hidden potential.
+This is a Magatama.
+With this you should be able to shoot Soul Crystals with the {{PlayerStats.shootText}} key.
+set SpawnerManagement.index = 2
+set SpawnerManagement.activateSpawner = true
+I can sense more monsters coming, stand your ground.
+As your new master, let me tell you something about offerings.
+You're obligated to pay tribute to me by bestowing Spiritual Treasures.
+For each offering you'll become stronger. 
+However, not all treasures are to my liking.
+Be careful as to which offerring you select.
+Always keep in mind that monsters can mimic people's feelings.
+For instance, you should know that I despise snakes.
+However, snakes' ability to shed their skin could help you attain immortality.
+set Global.nextLineDialogue = false
+Just do not get deceived by them.
+It's time for another offering.
+set SpawnerManagement.index = 3
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+Remember to pick your treasure carefully.
+if Global.emotionChart == 0:
+	This is the Forbidden Fruit that doomed humanity.
+	With this treasure your shooting speed increases slightly. 
+if Global.emotionChart == 2:
+	It seems like you turned a deaf ear to your master.
+	Or perhaps you fell for the temptation of eternal life.
+set SpawnerManagement.index = 4
+set SpawnerManagement.activateSpawner = true
+More monsters are approaching, don't let your guard down yet.
+Be aware that monsters behave differently depending on their emotion.
+Anger makes them hit harder.
+Joy makes them faster.
+Sadness makes them slower and weaker.
+However, be aware that this effects also apply to you.
+set Global.nextLineDialogue = false
+You should consider all of this for your next offerings.
+set Global.nextLineDialogue = false
+end of level 1
 => END

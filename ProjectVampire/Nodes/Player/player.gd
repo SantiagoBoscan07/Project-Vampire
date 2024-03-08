@@ -89,3 +89,5 @@ func boost():
 	PlayerStats.max_speed = boost_speed
 	canDash = false
 	boostTimer.start()
+
+

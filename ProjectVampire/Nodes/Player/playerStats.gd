@@ -6,3 +6,11 @@ var fireDelayTime = 0.60
 var boostMultiplier = 2
 var normal_speed
 var currentHealth
+var upText 
+var downText
+var leftText
+var rightText
+var dashText
+var shootText
+
+
