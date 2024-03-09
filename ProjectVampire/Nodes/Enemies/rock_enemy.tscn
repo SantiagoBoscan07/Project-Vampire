@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cxi2oufrxflh7"]
+[gd_scene load_steps=17 format=3 uid="uid://cxi2oufrxflh7"]
 
 [ext_resource type="Script" path="res://Nodes/Enemies/enemy.gd" id="1_kq52r"]
 [ext_resource type="Texture2D" uid="uid://w4xhbb80tkvb" path="res://Sprites/rockEnemy.png" id="2_5kpff"]
@@ -17,12 +17,8 @@
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="15_j5m2y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpimo"]
-radius = 24.0
-height = 80.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyarc"]
-radius = 24.0
-height = 80.0
+radius = 21.0
+height = 64.0
 
 [node name="EnemyRock" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
@@ -42,18 +38,18 @@ collision_mask = 0
 script = ExtResource("3_gaiqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -8)
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_lpimo")
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
 script = ExtResource("4_f1vb3")
-damage = 30.0
+damage = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_wyarc")
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_lpimo")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(9.53674e-07, -8)

@@ -1,7 +1,6 @@
 ~ level1Dialogue
 set Global.nextLineDialogue = true
 I cannot believe it... the ritual was a success, however...
-set SpawnerManagement.index = 0
 set Global.emotionChart = 3
 I did not expect that an angel would show up. 
 At your current state you are defenseless...
@@ -12,7 +11,7 @@ set Global.emotionChart = 0
 set SpawnerManagement.index = 0
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
-I sense an eerie presence. For now just avoid any confrontation...
+I sense an eerie presence. For now, just avoid any confrontation...
 set Global.emotionChart = 1
 Good job.
 set Global.emotionChart = 0
@@ -30,7 +29,7 @@ As your new master, let me tell you something about offerings.
 You're obligated to pay tribute to me by bestowing Spiritual Treasures.
 For each offering you'll become stronger. 
 However, not all treasures are to my liking.
-Be careful as to which offerring you select.
+Be careful as to which offering you select.
 Always keep in mind that monsters can mimic people's feelings.
 For instance, you should know that I despise snakes.
 However, snakes' ability to shed their skin could help you attain immortality.
@@ -58,7 +57,8 @@ However, be aware that this effects also apply to you.
 set Global.nextLineDialogue = false
 You should consider all of this for your next offerings.
 There are no more monsters in this area.
-It's safe to go somewhere else.
-Let's go.
+You may still have some questions for me.
+When the time is right, I'll give you the answers.
+But for now, let's go somewhere safe.
 set Global.nextLevel = true
 => END

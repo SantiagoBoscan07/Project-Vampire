@@ -1,6 +1,72 @@
 ~ level2dialogue
 set Global.nextLineDialogue = true
-level 2 testing uwu
+This is not good... I can sense more monsters coming this way.
+Before engaging with them, let's proceed with an offering.
+set SpawnerManagement.index = 0
+set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
-uwu
+Darling, what's your offering?
+set SpawnerManagement.index = 1
+set SpawnerManagement.activateSpawner = true
+if Global.emotionChart == 1:
+	What a gorgeous Medallion.
+	It matches well with my other jewelry sets.
+	Or maybe I could sell it and get rich!
+	We can even split the profit.
+	Actually, spirits can't use money...
+	I'm sorry, I got a little excited...
+	set Global.nextLineDialogue = false
+	Your dash speed also increased slightly.
+if Global.emotionChart == 3:
+	A Forget-Me-Not Petal...
+	Do you still remember?
+	Please just forgive me.
+	...
+	Perhaps I'm overthinking it...
+	set Global.nextLineDialogue = false
+	Never mind.
+set Global.emotionChart = 0
+Enemies are growing stronger. We should do an offering.
+set SpawnerManagement.index = 2
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+The decision is yours to make.
+set SpawnerManagement.index = 3
+set SpawnerManagement.activateSpawner = true
+if Global.emotionChart == 1:
+	You wish for more power? Interesting...
+if Global.emotionChart == 2:
+	This is just a bunch of junk...
+if Global.emotionChart == 3:
+	It seems like you don't want me to forget...
+I have never been the best at Spirit Training.
+Most of my previous rituals have failed tremendously.
+if Global.emotionChart != 2:
+	But there is something special about you...
+Talking from experience, let me suggest something.
+Sheer force is not enough to break through some monsters.
+Avoiding them is also a good option.
+set Global.nextLineDialogue = false
+Make sure to use your defensive tools strategically. 
+Monster won't stop coming. Don't back down yet.
+set SpawnerManagement.index = 4
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+Well, you know the drill by now. Pick carefully.
+set SpawnerManagement.index = 5
+set SpawnerManagement.activateSpawner = true
+Perhaps this is not the right time but...
+There is something I must tell you.
+I brought you back from the dead to get an Artifact.
+As your master you must obey me no matter what, however...
+I won't force you to keep up with this.
+Let me warn you that moving forward will be dangerous.
+set Global.nextLineDialogue = false
+But the final decision is yours...
+set Global.emotionChart = 3
+I'm really sorry for dragging you into this...
+set Global.emotionChart = 0
+It'll all make sense once we reach our destination.
+Please follow me.
+#set Global.nextLevel = true
 => END

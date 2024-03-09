@@ -92,7 +92,7 @@ shape = SubResource("CapsuleShape2D_lpimo")
 visible = false
 collision_layer = 0
 script = ExtResource("4_3b71b")
-damage = 10.0
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 1.5708

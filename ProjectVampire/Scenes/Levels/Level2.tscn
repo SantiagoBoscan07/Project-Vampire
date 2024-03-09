@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://r6f08i6cj1qm"]
+[gd_scene load_steps=33 format=3 uid="uid://r6f08i6cj1qm"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/Level1.gd" id="1_mymfk"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level2.gd" id="1_58sv4"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_sssvp"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="3_7okyf"]
 [ext_resource type="Texture2D" uid="uid://dahbs1545q3oa" path="res://UI/GameUINoTop.png" id="4_l02x8"]
@@ -19,9 +19,16 @@
 [ext_resource type="Script" path="res://Scenes/Levels/SkipText.gd" id="17_ld7e5"]
 [ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="18_vdij5"]
 [ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="19_j4dhu"]
+[ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="20_0n5dm"]
+[ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="21_d5t1y"]
+[ext_resource type="PackedScene" uid="uid://spnje00jd74k" path="res://Nodes/Items/flower_item.tscn" id="22_0gsju"]
+[ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="23_qokle"]
+[ext_resource type="PackedScene" uid="uid://he8053yrqt2g" path="res://Nodes/Items/fruit_item.tscn" id="24_lcqo6"]
+[ext_resource type="AudioStream" uid="uid://bwl5r040npbcx" path="res://Music/LevelTwo.ogg" id="25_3vc4l"]
+[ext_resource type="PackedScene" uid="uid://c2e7fha4pgqsi" path="res://Nodes/Items/skull_item.tscn" id="25_io78f"]
 [ext_resource type="Script" path="res://Scenes/Levels/TransitionManager.gd" id="25_tjix4"]
+[ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="26_7wsfo"]
 [ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="26_hr33r"]
-[ext_resource type="AudioStream" uid="uid://bn0lq2o18hba1" path="res://Music/LevelOne.ogg" id="27_v7myp"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="28_d6nvs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
@@ -30,8 +37,8 @@ bg_color = Color(0.439216, 0.501961, 0.156863, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb5s"]
 bg_color = Color(0.627451, 0.658824, 0.25098, 1)
 
-[node name="Level1" type="Node2D"]
-script = ExtResource("1_mymfk")
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_58sv4")
 
 [node name="ShaderTexture" parent="." instance=ExtResource("2_sssvp")]
 
@@ -155,8 +162,78 @@ script = ExtResource("17_ld7e5")
 [node name="EmotionManager" type="Node2D" parent="."]
 script = ExtResource("18_vdij5")
 
-[node name="SpawnersManager" type="Node2D" parent="."]
+[node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
 script = ExtResource("19_j4dhu")
+itemSpawners = [NodePath("ItemSpawner1"), NodePath("Spawner1"), NodePath("ItemSpawner2"), NodePath("Spawner2"), NodePath("ItemSpawner3"), NodePath("Spawner3")]
+
+[node name="ItemSpawner1" parent="SpawnersManager" instance=ExtResource("20_0n5dm")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+itemUpScene = ExtResource("21_d5t1y")
+itemDownScene = ExtResource("22_0gsju")
+itemUpEmotion = 1
+itemDownEmotion = 3
+
+[node name="Spawner1" parent="SpawnersManager" instance=ExtResource("23_qokle")]
+process_mode = 4
+waveTime = 1.25
+rockTime = 12.0
+diagonalTime = 3.25
+spawnWave = true
+spawnRock = true
+spawnDiagonal = true
+amountOfEnemies = 30
+
+[node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("20_0n5dm")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("22_0gsju")
+itemDownScene = ExtResource("24_lcqo6")
+itemMidScene = ExtResource("25_io78f")
+itemUpEmotion = 3
+itemDownEmotion = 1
+itemMidEmotion = 2
+
+[node name="Spawner2" parent="SpawnersManager" instance=ExtResource("23_qokle")]
+process_mode = 4
+horizontalBatTime = 1.5
+waveTime = 2.5
+rockTime = 15.0
+diagonalTime = 8.5
+spawnHorizontal = true
+spawnWave = true
+spawnRock = true
+spawnDiagonal = true
+amountOfEnemies = 55
+
+[node name="ItemSpawner3" parent="SpawnersManager" instance=ExtResource("20_0n5dm")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("24_lcqo6")
+itemDownScene = ExtResource("21_d5t1y")
+itemMidScene = ExtResource("26_7wsfo")
+itemUpEmotion = 1
+itemDownEmotion = 1
+itemMidEmotion = 1
+
+[node name="Spawner3" parent="SpawnersManager" instance=ExtResource("23_qokle")]
+process_mode = 4
+horizontalBatTime = 1.5
+waveTime = 3.5
+skullTime = 20.0
+rockTime = 12.0
+diagonalTime = 5.5
+spawnHorizontal = true
+spawnWave = true
+spawnSkull = true
+spawnRock = true
+spawnDiagonal = true
+amountOfEnemies = 70
 
 [node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
 script = ExtResource("25_tjix4")
@@ -174,7 +251,8 @@ dialogueActivator = NodePath("../../UI/DialogueManagement")
 musicToStart = NodePath("../../LevelMusic")
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("27_v7myp")
+stream = ExtResource("25_3vc4l")
+volume_db = -5.148
 bus = &"Music"
 script = ExtResource("28_d6nvs")
 pitch_min = 1.0
