@@ -4,10 +4,14 @@ extends Control
 @export var initialScene: PackedScene
 @onready var inputSettings = $InputSettings
 @onready var spriteElements = $SpriteElements 
-@export var transition: TransitionBetweenScene
+@onready var transitionCutout = $TransitionCutout
+
+func _ready():
+	transitionCutout.set_next_animation(0)
+
 
 func _on_start_game_pressed():
-	get_tree().change_scene_to_packed(initialScene)
+	transitionCutout.set_next_animation(1)
 
 
 func _on_settings_pressed():

@@ -1,9 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3648crt15pig"]
+[gd_scene load_steps=32 format=3 uid="uid://d3648crt15pig"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level1.gd" id="1_qgg6k"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="1_qnxb8"]
+[ext_resource type="Script" path="res://Scenes/Levels/TransitionManager.gd" id="2_41cr8"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="2_n5r2q"]
 [ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="3_ux2ok"]
+[ext_resource type="Texture2D" uid="uid://c3nnhv57n3kfh" path="res://UI/uiBottom.png" id="6_hfhg7"]
 [ext_resource type="Texture2D" uid="uid://dahbs1545q3oa" path="res://UI/GameUINoTop.png" id="11_wksum"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="12_5qhky"]
 [ext_resource type="Resource" uid="uid://dq0bam0uss0od" path="res://Dialogue/level1.dialogue" id="12_pv180"]
@@ -24,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://bcmviequnmyxx" path="res://UI/game_over_screen.tscn" id="21_v3kwh"]
 [ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="22_3vr77"]
 [ext_resource type="AudioStream" uid="uid://bn0lq2o18hba1" path="res://Music/LevelOne.ogg" id="23_h6rif"]
+[ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="25_xf4xf"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="27_7nqnv"]
+[ext_resource type="PackedScene" uid="uid://r6f08i6cj1qm" path="res://Scenes/Levels/Level2.tscn" id="27_vcjv2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -58,6 +63,10 @@ texture = ExtResource("11_wksum")
 top_level = true
 position = Vector2(257, 109)
 texture = ExtResource("12_5qhky")
+
+[node name="BottomUi" type="Sprite2D" parent="UI"]
+position = Vector2(325.701, 305.348)
+texture = ExtResource("6_hfhg7")
 
 [node name="HPLabel" type="Label" parent="UI"]
 z_index = 2
@@ -107,7 +116,7 @@ script = ExtResource("16_qck4i")
 [node name="Lilith" parent="UI" instance=ExtResource("17_owcay")]
 position = Vector2(75, 293)
 
-[node name="DialogueManagement" type="Control" parent="UI"]
+[node name="DialogueManagement" type="Control" parent="UI" node_paths=PackedStringArray("disableUIBottom")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -115,9 +124,9 @@ offset_bottom = 40.0
 script = ExtResource("18_nixcd")
 dialogue_resource = ExtResource("12_pv180")
 dialogue_to_read = "level1Dialogue"
+disableUIBottom = NodePath("../BottomUi")
 
 [node name="fpscounter" type="Label" parent="UI"]
-visible = false
 z_index = 105
 layout_mode = 0
 offset_right = 40.0
@@ -195,7 +204,25 @@ spawnWave = true
 spawnDiagonal = true
 amountOfEnemies = 85
 
-[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
+script = ExtResource("2_41cr8")
+transitionCutout = NodePath("TransitionCutout")
+
+[node name="TransitionCutout" parent="TransitionManager" node_paths=PackedStringArray("dialogueActivator", "musicToStart") instance=ExtResource("25_xf4xf")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 512.0
+offset_bottom = 384.0
+grow_horizontal = 1
+grow_vertical = 1
+dialogueActivator = NodePath("../../UI/DialogueManagement")
+sceneToTransition = ExtResource("27_vcjv2")
+musicToStart = NodePath("../../LevelMusic")
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_h6rif")
-autoplay = true
 bus = &"Music"
+script = ExtResource("27_7nqnv")
+pitch_min = 1.0
+pitch_max = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi5fvto8256mm"]
+[gd_scene load_steps=18 format=3 uid="uid://bi5fvto8256mm"]
 
 [ext_resource type="Texture2D" uid="uid://daa2yu3roj07e" path="res://UI/GameMenu.png" id="1_58cx5"]
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_eucb3"]
@@ -9,6 +9,8 @@
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="5_aulxl"]
 [ext_resource type="PackedScene" uid="uid://oah00dag7plj" path="res://Scenes/input_settings.tscn" id="5_uvsxc"]
 [ext_resource type="AudioStream" uid="uid://cnbrdiw7spw1m" path="res://Music/TitleScreen.ogg" id="9_vsshv"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="10_3s8nv"]
+[ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="10_6cqt8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ublm"]
 atlas = ExtResource("4_mt717")
@@ -152,10 +154,17 @@ visible = false
 layout_mode = 1
 spriteElements = NodePath("../SpriteElements")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_vsshv")
-autoplay = true
 bus = &"Music"
+script = ExtResource("10_3s8nv")
+pitch_min = 1.0
+pitch_max = 1.0
+
+[node name="TransitionCutout" parent="." node_paths=PackedStringArray("musicToStart") instance=ExtResource("10_6cqt8")]
+layout_mode = 1
+sceneToTransition = ExtResource("2_petkv")
+musicToStart = NodePath("../AudioStreamPlayer2D")
 
 [connection signal="pressed" from="SpriteElements/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="SpriteElements/Settings" to="." method="_on_settings_pressed"]

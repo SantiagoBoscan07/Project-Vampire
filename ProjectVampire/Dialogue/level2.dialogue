@@ -1,0 +1,6 @@
+~ level2dialogue
+set Global.nextLineDialogue = true
+level 2 testing uwu
+set Global.nextLineDialogue = false
+uwu
+=> END

@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2uewm58n72ur"]
+
+[ext_resource type="Shader" path="res://effects/transition.gdshader" id="1_1jwcg"]
+[ext_resource type="Texture2D" uid="uid://xflywijwmkd" path="res://UI/cutout.png" id="2_ta7u6"]
+[ext_resource type="AudioStream" uid="uid://cbr0txgpfh7j5" path="res://SoundEffects/TransitionSoundEffect.wav" id="3_0ym4j"]
+[ext_resource type="Script" path="res://effects/transition_cutout.gd" id="3_s147g"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_47uak"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yu36b"]
+shader = ExtResource("1_1jwcg")
+shader_parameter/scale = 0.0
+shader_parameter/mask = ExtResource("2_ta7u6")
+
+[sub_resource type="Animation" id="Animation_4la41"]
+resource_name = "FadeBlack"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_hkqlg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_b5b4j"]
+resource_name = "FadeNormal"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54lm2"]
+_data = {
+"FadeBlack": SubResource("Animation_4la41"),
+"FadeNormal": SubResource("Animation_b5b4j"),
+"RESET": SubResource("Animation_hkqlg")
+}
+
+[node name="TransitionCutout" type="ColorRect"]
+z_index = 120
+material = SubResource("ShaderMaterial_yu36b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.0980392, 0.12549, 1)
+script = ExtResource("3_s147g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_54lm2")
+}
+
+[node name="SoundFadeBlack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0ym4j")
+bus = &"SoundEffect"
+script = ExtResource("4_47uak")
+pitch_min = 1.0
+pitch_max = 1.5
+
+[node name="SoundFadeNormal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0ym4j")
+bus = &"SoundEffect"
+script = ExtResource("4_47uak")
+pitch_min = 0.5
+pitch_max = 0.7
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

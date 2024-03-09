@@ -57,6 +57,8 @@ Sadness makes them slower and weaker.
 However, be aware that this effects also apply to you.
 set Global.nextLineDialogue = false
 You should consider all of this for your next offerings.
-set Global.nextLineDialogue = false
-end of level 1
+There are no more monsters in this area.
+It's safe to go somewhere else.
+Let's go.
+set Global.nextLevel = true
 => END
