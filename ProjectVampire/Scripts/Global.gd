@@ -15,6 +15,5 @@ var canTopShoot: bool = false
 var itemObtained: bool = false
 var nextLineDialogue: bool = true
 var gameOver: bool = false
-var textSpeedBoost: bool = false
 var nextLevel: bool = false
 

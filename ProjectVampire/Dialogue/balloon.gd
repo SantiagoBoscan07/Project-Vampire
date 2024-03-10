@@ -117,9 +117,3 @@ func _process(delta):
 		Global.itemObtained = false
 	if Global.gameOver:
 		queue_free()
-	if Global.textSpeedBoost:
-		dialogue_label.seconds_per_step = 0.01
-		nextLineTimer.wait_time = 0.1
-	else:
-		dialogue_label.seconds_per_step = 0.07
-		nextLineTimer.wait_time = 2

@@ -18,7 +18,8 @@ class_name Player
 @onready var gameOverScreen = $"../UI/GameOverScreen"
 @onready var pauseScreen = $"../UI/PauseMenuScreen"
 @onready var levelMusic = $"../LevelMusic"
-var paused: bool = false
+@onready var paused: bool = false
+@onready var speedSkip: bool = false
 var canDash: bool = true
 var boost_speed 
 var direction: Vector2
@@ -44,21 +45,27 @@ func _process(delta):
 		health.health += itemDetector.healthModifier
 		itemDetector.healthModifier = 0
 	if Input.is_action_just_pressed("skip_text") and !paused:
-		Global.textSpeedBoost = !Global.textSpeedBoost
+		speedSkip = !speedSkip
+	if speedSkip:
+		skip()
+	elif !speedSkip and !paused:
+		Engine.time_scale = 1
 	if Input.is_action_just_pressed("pause"):
+		speedSkip = false
 		pausing()
+
 
 
 func _physics_process(delta):
 	direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	if Input.is_action_just_pressed("boost") and canDash:
+	if Input.is_action_just_pressed("boost") and canDash and !paused:
 		boost()
 	if direction.length() > 1.0:
 		direction = direction.normalized()
 	velocity.x = move_toward(velocity.x, PlayerStats.max_speed * direction.x, PlayerStats.acceleration)
 	velocity.y = move_toward(velocity.y, PlayerStats.max_speed * direction.y, PlayerStats.acceleration)
 	move_and_slide()
-	if Input.is_action_pressed("shoot") and fireDelayTimer.is_stopped() and Global.canMidShoot:
+	if Input.is_action_pressed("shoot") and fireDelayTimer.is_stopped() and Global.canMidShoot and !paused:
 		shoot()
 
 
@@ -67,6 +74,7 @@ func _on_boost_timer_timeout():
 	canDash = true
 
 func gameOver():
+	Engine.time_scale = 1
 	levelMusic.playing = false
 	Global.gameOver = true
 	gameOverScreen.visible = true
@@ -100,5 +108,10 @@ func pausing():
 	if !paused:
 		Engine.time_scale = 0
 		pauseScreen.show()
-		paused = !paused
+	elif paused:
+		Engine.time_scale = 1
+		pauseScreen.hide()
+	paused = !paused
 
+func skip():
+	Engine.time_scale = 3

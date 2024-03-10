@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://r6f08i6cj1qm"]
+[gd_scene load_steps=34 format=3 uid="uid://r6f08i6cj1qm"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level2.gd" id="1_58sv4"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_sssvp"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="26_7wsfo"]
 [ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="26_hr33r"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="28_d6nvs"]
+[ext_resource type="PackedScene" uid="uid://ck3p4ccexfwqg" path="res://Scenes/Levels/Level3.tscn" id="29_anojp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -248,6 +249,7 @@ offset_bottom = 384.0
 grow_horizontal = 1
 grow_vertical = 1
 dialogueActivator = NodePath("../../UI/DialogueManagement")
+sceneToTransition = ExtResource("29_anojp")
 musicToStart = NodePath("../../LevelMusic")
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]

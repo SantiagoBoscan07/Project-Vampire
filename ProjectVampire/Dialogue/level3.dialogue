@@ -1,0 +1,5 @@
+~ level3dialogue
+set Global.nextLineDialogue = false
+testing
+
+=> END

@@ -1,0 +1,179 @@
+[gd_scene load_steps=25 format=3 uid="uid://ck3p4ccexfwqg"]
+
+[ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_8v8h8"]
+[ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="3_n0ak1"]
+[ext_resource type="Texture2D" uid="uid://dahbs1545q3oa" path="res://UI/GameUINoTop.png" id="4_lleol"]
+[ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="5_g1ff1"]
+[ext_resource type="Texture2D" uid="uid://c3nnhv57n3kfh" path="res://UI/uiBottom.png" id="6_ti2g1"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="7_utfkt"]
+[ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="8_nomho"]
+[ext_resource type="Script" path="res://Scenes/EmotiosLabel.gd" id="9_6rlox"]
+[ext_resource type="Script" path="res://Scenes/DashBar.gd" id="10_87wok"]
+[ext_resource type="PackedScene" uid="uid://dkwinbagdgshn" path="res://Nodes/Menu/lilith.tscn" id="11_7g1ya"]
+[ext_resource type="Script" path="res://Scenes/DialogueManagement.gd" id="12_b04s3"]
+[ext_resource type="Resource" uid="uid://kebcf7qmapwt" path="res://Dialogue/level3.dialogue" id="13_udyax"]
+[ext_resource type="Script" path="res://Scenes/fpscounter.gd" id="14_4vysu"]
+[ext_resource type="PackedScene" uid="uid://bcmviequnmyxx" path="res://UI/game_over_screen.tscn" id="15_pdmt6"]
+[ext_resource type="PackedScene" uid="uid://bhola2hr74o50" path="res://UI/pause_menu_screen.tscn" id="16_hfyiw"]
+[ext_resource type="Script" path="res://Scenes/Levels/SkipText.gd" id="17_ma0yn"]
+[ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="18_56or5"]
+[ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="19_0f50t"]
+[ext_resource type="AudioStream" uid="uid://p6pwmuobnbm1" path="res://Music/LevelThree.ogg" id="22_0e62i"]
+[ext_resource type="Script" path="res://Scenes/Levels/TransitionManager.gd" id="27_pl075"]
+[ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="28_cc8hq"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="30_se6ev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
+bg_color = Color(0.439216, 0.501961, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb5s"]
+bg_color = Color(0.627451, 0.658824, 0.25098, 1)
+
+[node name="Level3" type="Node2D"]
+
+[node name="ShaderTexture" parent="." instance=ExtResource("2_8v8h8")]
+
+[node name="Player" parent="." instance=ExtResource("3_n0ak1")]
+position = Vector2(100, 100)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(252, 108)
+scale = Vector2(24.4, 10)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameUi" type="Sprite2D" parent="UI"]
+z_index = 2
+position = Vector2(256, 192)
+texture = ExtResource("4_lleol")
+
+[node name="TopUi" type="Sprite2D" parent="UI"]
+top_level = true
+position = Vector2(257, 109)
+texture = ExtResource("5_g1ff1")
+
+[node name="BottomUi" type="Sprite2D" parent="UI"]
+position = Vector2(325.701, 305.348)
+texture = ExtResource("6_ti2g1")
+
+[node name="HPLabel" type="Label" parent="UI"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 158.0
+offset_top = 214.0
+offset_right = 366.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("7_utfkt")
+theme_override_font_sizes/font_size = 30
+text = "HP: 100"
+justification_flags = 0
+script = ExtResource("8_nomho")
+
+[node name="EmotiosLabel" type="Label" parent="UI"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 214.0
+offset_right = 139.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("7_utfkt")
+theme_override_font_sizes/font_size = 30
+text = "Emotions"
+horizontal_alignment = 1
+justification_flags = 0
+script = ExtResource("9_6rlox")
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+z_index = 2
+texture_filter = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 0
+offset_left = 246.0
+offset_top = 218.0
+offset_right = 495.0
+offset_bottom = 236.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tk1tk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lcb5s")
+show_percentage = false
+script = ExtResource("10_87wok")
+
+[node name="Lilith" parent="UI" instance=ExtResource("11_7g1ya")]
+position = Vector2(75, 293)
+
+[node name="DialogueManagement" type="Control" parent="UI" node_paths=PackedStringArray("disableUIBottom")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_b04s3")
+dialogue_resource = ExtResource("13_udyax")
+dialogue_to_read = "level3dialogue"
+disableUIBottom = NodePath("../BottomUi")
+
+[node name="fpscounter" type="Label" parent="UI"]
+z_index = 105
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("7_utfkt")
+text = "FPS"
+script = ExtResource("14_4vysu")
+
+[node name="GameOverScreen" parent="UI" instance=ExtResource("15_pdmt6")]
+visible = false
+
+[node name="PauseMenuScreen" parent="UI" node_paths=PackedStringArray("playerPaused") instance=ExtResource("16_hfyiw")]
+visible = false
+z_index = 101
+layout_mode = 1
+playerPaused = NodePath("../../Player")
+
+[node name="SkipText" type="Label" parent="UI"]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = 448.464
+offset_top = 319.99
+offset_right = 488.464
+offset_bottom = 347.99
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("7_utfkt")
+theme_override_font_sizes/font_size = 30
+text = ">>"
+script = ExtResource("17_ma0yn")
+
+[node name="EmotionManager" type="Node2D" parent="."]
+script = ExtResource("18_56or5")
+
+[node name="SpawnersManager" type="Node2D" parent="."]
+script = ExtResource("19_0f50t")
+
+[node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
+script = ExtResource("27_pl075")
+transitionCutout = NodePath("TransitionCutout")
+
+[node name="TransitionCutout" parent="TransitionManager" node_paths=PackedStringArray("dialogueActivator", "musicToStart") instance=ExtResource("28_cc8hq")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 512.0
+offset_bottom = 384.0
+grow_horizontal = 1
+grow_vertical = 1
+dialogueActivator = NodePath("../../UI/DialogueManagement")
+musicToStart = NodePath("../../LevelMusic")
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_0e62i")
+bus = &"Music"
+script = ExtResource("30_se6ev")
+pitch_min = 1.0
+pitch_max = 1.0

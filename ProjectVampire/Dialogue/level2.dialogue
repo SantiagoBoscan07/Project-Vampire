@@ -36,6 +36,7 @@ set SpawnerManagement.activateSpawner = true
 if Global.emotionChart == 1:
 	You wish for more power? Interesting...
 if Global.emotionChart == 2:
+	Are you for real?
 	This is just a bunch of junk...
 if Global.emotionChart == 3:
 	It seems like you don't want me to forget...
@@ -68,5 +69,5 @@ I'm really sorry for dragging you into this...
 set Global.emotionChart = 0
 It'll all make sense once we reach our destination.
 Please follow me.
-#set Global.nextLevel = true
+set Global.nextLevel = true
 => END

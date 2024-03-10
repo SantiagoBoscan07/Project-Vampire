@@ -3,7 +3,7 @@ extends Control
 @onready var input_button_scene = preload("res://UI/input_button.tscn")
 @onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/InputList
 @export var spriteElements: Node2D
-var menuScene = load("res://Scenes/Testing.tscn")
+var inputConfig 
 var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
@@ -15,15 +15,17 @@ var input_actions = {
 	"move_right": "Move Right",
 	"shoot": "Shoot",
 	"boost": "Boost",
-	"skip_text": "Skip Text",
+	"skip_text": "Toggle Turbo Mode",
 	"pause": "Pause",
 }
 
 func _ready():
 	_create_action_list()
 
+func _enter_tree() -> void:
+	load_()
+
 func _create_action_list():
-	InputMap.load_from_project_settings()
 	for item in action_list.get_children():
 		item.queue_free()
 	
@@ -48,7 +50,7 @@ func _on_input_button_pressed(button, action):
 		is_remapping = true
 		action_to_remap = action
 		remapping_button = button
-		button.find_child("LabelInput").text = "Waiting For Your Input..."
+		button.find_child("LabelInput").text = "Waiting For Input"
 
 func _input(event):
 	if is_remapping:
@@ -61,12 +63,13 @@ func _input(event):
 			InputMap.action_erase_events(action_to_remap)
 			InputMap.action_add_event(action_to_remap, event)
 			_update_action_list(remapping_button, event)
-			
+			_save()
 			is_remapping = false
 			action_to_remap = null
 			remapping_button = null
 			
 			accept_event()
+
 
 func _update_action_list(button, event):
 	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
@@ -85,3 +88,17 @@ func returnMenu():
 	spriteElements.visible = true
 	visible = false
 	process_mode = 4
+
+func load_():
+	inputConfig = load("res://Resources/mapConfig.tres")
+	if not inputConfig:
+		inputConfig = Config.new()
+	for action in inputConfig.input_map:
+		InputMap.action_erase_events(action)
+		for input_event in inputConfig.input_map[action]:
+			InputMap.action_add_event(action, input_event)
+
+func _save():
+	for action in InputMap.get_actions():
+		inputConfig.input_map[action] = InputMap.action_get_events(action)
+	ResourceSaver.save(inputConfig, "res://Resources/mapConfig.tres")

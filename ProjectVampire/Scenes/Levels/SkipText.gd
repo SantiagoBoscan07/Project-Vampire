@@ -1,7 +1,7 @@
 extends Label
-
+@onready var player = $"../../Player"
 func _process(delta):
-	if Global.textSpeedBoost:
+	if player.speedSkip:
 		visible = true
 	else:
 		visible = false

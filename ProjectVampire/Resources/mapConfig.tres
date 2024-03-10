@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Config" load_steps=2 format=3 uid="uid://b278303lirwq6"]
+
+[ext_resource type="Script" path="res://Resources/mapInputResource.gd" id="1_vqna2"]
+
+[resource]
+script = ExtResource("1_vqna2")
+input_map = {}
