@@ -170,6 +170,7 @@ script = ExtResource("13_hqsg8")
 scene = ExtResource("14_5vwnu")
 
 [node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.75
 one_shot = true
 
 [node name="AlertTimer" type="Timer" parent="."]

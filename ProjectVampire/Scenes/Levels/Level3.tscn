@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ck3p4ccexfwqg"]
+[gd_scene load_steps=32 format=3 uid="uid://ck3p4ccexfwqg"]
 
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_8v8h8"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="3_n0ak1"]
@@ -18,9 +18,16 @@
 [ext_resource type="Script" path="res://Scenes/Levels/SkipText.gd" id="17_ma0yn"]
 [ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="18_56or5"]
 [ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="19_0f50t"]
+[ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="19_bjx4s"]
+[ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="20_8kf54"]
+[ext_resource type="PackedScene" uid="uid://dhtklqhy4up47" path="res://Nodes/Items/snake_item.tscn" id="21_dvg2r"]
 [ext_resource type="AudioStream" uid="uid://p6pwmuobnbm1" path="res://Music/LevelThree.ogg" id="22_0e62i"]
+[ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="22_cne42"]
+[ext_resource type="PackedScene" uid="uid://cnygbbeg3je5f" path="res://Nodes/Items/magatama_item.tscn" id="23_2atce"]
+[ext_resource type="PackedScene" uid="uid://cq30xjvkolcuc" path="res://Nodes/Items/crown_item.tscn" id="24_jac0b"]
 [ext_resource type="Script" path="res://Scenes/Levels/TransitionManager.gd" id="27_pl075"]
 [ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="28_cc8hq"]
+[ext_resource type="Script" path="res://Scenes/Levels/CameraShake.gd" id="29_dk4yg"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="30_se6ev"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
@@ -153,8 +160,98 @@ script = ExtResource("17_ma0yn")
 [node name="EmotionManager" type="Node2D" parent="."]
 script = ExtResource("18_56or5")
 
-[node name="SpawnersManager" type="Node2D" parent="."]
+[node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
 script = ExtResource("19_0f50t")
+itemSpawners = [NodePath("Spawner1"), NodePath("ItemSpawner1"), NodePath("Spawner2"), NodePath("ItemSpawner2"), NodePath("Spawner3"), NodePath("ItemSpawner3"), NodePath("Spawner4")]
+
+[node name="Spawner1" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+horizontalBatTime = 1.5
+waveTime = 1.7
+rockTime = 4.0
+devilTime = 2.7
+spawnHorizontal = true
+spawnWave = true
+spawnRock = true
+spawnDevil = true
+amountOfEnemies = 64
+
+[node name="ItemSpawner1" parent="SpawnersManager" instance=ExtResource("20_8kf54")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("21_dvg2r")
+itemDownScene = ExtResource("21_dvg2r")
+itemMidScene = ExtResource("21_dvg2r")
+itemUpEmotion = 2
+itemDownEmotion = 2
+itemMidEmotion = 2
+
+[node name="Spawner2" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+horizontalBatTime = 1.25
+waveTime = 1.35
+skullTime = 12.5
+rockTime = 7.5
+devilTime = 2.7
+spawnHorizontal = true
+spawnWave = true
+spawnSkull = true
+spawnRock = true
+spawnDevil = true
+amountOfEnemies = 77
+
+[node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("20_8kf54")]
+process_mode = 4
+upItemSpawn = true
+lowItemSpawn = true
+midItemSpawn = true
+itemUpScene = ExtResource("22_cne42")
+itemDownScene = ExtResource("23_2atce")
+itemMidScene = ExtResource("21_dvg2r")
+itemUpEmotion = 1
+itemDownEmotion = 3
+itemMidEmotion = 2
+
+[node name="Spawner3" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+horizontalBatTime = 1.55
+waveTime = 1.25
+skullTime = 22.0
+rockTime = 20.0
+devilTime = 2.7
+devilTime2 = 8.0
+spawnHorizontal = true
+spawnWave = true
+spawnSkull = true
+spawnRock = true
+spawnDevil = true
+spawnDevil2 = true
+amountOfEnemies = 115
+
+[node name="ItemSpawner3" parent="SpawnersManager" instance=ExtResource("20_8kf54")]
+process_mode = 4
+midItemSpawn = true
+itemMidScene = ExtResource("24_jac0b")
+
+[node name="Spawner4" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+horizontalBatTime = 2.0
+waveTime = 1.5
+skullTime = 20.0
+rockTime = 20.5
+devilTime = 2.7
+diagonalTime = 5.0
+devilTime2 = 10.0
+spawnHorizontal = true
+spawnWave = true
+spawnSkull = true
+spawnRock = true
+spawnDevil = true
+spawnDiagonal = true
+spawnDevil2 = true
+amountOfEnemies = 250
 
 [node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
 script = ExtResource("27_pl075")
@@ -177,3 +274,8 @@ bus = &"Music"
 script = ExtResource("30_se6ev")
 pitch_min = 1.0
 pitch_max = 1.0
+
+[node name="CameraShake" type="Camera2D" parent="."]
+z_index = 128
+anchor_mode = 0
+script = ExtResource("29_dk4yg")

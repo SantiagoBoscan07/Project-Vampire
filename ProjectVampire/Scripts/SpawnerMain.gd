@@ -6,6 +6,7 @@ extends Node2D
 @export var rock: PackedScene
 @export var devil: PackedScene
 @export var diagonalBat: PackedScene
+@export var devil2: PackedScene
 #Time Export
 @export var horizontalBatTime: float = 1
 @export var waveTime: float = 1
@@ -13,6 +14,7 @@ extends Node2D
 @export var rockTime: float = 1
 @export var devilTime: float = 1
 @export var diagonalTime: float = 1
+@export var devilTime2: float = 1
 #Bool Export
 @export var spawnHorizontal: bool
 @export var spawnWave: bool
@@ -20,12 +22,14 @@ extends Node2D
 @export var spawnRock: bool
 @export var spawnDevil: bool
 @export var spawnDiagonal: bool
+@export var spawnDevil2: bool
 #Timer onready
 @onready var horizontalBatTimer: Timer = $HorizontalBatTimer
 @onready var waveTimer: Timer = $WaveTimer
 @onready var skullTimer: Timer = $SkullTimer
 @onready var rockTimer: Timer = $RockTimer
 @onready var devilTimer: Timer = $DevilTimer
+@onready var devilTimer2: Timer = $DevilTimer2
 @onready var diagonalTimer: Timer = $DiagonalTimer
 #Misc onready and export
 @export var amountOfEnemies: int = 5
@@ -58,6 +62,10 @@ func _ready() -> void:
 		diagonalTimer.wait_time = diagonalTime
 		diagonalTimer.timeout.connect(handle_spawn_diagonal.bind(diagonalBat, diagonalTimer))
 		diagonalTimer.start()
+	if spawnDevil2:
+		devilTimer2.wait_time = devilTime2
+		devilTimer2.timeout.connect(handle_spawn_devil2.bind(devil2, devilTimer2))
+		devilTimer2.start()
 
 func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 	spawnerNode.scene = enemy_scene
@@ -67,6 +75,11 @@ func handle_spawn(enemy_scene: PackedScene, timer: Timer) -> void:
 func handle_spawn_devil(enemy_scene: PackedScene, timer: Timer) -> void:
 	spawnerNode.scene = enemy_scene
 	spawnerNode.spawn(Vector2(randf_range(64, 115), -12))
+	spawnCounter(timer)
+
+func handle_spawn_devil2(enemy_scene: PackedScene, timer: Timer) -> void:
+	spawnerNode.scene = enemy_scene
+	spawnerNode.spawn(Vector2(randf_range(190, 380), 225))
 	spawnCounter(timer)
 
 func handle_spawn_diagonal(enemy_scene: PackedScene, timer: Timer) -> void:

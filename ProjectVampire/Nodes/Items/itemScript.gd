@@ -40,7 +40,7 @@ func _on_area_entered(area):
 
 func itemModifier(area):
 	if hpModifier:
-		area.healthModifier += 50
+		area.healthModifier += 100
 	if shootPositionModifier:
 		if !Global.canMidShoot:
 			Global.canMidShoot = true

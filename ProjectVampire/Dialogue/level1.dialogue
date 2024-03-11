@@ -1,8 +1,8 @@
 ~ level1Dialogue
 set Global.nextLineDialogue = true
-I cannot believe it... the ritual was a success, however...
+Another successful ritual, however...
 set Global.emotionChart = 3
-I did not expect that an angel would show up. 
+I did not expect an angel to show up. 
 At your current state you are defenseless...
 set Global.emotionChart = 0
 Try moving around with the {{PlayerStats.upText}}, {{PlayerStats.downText}}, {{PlayerStats.leftText}}, {{PlayerStats.rightText}} keys.
@@ -13,7 +13,7 @@ set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
 I sense an eerie presence. For now, just avoid any confrontation...
 set Global.emotionChart = 1
-Good job.
+It seems like you learn fast.
 set Global.emotionChart = 0
 But I'm afraid that our current strategy is not efficient.
 set SpawnerManagement.index = 1
@@ -35,13 +35,13 @@ For instance, you should know that I despise snakes.
 However, snakes' ability to shed their skin could help you attain immortality.
 set Global.nextLineDialogue = false
 Just do not get deceived by them.
-It's time for another offering.
+Let's try holding another offering.
 set SpawnerManagement.index = 3
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
 Remember to pick your treasure carefully.
 if Global.emotionChart == 0:
-	You got me a Forbidden Fruit, interesting...
+	You got me a Forbidden Fruit, such a wonder of nature.
 	With this treasure your shooting speed increases slightly. 
 if Global.emotionChart == 2:
 	It seems like you turned a deaf ear to your master.
@@ -57,8 +57,6 @@ However, be aware that this effects also apply to you.
 set Global.nextLineDialogue = false
 You should consider all of this for your next offerings.
 There are no more monsters in this area.
-You may still have some questions for me.
-When the time is right, I'll give you the answers.
-But for now, let's go somewhere safe.
+For now, let's go somewhere safe.
 set Global.nextLevel = true
 => END

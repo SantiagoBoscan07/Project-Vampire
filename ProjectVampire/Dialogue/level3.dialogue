@@ -1,5 +1,86 @@
 ~ level3dialogue
+set Global.nextLineDialogue = true
+We should be close now, however I feel even more monsters coming our way.
+set SpawnerManagement.index = 0
+set SpawnerManagement.activateSpawner = true
+It's imperative that we get rid of them. 
+I can't let these pesky creatures get ahold of the Artifact.
+You may be curious what kind of treasure is this Artifact.
+Well, it's does not hold much of a monetary value per se.
+But it holds personal value...
+set Global.emotionChart = 3
+I really need to return it to him or else...
+He'll never lift the curse...
+...
+set Global.emotionChart = 0
 set Global.nextLineDialogue = false
-testing
-
+I'm sorry, I let my emotions take control of me for a second.
+set Global.emotionChart = 2
+set SpawnerManagement.index = 1
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+Why are there so many snakes around?
+set SpawnerManagement.index = 2
+set SpawnerManagement.activateSpawner = true
+I should have known this place would been infested.
+Probably I need to practice a spell to dispel snakes.
+But after researching in a few forums, I could not find such a spell.
+However, I read something interesting during my research.
+I found an article claiming that snakes dislike lime scent.
+After that I had the wonderful idea of creating a homemade lime perfume.
+But my skin ended up itching and my hair got all greasy.
+Also even I could not stand the lime scent.
+set Global.nextLineDialogue = false
+Perhaps I'm just like a snake.
+set Global.emotionChart = 0
+set SpawnerManagement.index = 3
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+There seems to be less snakes now.
+set SpawnerManagement.index = 4
+set SpawnerManagement.activateSpawner = true
+I tried so many times to get this artifact in the past.
+But this is the first time I've gotten so close to it.
+I couldn't have done it without you.
+if Global.emotionChart == 1:
+	You're really strong for an angel.
+	Once we're done here I'll reward you properly.
+	Spirits can't eat, so cooking you a meal won't be enough.
+	Not like I'm any good at cooking either way...
+	But what about a movie?
+	I wouldn't have to pay for your ticket!
+if Global.emotionChart == 2:
+	If only you paid a little more attention to me before.
+	I guess you don't like talkative masters.
+	Or perhaps you just wanted to annoy me.
+	Either way, the priority is getting the Artifact.
+	Despite your feelings towards me, I'm grateful to you.
+	Hopefully we can still work again in the future.
+if Global.emotionChart == 3:
+	You're truly an odd spirit.
+	Even without knowing my name you gave me your trust.
+	Probably you're just doing what you think is right.
+	Or perhaps you are afraid that I can cast you back to the undead.
+	It's still bizarre that angel grants their help to me.
+	I guess there is still some good karma for me.
+set Global.emotionChart = 0:
+set Global.nextLineDialogue = false
+Sorry for all the yapping, I don't get to comunicate with others often.
+set SpawnerManagement.index = 5
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+This is it... the Artifact.
+Adam... I finally got it.
+set Global.emotionChart = 3
+set Global.shake = true
+Forgive me for what I did to you...
+I didn't want to...
+...take your life...
+...I'm sorry...
+set Global.shake = false
+Is it over?
+...
+set Global.emotionChart = 0
+set Global.nextLineDialogue = false
+Watch out, there is a huge wave of monsters coming!
 => END

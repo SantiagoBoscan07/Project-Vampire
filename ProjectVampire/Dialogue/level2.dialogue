@@ -1,11 +1,11 @@
 ~ level2dialogue
 set Global.nextLineDialogue = true
-This is not good... I can sense more monsters coming this way.
+This is not good... it seems like the monsters are after us.
 Before engaging with them, let's proceed with an offering.
 set SpawnerManagement.index = 0
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
-Darling, what's your offering?
+What's your offering?
 set SpawnerManagement.index = 1
 set SpawnerManagement.activateSpawner = true
 if Global.emotionChart == 1:
@@ -19,14 +19,14 @@ if Global.emotionChart == 1:
 	Your dash speed also increased slightly.
 if Global.emotionChart == 3:
 	A Forget-Me-Not Petal...
-	Do you still remember?
-	Please just forgive me.
+	Or perhaps a memento from the undead...
+	They were "his" favorites.
+	What would "he" after seeing the failure I've become?
 	...
-	Perhaps I'm overthinking it...
 	set Global.nextLineDialogue = false
 	Never mind.
 set Global.emotionChart = 0
-Enemies are growing stronger. We should do an offering.
+It's time for my favorite part. The Offering!
 set SpawnerManagement.index = 2
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
@@ -34,22 +34,23 @@ The decision is yours to make.
 set SpawnerManagement.index = 3
 set SpawnerManagement.activateSpawner = true
 if Global.emotionChart == 1:
-	You wish for more power? Interesting...
+	A fruit a day keeps the doctor away.
 if Global.emotionChart == 2:
 	Are you for real?
 	This is just a bunch of junk...
 if Global.emotionChart == 3:
-	It seems like you don't want me to forget...
+	Adam...
 I have never been the best at Spirit Training.
 Most of my previous rituals have failed tremendously.
 if Global.emotionChart != 2:
 	But there is something special about you...
-Talking from experience, let me suggest something.
-Sheer force is not enough to break through some monsters.
-Avoiding them is also a good option.
+Anyways, I should work on my training skills.
+Perhaps I could give Occult lectures at the State University.
+But I don't think students are interested in those things anymore...
+Probably I should stick with something simpler, like math.
+Well, if only I knew how to do divisions...
 set Global.nextLineDialogue = false
-Make sure to use your defensive tools strategically. 
-Monster won't stop coming. Don't back down yet.
+I wonder if there was any famous occultist that was good at math.
 set SpawnerManagement.index = 4
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
@@ -59,11 +60,10 @@ set SpawnerManagement.activateSpawner = true
 Perhaps this is not the right time but...
 There is something I must tell you.
 I brought you back from the dead to get an Artifact.
-As your master you must obey me no matter what, however...
-I won't force you to keep up with this.
+Only you can help me get it.
 Let me warn you that moving forward will be dangerous.
 set Global.nextLineDialogue = false
-But the final decision is yours...
+But I really need your help.
 set Global.emotionChart = 3
 I'm really sorry for dragging you into this...
 set Global.emotionChart = 0
