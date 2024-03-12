@@ -1,0 +1,159 @@
+[gd_scene load_steps=19 format=3 uid="uid://bxsnbfp5e7kex"]
+
+[ext_resource type="Texture2D" uid="uid://crte5omymdtd5" path="res://UI/introanimationbackground.png" id="1_7s27d"]
+[ext_resource type="Script" path="res://Scenes/intro.gd" id="1_ut5ve"]
+[ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_k07eg"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="2_wi1xo"]
+[ext_resource type="AudioStream" uid="uid://bqxw24qj638bq" path="res://SoundEffects/intro.wav" id="3_r5e27"]
+[ext_resource type="Texture2D" uid="uid://b3bqcbb0ejeaw" path="res://Sprites/PlayerAngelSpriteSheet.png" id="3_xlvfj"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_l3p4q"]
+[ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="5_njeuv"]
+[ext_resource type="PackedScene" uid="uid://bi5fvto8256mm" path="res://Scenes/menu.tscn" id="6_c51xu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jegsg"]
+atlas = ExtResource("1_7s27d")
+region = Rect2(0, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rapt1"]
+atlas = ExtResource("1_7s27d")
+region = Rect2(512, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sphj6"]
+atlas = ExtResource("1_7s27d")
+region = Rect2(1024, 0, 512, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jk6uo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jegsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rapt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sphj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_re3rp"]
+resource_name = "intro"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-72, 170), Vector2(583, 170)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RichTextLabel:visible_characters")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.4, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 50]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioManagerNode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_r5e27")
+}],
+"times": PackedFloat32Array(1.5)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dewhc"]
+_data = {
+"intro": SubResource("Animation_re3rp")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nh2i"]
+atlas = ExtResource("3_xlvfj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsc1j"]
+atlas = ExtResource("3_xlvfj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ndqs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nh2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsc1j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_ut5ve")
+
+[node name="ShaderTexture" parent="." instance=ExtResource("2_k07eg")]
+
+[node name="TransitionCutout" parent="." instance=ExtResource("5_njeuv")]
+offset_right = 512.0
+offset_bottom = 384.0
+sceneToTransition = ExtResource("6_c51xu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jk6uo")
+autoplay = "default"
+frame_progress = 0.532323
+centered = false
+
+[node name="RichTextLabel" type="Label" parent="."]
+offset_top = 170.0
+offset_right = 512.0
+offset_bottom = 198.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("2_wi1xo")
+theme_override_font_sizes/font_size = 30
+text = "A Game By Santiago Boscan"
+horizontal_alignment = 1
+justification_flags = 0
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_dewhc")
+}
+autoplay = "intro"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-72, 170)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2ndqs")
+autoplay = "default"
+frame_progress = 0.286181
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+bus = &"SoundEffect"
+script = ExtResource("4_l3p4q")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

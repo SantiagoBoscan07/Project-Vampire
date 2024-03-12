@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://t5dj75urh3w7"]
+
+[ext_resource type="Script" path="res://Dialogue/balloon.gd" id="1_0gwxs"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_blruc"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="3_6yo4q"]
+[ext_resource type="Texture2D" uid="uid://dk63pcx8euk2v" path="res://UI/dialogueboxending.png" id="4_c7odj"]
+[ext_resource type="AudioStream" uid="uid://c4xdyjfm0711s" path="res://SoundEffects/DialogueSound.wav" id="5_chfbo"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="6_grpxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iw1ho"]
+
+[node name="TextBalloon" type="CanvasLayer" node_paths=PackedStringArray("balloon", "dialogue_label")]
+layer = -1
+script = ExtResource("1_0gwxs")
+balloon = NodePath("Balloon")
+dialogue_label = NodePath("Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel")
+
+[node name="Balloon" type="Control" parent="."]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Balloon"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -123.0
+offset_right = -18.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iw1ho")
+
+[node name="Dialogue" type="MarginContainer" parent="Balloon/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Panel/Dialogue"]
+custom_minimum_size = Vector2(330, 85)
+layout_mode = 2
+
+[node name="DialogueLabel" parent="Balloon/Panel/Dialogue/VBoxContainer" instance=ExtResource("2_blruc")]
+custom_minimum_size = Vector2(330, 85)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/normal_font = ExtResource("3_6yo4q")
+theme_override_font_sizes/normal_font_size = 30
+text = "Dialogue..."
+seconds_per_step = 0.1
+seconds_per_pause_step = 0.5
+
+[node name="TextUi" type="Sprite2D" parent="Balloon"]
+z_index = -2
+z_as_relative = false
+position = Vector2(259.036, 307.504)
+texture = ExtResource("4_c7odj")
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_chfbo")
+bus = &"DialogueSound"
+script = ExtResource("6_grpxn")
+pitch_min = 1.0
+pitch_max = 1.05
+
+[node name="NextLineTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="finished_typing" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_finished_typing"]
+[connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]

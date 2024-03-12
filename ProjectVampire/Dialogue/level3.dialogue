@@ -70,17 +70,17 @@ set SpawnerManagement.index = 5
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
 This is it... the Artifact.
-Adam, I finally got it.
+Adam, can you hear me?.
 set Global.emotionChart = 3
 set Global.shake = true
-Forgive me for what I did to you...
-I didn't want to...take your life...
-...I'm sorry...
+I know you must be mad...
+I didn't want to abandon you...
+I'm sorry...
 set Global.shake = false
 Is it over?
 ...
 set Global.emotionChart = 0
-Watch out, there is a huge wave of monsters coming!
+Oh no, monsters are irritated by Adam's rage!
 set SpawnerManagement.index = 6
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
@@ -104,6 +104,6 @@ We can't give up yet.
 set Global.nextLineDialogue = false
 We're in the final stretch.
 No more monsters... it's finally over...
-set Global.nextLineDialogue = false
-END OF GAME CREDITS WIP
+I think we can finally head home, let's get going.
+set Global.nextLevel = true
 => END

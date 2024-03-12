@@ -42,7 +42,7 @@ set Global.nextLineDialogue = false
 Remember to pick your treasure carefully.
 if Global.emotionChart == 0:
 	You got me a Forbidden Fruit, such a wonder of nature.
-	With this treasure your shooting speed increases slightly. 
+	But if you ask me, I think strawberries are tastier.
 if Global.emotionChart == 2:
 	It seems like you turned a deaf ear to your master.
 	Or perhaps you fell for the temptation of eternal life.
@@ -53,7 +53,7 @@ Be aware that monsters behave differently depending on their emotion.
 Anger makes them hit harder.
 Joy makes them faster.
 Sadness makes them slower and weaker.
-However, be aware that this effects also apply to you.
+However, be aware that these effects also apply to you.
 set Global.nextLineDialogue = false
 You should consider all of this for your next offerings.
 There are no more monsters in this area.

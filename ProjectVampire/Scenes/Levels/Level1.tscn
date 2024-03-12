@@ -177,13 +177,13 @@ itemMidScene = ExtResource("19_8nycq")
 
 [node name="Spawner2" parent="SpawnersManager" instance=ExtResource("16_7hl5r")]
 process_mode = 4
-horizontalBatTime = 1.25
-waveTime = 2.25
-diagonalTime = 5.0
+horizontalBatTime = 1.5
+waveTime = 2.5
+diagonalTime = 10.0
 spawnHorizontal = true
 spawnWave = true
 spawnDiagonal = true
-amountOfEnemies = 70
+amountOfEnemies = 85
 
 [node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("17_717qr")]
 process_mode = 4
@@ -195,13 +195,13 @@ itemUpEmotion = 2
 
 [node name="Spawner3" parent="SpawnersManager" instance=ExtResource("16_7hl5r")]
 process_mode = 4
-horizontalBatTime = 0.5
+horizontalBatTime = 1.15
 waveTime = 2.0
-diagonalTime = 3.5
+diagonalTime = 7.0
 spawnHorizontal = true
 spawnWave = true
 spawnDiagonal = true
-amountOfEnemies = 85
+amountOfEnemies = 92
 
 [node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
 script = ExtResource("2_41cr8")

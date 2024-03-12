@@ -1,0 +1,143 @@
+[gd_scene load_steps=19 format=3 uid="uid://bvxbffygw1vmu"]
+
+[ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="1_m1phf"]
+[ext_resource type="Script" path="res://Scenes/ending.gd" id="1_myyoo"]
+[ext_resource type="Resource" uid="uid://jrmhvjaw3j1x" path="res://Dialogue/ending.dialogue" id="2_8bbrw"]
+[ext_resource type="Texture2D" uid="uid://cdmhr327sxt48" path="res://UI/endingmenu.png" id="2_stcrr"]
+[ext_resource type="Texture2D" uid="uid://vg3cie8arbnu" path="res://UI/lilitnending.png" id="3_q8bqu"]
+[ext_resource type="AudioStream" uid="uid://cnbrdiw7spw1m" path="res://Music/TitleScreen.ogg" id="6_e3dvw"]
+[ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="7_mtexv"]
+[ext_resource type="Script" path="res://Scenes/Levels/TransitionManager.gd" id="8_eu72p"]
+[ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="8_gbnus"]
+[ext_resource type="PackedScene" uid="uid://bi5fvto8256mm" path="res://Scenes/menu.tscn" id="9_dalrn"]
+[ext_resource type="Texture2D" uid="uid://c3nnhv57n3kfh" path="res://UI/uiBottom.png" id="11_2xcut"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="12_hmj0l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uiwx"]
+atlas = ExtResource("2_stcrr")
+region = Rect2(0, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f1w8"]
+atlas = ExtResource("2_stcrr")
+region = Rect2(512, 0, 512, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pfdr"]
+atlas = ExtResource("2_stcrr")
+region = Rect2(1024, 0, 512, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fh44m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uiwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f1w8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pfdr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_cdy67"]
+resource_name = "credits"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 7, 12, 15, 20, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Credits", "", "Music Assets by Rusted Studio Music", "", "Sound Assets by DaSK", "", "Thank You For Playing!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 7, 12, 15, 20, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ftpdp"]
+_data = {
+"credits": SubResource("Animation_cdy67")
+}
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_myyoo")
+dialogue_resource = ExtResource("2_8bbrw")
+dialogue_to_read = "endingDialogue"
+
+[node name="ShaderTexture" parent="." instance=ExtResource("1_m1phf")]
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fh44m")
+autoplay = "default"
+frame_progress = 0.273317
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(133, 84)
+texture = ExtResource("3_q8bqu")
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e3dvw")
+bus = &"Music"
+script = ExtResource("7_mtexv")
+pitch_min = 1.5
+pitch_max = 1.5
+auto_play_with_variance = true
+
+[node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
+script = ExtResource("8_eu72p")
+transitionCutout = NodePath("TransitionCutout")
+
+[node name="TransitionCutout" parent="TransitionManager" node_paths=PackedStringArray("dialogueActivator", "musicToStart") instance=ExtResource("8_gbnus")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 512.0
+offset_bottom = 384.0
+grow_horizontal = 1
+grow_vertical = 1
+dialogueActivator = NodePath("../..")
+sceneToTransition = ExtResource("9_dalrn")
+musicToStart = NodePath("../../AudioManagerNode")
+
+[node name="UiBottom" type="Sprite2D" parent="."]
+position = Vector2(384.805, 125.961)
+scale = Vector2(0.661938, 2.13867)
+texture = ExtResource("11_2xcut")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 285.0
+offset_top = 78.0
+offset_right = 481.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/font = ExtResource("12_hmj0l")
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ftpdp")
+}
+speed_scale = 0.5
