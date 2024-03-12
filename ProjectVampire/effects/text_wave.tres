@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dv1yjvaxvi1dn"]
+
+[ext_resource type="Shader" path="res://effects/textWave.gdshader" id="1_kk2e6"]
+
+[resource]
+shader = ExtResource("1_kk2e6")
+shader_parameter/height = 0.5
+shader_parameter/speed = 5.0

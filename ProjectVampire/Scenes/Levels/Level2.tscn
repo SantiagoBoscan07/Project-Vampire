@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://r6f08i6cj1qm"]
+[gd_scene load_steps=35 format=3 uid="uid://r6f08i6cj1qm"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level2.gd" id="1_58sv4"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_sssvp"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="20_0n5dm"]
 [ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="21_d5t1y"]
 [ext_resource type="PackedScene" uid="uid://spnje00jd74k" path="res://Nodes/Items/flower_item.tscn" id="22_0gsju"]
+[ext_resource type="PackedScene" uid="uid://dhtklqhy4up47" path="res://Nodes/Items/snake_item.tscn" id="23_cvxpf"]
 [ext_resource type="PackedScene" uid="uid://dl83qnmriw74j" path="res://Nodes/Enemies/Spawner.tscn" id="23_qokle"]
 [ext_resource type="PackedScene" uid="uid://he8053yrqt2g" path="res://Nodes/Items/fruit_item.tscn" id="24_lcqo6"]
 [ext_resource type="AudioStream" uid="uid://bwl5r040npbcx" path="res://Music/LevelTwo.ogg" id="25_3vc4l"]
@@ -129,6 +130,7 @@ dialogue_to_read = "level2dialogue"
 disableUIBottom = NodePath("../BottomUi")
 
 [node name="fpscounter" type="Label" parent="UI"]
+visible = false
 z_index = 105
 layout_mode = 0
 offset_right = 40.0
@@ -171,10 +173,13 @@ itemSpawners = [NodePath("ItemSpawner1"), NodePath("Spawner1"), NodePath("ItemSp
 process_mode = 4
 upItemSpawn = true
 lowItemSpawn = true
+midItemSpawn = true
 itemUpScene = ExtResource("21_d5t1y")
 itemDownScene = ExtResource("22_0gsju")
+itemMidScene = ExtResource("23_cvxpf")
 itemUpEmotion = 1
 itemDownEmotion = 3
+itemMidEmotion = 2
 
 [node name="Spawner1" parent="SpawnersManager" instance=ExtResource("23_qokle")]
 process_mode = 4
@@ -184,7 +189,7 @@ diagonalTime = 3.25
 spawnWave = true
 spawnRock = true
 spawnDiagonal = true
-amountOfEnemies = 30
+amountOfEnemies = 60
 
 [node name="ItemSpawner2" parent="SpawnersManager" instance=ExtResource("20_0n5dm")]
 process_mode = 4
@@ -208,7 +213,7 @@ spawnHorizontal = true
 spawnWave = true
 spawnRock = true
 spawnDiagonal = true
-amountOfEnemies = 55
+amountOfEnemies = 80
 
 [node name="ItemSpawner3" parent="SpawnersManager" instance=ExtResource("20_0n5dm")]
 process_mode = 4

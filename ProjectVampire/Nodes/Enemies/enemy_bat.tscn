@@ -109,9 +109,9 @@ enable_node_path = NodePath("../Components/Move")
 script = ExtResource("5_n20os")
 node = NodePath("../../Sprite2D")
 
-[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("8_hhgm1")
-player = NodePath("../..")
+body = NodePath("../..")
 verticalClamp = true
 
 [node name="Health" type="Node" parent="Components"]

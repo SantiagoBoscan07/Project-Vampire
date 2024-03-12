@@ -65,22 +65,45 @@ if Global.emotionChart == 3:
 	I guess there is still some good karma for me.
 set Global.emotionChart = 0:
 set Global.nextLineDialogue = false
-Sorry for all the yapping, I don't get to comunicate with others often.
+Sorry for all the yapping, I don't get to communicate with others often.
 set SpawnerManagement.index = 5
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
 This is it... the Artifact.
-Adam... I finally got it.
+Adam, I finally got it.
 set Global.emotionChart = 3
 set Global.shake = true
 Forgive me for what I did to you...
-I didn't want to...
-...take your life...
+I didn't want to...take your life...
 ...I'm sorry...
 set Global.shake = false
 Is it over?
 ...
 set Global.emotionChart = 0
-set Global.nextLineDialogue = false
 Watch out, there is a huge wave of monsters coming!
+set SpawnerManagement.index = 6
+set SpawnerManagement.activateSpawner = true
+set Global.nextLineDialogue = false
+I have never seen so many of them at once, be careful!
+set SpawnerManagement.index = 7
+set SpawnerManagement.activateSpawner = true
+set Global.emotionChart = 3
+This can't be...
+set Global.nextLineDialogue = false
+Was this the right thing to do?
+set SpawnerManagement.index = 8
+set SpawnerManagement.activateSpawner = true
+set Global.emotionChart = 2
+I mean, he was the one that put this curse on me.
+set Global.nextLineDialogue = false
+I had to do something to take it out.
+set SpawnerManagement.index = 9
+set SpawnerManagement.activateSpawner = true
+set Global.emotionChart = 1
+We can't give up yet. 
+set Global.nextLineDialogue = false
+We're in the final stretch.
+No more monsters... it's finally over...
+set Global.nextLineDialogue = false
+END OF GAME CREDITS WIP
 => END

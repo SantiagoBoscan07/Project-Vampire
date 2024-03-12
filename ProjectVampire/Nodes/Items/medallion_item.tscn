@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://tul2yxkhl5js"]
+[gd_scene load_steps=8 format=3 uid="uid://tul2yxkhl5js"]
 
 [ext_resource type="Script" path="res://Nodes/Items/itemScript.gd" id="1_mjcm6"]
 [ext_resource type="Texture2D" uid="uid://dj531g2had6kw" path="res://Sprites/medallion.png" id="2_tplmw"]
 [ext_resource type="AudioStream" uid="uid://yk5l7r6j845r" path="res://SoundEffects/PickItemSound.wav" id="3_qgi3e"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_rg70w"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="5_blmby"]
+[ext_resource type="Material" uid="uid://dv1yjvaxvi1dn" path="res://effects/text_wave.tres" id="5_g26gh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n1ip3"]
 radius = 6.0
@@ -34,3 +36,14 @@ shape = SubResource("CapsuleShape2D_n1ip3")
 stream = ExtResource("3_qgi3e")
 bus = &"SoundEffect"
 script = ExtResource("4_rg70w")
+
+[node name="Description" type="RichTextLabel" parent="."]
+material = ExtResource("5_g26gh")
+offset_left = -169.0
+offset_top = -11.0
+offset_right = -2.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/normal_font = ExtResource("5_blmby")
+theme_override_font_sizes/normal_font_size = 30
+text = "+Boost Speed"

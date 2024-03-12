@@ -127,6 +127,7 @@ dialogue_to_read = "level1Dialogue"
 disableUIBottom = NodePath("../BottomUi")
 
 [node name="fpscounter" type="Label" parent="UI"]
+visible = false
 z_index = 105
 layout_mode = 0
 offset_right = 40.0
@@ -140,7 +141,7 @@ visible = false
 
 [node name="PauseMenuScreen" parent="UI" node_paths=PackedStringArray("playerPaused") instance=ExtResource("15_ij27x")]
 visible = false
-z_index = 101
+z_index = 121
 layout_mode = 1
 playerPaused = NodePath("../../Player")
 
@@ -167,9 +168,7 @@ itemSpawners = [NodePath("Spawner1"), NodePath("ItemSpawner1"), NodePath("Spawne
 
 [node name="Spawner1" parent="SpawnersManager" instance=ExtResource("16_7hl5r")]
 process_mode = 4
-horizontalBatTime = 0.85
 spawnHorizontal = true
-amountOfEnemies = 10
 
 [node name="ItemSpawner1" parent="SpawnersManager" instance=ExtResource("17_717qr")]
 process_mode = 4

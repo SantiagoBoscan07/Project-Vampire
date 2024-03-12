@@ -8,7 +8,6 @@ extends CharacterBody2D
 @onready var shake: Shake = $Components/Shake as Shake
 @onready var flash: Flash = $Components/Flash as Flash
 @onready var damageSoundEffect = $DamageSoundEffect as AudioManagerNode
-
 func _ready() -> void:
 	hurtbox.hurt.connect(func(hitbox: Hitbox):
 		shake.tween_shake()

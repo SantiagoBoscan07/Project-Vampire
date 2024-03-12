@@ -105,10 +105,9 @@ enable_node_path = NodePath("../Components/Move")
 script = ExtResource("5_3fgca")
 node = NodePath("../../Sprite2D")
 
-[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("6_07ean")
-player = NodePath("../..")
-horizontalClamp = true
+body = NodePath("../..")
 
 [node name="Health" type="Node" parent="Components"]
 script = ExtResource("7_3dpvw")
@@ -122,7 +121,7 @@ hurtbox = NodePath("../../Hurtbox")
 [node name="Move" type="Node" parent="Components" node_paths=PackedStringArray("object")]
 script = ExtResource("9_hxpar")
 object = NodePath("../..")
-velocity = Vector2(0, -45)
+velocity = Vector2(0, -35)
 horizontalMovement = true
 
 [node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]

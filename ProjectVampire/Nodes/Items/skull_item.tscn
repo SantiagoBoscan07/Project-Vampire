@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2e7fha4pgqsi"]
+[gd_scene load_steps=8 format=3 uid="uid://c2e7fha4pgqsi"]
 
 [ext_resource type="Script" path="res://Nodes/Items/itemScript.gd" id="1_c12c6"]
 [ext_resource type="Texture2D" uid="uid://bjxy83l7mkp1g" path="res://Sprites/skullItem.png" id="2_hmyam"]
 [ext_resource type="AudioStream" uid="uid://yk5l7r6j845r" path="res://SoundEffects/PickItemSound.wav" id="3_eoj8p"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_8v3dj"]
+[ext_resource type="Material" uid="uid://dv1yjvaxvi1dn" path="res://effects/text_wave.tres" id="5_1uyno"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="5_csfpk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n1ip3"]
 radius = 6.0
@@ -34,3 +36,14 @@ shape = SubResource("CapsuleShape2D_n1ip3")
 stream = ExtResource("3_eoj8p")
 bus = &"SoundEffect"
 script = ExtResource("4_8v3dj")
+
+[node name="Description" type="RichTextLabel" parent="."]
+material = ExtResource("5_1uyno")
+offset_left = -129.5
+offset_top = -11.0
+offset_right = -0.5
+offset_bottom = 18.0
+theme_override_colors/default_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/normal_font = ExtResource("5_csfpk")
+theme_override_font_sizes/normal_font_size = 30
+text = "+Damage"

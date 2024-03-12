@@ -128,9 +128,9 @@ pitch_max = 0.75
 
 [node name="Components" type="Node" parent="."]
 
-[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("5_7gvkx")
-player = NodePath("../..")
+body = NodePath("../..")
 verticalClamp = true
 
 [node name="Health" type="Node" parent="Components"]

@@ -16,7 +16,15 @@ if Global.emotionChart == 1:
 	Actually, spirits can't use money...
 	I'm sorry, I got a little excited...
 	set Global.nextLineDialogue = false
-	Your dash speed also increased slightly.
+	But it would be wonderful to be a dead millionaire!
+if Global.emotionChart == 2:
+	Get this pesky animal out of my sight!
+	The other day I saw a video of a guy raising a snake as a pet.
+	I wonder what was going through his mind when choosing that as a pet.
+	If you ask me, I would rather have a flamingo as a pet. 
+	But perhaps a flamingo is way more expensive.
+	set Global.nextLineDialogue = false
+	What do they even eat?
 if Global.emotionChart == 3:
 	A Forget-Me-Not Petal...
 	Or perhaps a memento from the undead...

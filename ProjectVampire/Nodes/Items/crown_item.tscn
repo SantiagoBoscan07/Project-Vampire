@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq30xjvkolcuc"]
+[gd_scene load_steps=8 format=3 uid="uid://cq30xjvkolcuc"]
 
 [ext_resource type="Script" path="res://Nodes/Items/itemScript.gd" id="1_kte0e"]
 [ext_resource type="Texture2D" uid="uid://yqod6p7w1c1y" path="res://Sprites/crown.png" id="2_sqmkx"]
 [ext_resource type="AudioStream" uid="uid://yk5l7r6j845r" path="res://SoundEffects/PickItemSound.wav" id="3_ayy8q"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="4_pmg8j"]
+[ext_resource type="Material" uid="uid://dv1yjvaxvi1dn" path="res://effects/text_wave.tres" id="5_ds21y"]
+[ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="5_vg4ud"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n1ip3"]
 radius = 6.0
@@ -34,3 +36,14 @@ shape = SubResource("CapsuleShape2D_n1ip3")
 stream = ExtResource("3_ayy8q")
 bus = &"SoundEffect"
 script = ExtResource("4_pmg8j")
+
+[node name="Description" type="RichTextLabel" parent="."]
+material = ExtResource("5_ds21y")
+offset_left = -179.5
+offset_top = -11.0
+offset_right = 9.5
+offset_bottom = 16.0
+theme_override_colors/default_color = Color(0.105882, 0.0980392, 0.12549, 1)
+theme_override_fonts/normal_font = ExtResource("5_vg4ud")
+theme_override_font_sizes/normal_font_size = 30
+text = "Adam's Crown"

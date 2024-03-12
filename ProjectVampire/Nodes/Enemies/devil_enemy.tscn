@@ -105,14 +105,13 @@ enable_node_path = NodePath("../Components/Move")
 script = ExtResource("5_622dh")
 node = NodePath("../../Sprite2D")
 
-[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+[node name="PositionClamp" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("6_igk7f")
-player = NodePath("../..")
-horizontalClamp = true
+body = NodePath("../..")
 
 [node name="Health" type="Node" parent="Components"]
 script = ExtResource("7_28fhs")
-health = 10
+health = 100
 
 [node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("8_oykko")
@@ -122,7 +121,7 @@ hurtbox = NodePath("../../Hurtbox")
 [node name="Move" type="Node" parent="Components" node_paths=PackedStringArray("object")]
 script = ExtResource("9_ulajv")
 object = NodePath("../..")
-velocity = Vector2(0, 45)
+velocity = Vector2(0, 35)
 horizontalMovement = true
 
 [node name="Flash" type="Node" parent="Components" node_paths=PackedStringArray("sprite")]
@@ -134,6 +133,7 @@ script = ExtResource("11_pk5vg")
 actor = NodePath("../../Sprite2D")
 health = NodePath("../Health")
 death_effect_spawner = NodePath("../SpawnerNode")
+deathSound = false
 
 [node name="SpawnerNode" type="Node2D" parent="Components"]
 script = ExtResource("12_d6u6b")

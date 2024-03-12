@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ck3p4ccexfwqg"]
+[gd_scene load_steps=34 format=3 uid="uid://ck3p4ccexfwqg"]
 
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_8v8h8"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="3_n0ak1"]
@@ -28,7 +28,9 @@
 [ext_resource type="Script" path="res://Scenes/Levels/TransitionManager.gd" id="27_pl075"]
 [ext_resource type="PackedScene" uid="uid://b2uewm58n72ur" path="res://effects/transition_cutout.tscn" id="28_cc8hq"]
 [ext_resource type="Script" path="res://Scenes/Levels/CameraShake.gd" id="29_dk4yg"]
+[ext_resource type="AudioStream" uid="uid://cyoptx501ukkv" path="res://SoundEffects/ShakeSoundEffect.ogg" id="30_kgllf"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="30_se6ev"]
+[ext_resource type="PackedScene" uid="uid://cvxwfj340tcma" path="res://Nodes/Player/devil_killer.tscn" id="31_44owr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -126,6 +128,7 @@ dialogue_to_read = "level3dialogue"
 disableUIBottom = NodePath("../BottomUi")
 
 [node name="fpscounter" type="Label" parent="UI"]
+visible = false
 z_index = 105
 layout_mode = 0
 offset_right = 40.0
@@ -162,19 +165,19 @@ script = ExtResource("18_56or5")
 
 [node name="SpawnersManager" type="Node2D" parent="." node_paths=PackedStringArray("itemSpawners")]
 script = ExtResource("19_0f50t")
-itemSpawners = [NodePath("Spawner1"), NodePath("ItemSpawner1"), NodePath("Spawner2"), NodePath("ItemSpawner2"), NodePath("Spawner3"), NodePath("ItemSpawner3"), NodePath("Spawner4")]
+itemSpawners = [NodePath("Spawner1"), NodePath("ItemSpawner1"), NodePath("Spawner2"), NodePath("ItemSpawner2"), NodePath("Spawner3"), NodePath("ItemSpawner3"), NodePath("Spawner4"), NodePath("Spawner5"), NodePath("Spawner6"), NodePath("Spawner7")]
 
 [node name="Spawner1" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
 process_mode = 4
-horizontalBatTime = 1.5
-waveTime = 1.7
-rockTime = 4.0
-devilTime = 2.7
+horizontalBatTime = 2.25
+waveTime = 2.5
+rockTime = 9.0
+devilTime = 4.0
 spawnHorizontal = true
 spawnWave = true
 spawnRock = true
 spawnDevil = true
-amountOfEnemies = 64
+amountOfEnemies = 65
 
 [node name="ItemSpawner1" parent="SpawnersManager" instance=ExtResource("20_8kf54")]
 process_mode = 4
@@ -190,11 +193,11 @@ itemMidEmotion = 2
 
 [node name="Spawner2" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
 process_mode = 4
-horizontalBatTime = 1.25
-waveTime = 1.35
+horizontalBatTime = 1.5
+waveTime = 1.75
 skullTime = 12.5
-rockTime = 7.5
-devilTime = 2.7
+rockTime = 8.0
+devilTime = 4.0
 spawnHorizontal = true
 spawnWave = true
 spawnSkull = true
@@ -216,11 +219,11 @@ itemMidEmotion = 2
 
 [node name="Spawner3" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
 process_mode = 4
-horizontalBatTime = 1.55
-waveTime = 1.25
+horizontalBatTime = 1.85
+waveTime = 2.0
 skullTime = 22.0
 rockTime = 20.0
-devilTime = 2.7
+devilTime = 3.0
 devilTime2 = 8.0
 spawnHorizontal = true
 spawnWave = true
@@ -237,21 +240,52 @@ itemMidScene = ExtResource("24_jac0b")
 
 [node name="Spawner4" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
 process_mode = 4
-horizontalBatTime = 2.0
-waveTime = 1.5
-skullTime = 20.0
-rockTime = 20.5
-devilTime = 2.7
-diagonalTime = 5.0
-devilTime2 = 10.0
+horizontalBatTime = 0.8
+devilTime = 3.0
+diagonalTime = 1.2
 spawnHorizontal = true
+spawnWave = true
+spawnDevil = true
+spawnDiagonal = true
+amountOfEnemies = 30
+
+[node name="Spawner5" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+horizontalBatTime = 1.75
+devilTime = 3.0
+diagonalTime = 1.45
+devilTime2 = 8.0
+spawnHorizontal = true
+spawnDevil = true
+spawnDiagonal = true
+spawnDevil2 = true
+amountOfEnemies = 25
+
+[node name="Spawner6" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+waveTime = 0.6
+skullTime = 5.0
+devilTime = 3.0
+devilTime2 = 8.0
+spawnWave = true
+spawnSkull = true
+spawnDevil = true
+spawnDevil2 = true
+amountOfEnemies = 30
+
+[node name="Spawner7" parent="SpawnersManager" instance=ExtResource("19_bjx4s")]
+process_mode = 4
+waveTime = 0.8
+skullTime = 12.0
+rockTime = 14.0
+devilTime = 3.5
+devilTime2 = 8.0
 spawnWave = true
 spawnSkull = true
 spawnRock = true
 spawnDevil = true
-spawnDiagonal = true
 spawnDevil2 = true
-amountOfEnemies = 250
+amountOfEnemies = 50
 
 [node name="TransitionManager" type="Node2D" parent="." node_paths=PackedStringArray("transitionCutout")]
 script = ExtResource("27_pl075")
@@ -275,7 +309,19 @@ script = ExtResource("30_se6ev")
 pitch_min = 1.0
 pitch_max = 1.0
 
-[node name="CameraShake" type="Camera2D" parent="."]
+[node name="CameraShake" type="Camera2D" parent="." node_paths=PackedStringArray("musicStop", "shakeSound")]
 z_index = 128
 anchor_mode = 0
 script = ExtResource("29_dk4yg")
+musicStop = NodePath("../LevelMusic")
+shakeSound = NodePath("../ShakeEffect")
+
+[node name="ShakeEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_kgllf")
+script = ExtResource("30_se6ev")
+pitch_min = 0.4
+pitch_max = 0.7
+
+[node name="DevilKiller" parent="." instance=ExtResource("31_44owr")]
+z_index = 100
+position = Vector2(84.9487, 324.693)

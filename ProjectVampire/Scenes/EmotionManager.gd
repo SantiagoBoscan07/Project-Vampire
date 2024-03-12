@@ -12,5 +12,5 @@ func _process(delta):
 			Global.enemyVelocityMultiplier = 1.2
 			Global.damageMultiplier = 2
 		3:
-			Global.enemyVelocityMultiplier = 0.5
+			Global.enemyVelocityMultiplier = 0.75
 			Global.damageMultiplier = 0.5
