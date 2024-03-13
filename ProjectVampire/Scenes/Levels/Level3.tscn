@@ -1,9 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://ck3p4ccexfwqg"]
+[gd_scene load_steps=37 format=3 uid="uid://ck3p4ccexfwqg"]
 
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_8v8h8"]
 [ext_resource type="PackedScene" uid="uid://baa3n22xm8384" path="res://Nodes/Player/player.tscn" id="3_n0ak1"]
 [ext_resource type="Texture2D" uid="uid://dahbs1545q3oa" path="res://UI/GameUINoTop.png" id="4_lleol"]
+[ext_resource type="Shader" path="res://effects/background.gdshader" id="5_f7p54"]
 [ext_resource type="Texture2D" uid="uid://te7cd636lkq8" path="res://UI/gameUITop.png" id="5_g1ff1"]
+[ext_resource type="Texture2D" uid="uid://spve62uua4l5" path="res://UI/gameUITop4.png" id="6_t1t6i"]
 [ext_resource type="Texture2D" uid="uid://c3nnhv57n3kfh" path="res://UI/uiBottom.png" id="6_ti2g1"]
 [ext_resource type="FontFile" uid="uid://cxr5205f6jqeu" path="res://UI/dpcomic.ttf" id="7_utfkt"]
 [ext_resource type="Script" path="res://Scenes/HPLabel.gd" id="8_nomho"]
@@ -31,6 +33,20 @@
 [ext_resource type="AudioStream" uid="uid://cyoptx501ukkv" path="res://SoundEffects/ShakeSoundEffect.ogg" id="30_kgllf"]
 [ext_resource type="Script" path="res://Scripts/audioManagerNode.gd" id="30_se6ev"]
 [ext_resource type="PackedScene" uid="uid://cvxwfj340tcma" path="res://Nodes/Player/devil_killer.tscn" id="31_44owr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6dmm"]
+shader = ExtResource("5_f7p54")
+shader_parameter/screen_height = 600.0
+shader_parameter/amplitude = 0.25
+shader_parameter/frequency = 1.0
+shader_parameter/speed = 0.75
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.08
+shader_parameter/enable_palette_cycling = false
+shader_parameter/palette_speed = 0.1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk1tk"]
 bg_color = Color(0.439216, 0.501961, 0.156863, 1)
@@ -62,8 +78,15 @@ texture = ExtResource("4_lleol")
 
 [node name="TopUi" type="Sprite2D" parent="UI"]
 top_level = true
+z_index = -1
 position = Vector2(257, 109)
 texture = ExtResource("5_g1ff1")
+
+[node name="TopUi2" type="Sprite2D" parent="UI"]
+top_level = true
+material = SubResource("ShaderMaterial_p6dmm")
+position = Vector2(257, 109)
+texture = ExtResource("6_t1t6i")
 
 [node name="BottomUi" type="Sprite2D" parent="UI"]
 position = Vector2(325.701, 305.348)

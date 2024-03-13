@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://r6f08i6cj1qm"]
+[gd_scene load_steps=38 format=3 uid="uid://r6f08i6cj1qm"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level2.gd" id="1_58sv4"]
 [ext_resource type="PackedScene" uid="uid://c6csvuxgnyhlu" path="res://effects/shader_texture.tscn" id="2_sssvp"]
@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bcmviequnmyxx" path="res://UI/game_over_screen.tscn" id="15_bkujl"]
 [ext_resource type="PackedScene" uid="uid://bhola2hr74o50" path="res://UI/pause_menu_screen.tscn" id="16_vya2n"]
 [ext_resource type="Script" path="res://Scenes/Levels/SkipText.gd" id="17_ld7e5"]
+[ext_resource type="Shader" path="res://effects/background.gdshader" id="18_ivlto"]
 [ext_resource type="Script" path="res://Scenes/EmotionManager.gd" id="18_vdij5"]
 [ext_resource type="Script" path="res://Scenes/spawnersActivators.gd" id="19_j4dhu"]
+[ext_resource type="Texture2D" uid="uid://spve62uua4l5" path="res://UI/gameUITop4.png" id="19_xd4bx"]
 [ext_resource type="PackedScene" uid="uid://f1fd66m6isao" path="res://Nodes/Items/item_spawner.tscn" id="20_0n5dm"]
 [ext_resource type="PackedScene" uid="uid://tul2yxkhl5js" path="res://Nodes/Items/medallion_item.tscn" id="21_d5t1y"]
 [ext_resource type="PackedScene" uid="uid://spnje00jd74k" path="res://Nodes/Items/flower_item.tscn" id="22_0gsju"]
@@ -38,6 +40,20 @@ bg_color = Color(0.439216, 0.501961, 0.156863, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb5s"]
 bg_color = Color(0.627451, 0.658824, 0.25098, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m7qsf"]
+shader = ExtResource("18_ivlto")
+shader_parameter/screen_height = 600.0
+shader_parameter/amplitude = 0.095
+shader_parameter/frequency = 7.0
+shader_parameter/speed = 1.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.08
+shader_parameter/enable_palette_cycling = false
+shader_parameter/palette_speed = 0.1
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_58sv4")
@@ -64,6 +80,7 @@ texture = ExtResource("4_l02x8")
 
 [node name="TopUi" type="Sprite2D" parent="UI"]
 top_level = true
+z_index = -1
 position = Vector2(257, 109)
 texture = ExtResource("5_spqv8")
 
@@ -161,6 +178,12 @@ theme_override_fonts/font = ExtResource("7_mn5ul")
 theme_override_font_sizes/font_size = 30
 text = ">>"
 script = ExtResource("17_ld7e5")
+
+[node name="TopUi2" type="Sprite2D" parent="UI"]
+top_level = true
+material = SubResource("ShaderMaterial_m7qsf")
+position = Vector2(257, 109)
+texture = ExtResource("19_xd4bx")
 
 [node name="EmotionManager" type="Node2D" parent="."]
 script = ExtResource("18_vdij5")
