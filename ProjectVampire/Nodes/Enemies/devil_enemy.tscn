@@ -111,7 +111,7 @@ body = NodePath("../..")
 
 [node name="Health" type="Node" parent="Components"]
 script = ExtResource("7_28fhs")
-health = 100
+health = 10
 
 [node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("8_oykko")

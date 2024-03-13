@@ -135,7 +135,7 @@ verticalClamp = true
 
 [node name="Health" type="Node" parent="Components"]
 script = ExtResource("6_606b2")
-health = 5
+health = 8
 
 [node name="Hurt" type="Node" parent="Components" node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("7_i4d3w")
