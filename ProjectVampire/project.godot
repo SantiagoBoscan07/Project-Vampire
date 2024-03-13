@@ -10,13 +10,15 @@ config_version=5
 
 [application]
 
-config/name="ProjectVampireGithub"
+config/name="Lilith"
+config/description="A mix of shoot'em up and visual novel where you play as an angel helping a mysterious girl to obtain a mystical treasure."
 run/main_scene="res://Scenes/intro.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0.105882, 0.0980392, 0.12549, 1)
 boot_splash/show_image=false
 config/icon="res://Sprites/flower.png"
+config/windows_native_icon="res://UI/iconLilith.ico"
 
 [autoload]
 
