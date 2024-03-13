@@ -19,9 +19,9 @@ But I'm afraid that our current strategy is not efficient.
 set SpawnerManagement.index = 1
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
-Try handing over an offering to unlock your hidden potential.
+Try handing over an offering to unlock your potential.
 This is a Magatama.
-With this you should be able to shoot Soul Crystals with the {{PlayerStats.shootText}} key.
+With this you can shoot Soul Crystals with the {{PlayerStats.shootText}} key.
 set SpawnerManagement.index = 2
 set SpawnerManagement.activateSpawner = true
 I can sense more monsters coming, stand your ground.
@@ -31,7 +31,7 @@ For each offering you'll become stronger.
 However, not all treasures are to my liking.
 Be careful as to which offering you select.
 Always keep in mind that monsters can mimic people's feelings.
-For instance, you should know that I despise snakes.
+For instance, you should know that I hate snakes.
 However, snakes' ability to shed their skin could help you attain immortality.
 set Global.nextLineDialogue = false
 Just do not get deceived by them.
@@ -55,7 +55,7 @@ Joy makes them faster.
 Sadness makes them slower and weaker.
 However, be aware that these effects also apply to you.
 set Global.nextLineDialogue = false
-You should consider all of this for your next offerings.
+You should consider all of this for future offerings.
 There are no more monsters in this area.
 For now, let's go somewhere safe.
 set Global.nextLevel = true

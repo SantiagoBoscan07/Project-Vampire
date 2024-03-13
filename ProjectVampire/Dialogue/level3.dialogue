@@ -1,6 +1,7 @@
 ~ level3dialogue
 set Global.nextLineDialogue = true
-We should be close now, however I feel even more monsters coming our way.
+According to the readings, the artifact should be somewhere around here.
+However, there are a lot of monsters patroling this area.
 set SpawnerManagement.index = 0
 set SpawnerManagement.activateSpawner = true
 It's imperative that we get rid of them. 
@@ -9,12 +10,12 @@ You may be curious what kind of treasure is this Artifact.
 Well, it's does not hold much of a monetary value per se.
 But it holds personal value...
 set Global.emotionChart = 3
-I really need to return it to him or else...
-He'll never lift the curse...
-...
+I really need to take it away from him or else...
+The curse will never be lifted...
+Sorry...
 set Global.emotionChart = 0
 set Global.nextLineDialogue = false
-I'm sorry, I let my emotions take control of me for a second.
+This curse inflicted me with insomnia, I haven't sleep in weeks.
 set Global.emotionChart = 2
 set SpawnerManagement.index = 1
 set SpawnerManagement.activateSpawner = true
@@ -23,13 +24,13 @@ Why are there so many snakes around?
 set SpawnerManagement.index = 2
 set SpawnerManagement.activateSpawner = true
 I should have known this place would been infested.
-Probably I need to practice a spell to dispel snakes.
+Probably I need to cast a spell to dispel snakes.
 But after researching in a few forums, I could not find such a spell.
 However, I read something interesting during my research.
 I found an article claiming that snakes dislike lime scent.
 After that I had the wonderful idea of creating a homemade lime perfume.
 But my skin ended up itching and my hair got all greasy.
-Also even I could not stand the lime scent.
+Also, even I could not stand the lime scent.
 set Global.nextLineDialogue = false
 Perhaps I'm just like a snake.
 set Global.emotionChart = 0
@@ -44,7 +45,7 @@ But this is the first time I've gotten so close to it.
 I couldn't have done it without you.
 if Global.emotionChart == 1:
 	You're really strong for an angel.
-	Once we're done here I'll reward you properly.
+	Once we're done here, I'll reward you properly.
 	Spirits can't eat, so cooking you a meal won't be enough.
 	Not like I'm any good at cooking either way...
 	But what about a movie?
@@ -69,12 +70,12 @@ Sorry for all the yapping, I don't get to communicate with others often.
 set SpawnerManagement.index = 5
 set SpawnerManagement.activateSpawner = true
 set Global.nextLineDialogue = false
-This is it... the Artifact.
-Adam, can you hear me?.
+This is it, the Artifact.
+Adam, can you hear me?
 set Global.emotionChart = 3
 set Global.shake = true
 I know you must be mad...
-I didn't want to abandon you...
+I didn't mean to abandon you...
 I'm sorry...
 set Global.shake = false
 Is it over?
@@ -106,7 +107,7 @@ set SpawnerManagement.activateSpawner = true
 set Global.emotionChart = 1
 But I don't have to worry about that anymore.
 I can finally sleep peacefully knowing he won't come back to disturb me.
-So, let's deal with this monsters quickly so we can head home.
+So, let's deal with these monsters quickly so we can head home.
 set Global.nextLineDialogue = false
 I can't wait longer to take a well-deserved nap.
 It has been an exhausting journey... but it's finally over...
