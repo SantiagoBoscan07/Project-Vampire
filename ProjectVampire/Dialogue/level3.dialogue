@@ -15,7 +15,7 @@ The curse will never be lifted...
 Sorry...
 set Global.emotionChart = 0
 set Global.nextLineDialogue = false
-This curse inflicted me with insomnia, I haven't sleep in weeks.
+This curse inflicted me with insomnia, I haven't slept in weeks.
 set Global.emotionChart = 2
 set SpawnerManagement.index = 1
 set SpawnerManagement.activateSpawner = true
