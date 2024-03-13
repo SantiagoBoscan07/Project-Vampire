@@ -124,7 +124,6 @@ scale = Vector2(0.661938, 2.13867)
 texture = ExtResource("11_2xcut")
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 285.0
 offset_top = 78.0
@@ -142,4 +141,4 @@ justification_flags = 0
 libraries = {
 "": SubResource("AnimationLibrary_ftpdp")
 }
-speed_scale = 0.5
+speed_scale = 0.75

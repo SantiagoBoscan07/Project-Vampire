@@ -88,22 +88,28 @@ I have never seen so many of them at once, be careful!
 set SpawnerManagement.index = 7
 set SpawnerManagement.activateSpawner = true
 set Global.emotionChart = 3
-This can't be...
-set Global.nextLineDialogue = false
 Was this the right thing to do?
+Was I being selfish?
+We took his most precious treasure.
+set Global.nextLineDialogue = false
+But it was the only way.
 set SpawnerManagement.index = 8
 set SpawnerManagement.activateSpawner = true
 set Global.emotionChart = 2
-I mean, he was the one that put this curse on me.
+Also, he was the one that put this curse on me.
+I had to do something to remove it.
+He always enjoyed controlling others.
 set Global.nextLineDialogue = false
-I had to do something to take it out.
+And he found a way to control me even when he's not longer alive.
 set SpawnerManagement.index = 9
 set SpawnerManagement.activateSpawner = true
 set Global.emotionChart = 1
-We can't give up yet. 
+But I don't have to worry about that anymore.
+I can finally sleep peacefully knowing he won't come back to disturb me.
+So, let's deal with this monsters quickly so we can head home.
 set Global.nextLineDialogue = false
-We're in the final stretch.
-No more monsters... it's finally over...
-I think we can finally head home, let's get going.
+I can't wait longer to take a well-deserved nap.
+It has been an exhausting journey... but it's finally over...
+Come on, let's get going.
 set Global.nextLevel = true
 => END
