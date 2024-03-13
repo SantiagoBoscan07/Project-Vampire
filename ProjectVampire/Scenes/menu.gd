@@ -5,9 +5,11 @@ extends Control
 @onready var inputSettings = $InputSettings
 @onready var spriteElements = $SpriteElements 
 @onready var transitionCutout = $TransitionCutout
-
+@onready var quitButton = $SpriteElements/Quit
 func _ready():
 	transitionCutout.set_next_animation(0)
+	if OS.has_feature("web"):
+		quitButton.visible = false
 
 
 func _on_start_game_pressed():
