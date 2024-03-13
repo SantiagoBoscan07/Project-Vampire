@@ -324,6 +324,7 @@ grow_horizontal = 1
 grow_vertical = 1
 dialogueActivator = NodePath("../../UI/DialogueManagement")
 musicToStart = NodePath("../../LevelMusic")
+transitionToEnding = true
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_0e62i")

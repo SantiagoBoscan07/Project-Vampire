@@ -4,7 +4,9 @@ extends ColorRect
 @onready var animationPlayer = $AnimationPlayer as AnimationPlayer
 @export var dialogueActivator: Control
 @export var sceneToTransition: PackedScene
+@onready var endingScene: PackedScene = load("res://Scenes/ending.tscn")
 @export var musicToStart: AudioManagerNode
+@export var transitionToEnding: bool
 
 func _process(delta):
 	if Global.nextLevel:
@@ -34,8 +36,10 @@ func _on_animation_player_animation_started(anim_name):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "FadeBlack":
 		visible = false
-		if sceneToTransition:
+		if sceneToTransition and !transitionToEnding:
 			get_tree().change_scene_to_packed(sceneToTransition)
+		elif transitionToEnding:
+			get_tree().change_scene_to_packed(endingScene)
 	if anim_name == "FadeNormal":
 		visible = false
 		if musicToStart:
